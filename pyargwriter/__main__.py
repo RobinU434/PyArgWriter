@@ -2,7 +2,7 @@
 
 from argparse import ArgumentParser
 
-from pyargwriter.parser import setup_parser
+from pyargwriter.utils.parser import setup_parser
 from pyargwriter.process import ArgParsWriter
 
 def main():
