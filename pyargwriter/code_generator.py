@@ -152,6 +152,7 @@ class Main(Code):
 
 
 
+
 def dict2args(d: Dict[str,Any]) -> str:
     result = ""
     for key, value in d.items():
@@ -163,76 +164,3 @@ def dict2args(d: Dict[str,Any]) -> str:
         result += f"{key} = {value}, "
 
     return result
-
-
-if __name__ == "__main__":
-    data = {
-        'commands': [
-            {
-                'name': 'command1',
-                'help': 'Help for command1',
-                'args': [
-                    {
-                        'dest': 'arg1',
-                        'type': 'str',
-                        'help': 'Help for arg1',
-                        # 'required': True,
-                        'default': None
-                    },
-                    {
-                        'dest': 'arg2',
-                        'type': 'int',
-                        'help': 'Help for arg2',
-                        # 'required': False,
-                        'default': 0
-                    }
-                ]
-            },
-            {
-                'name': 'command2',
-                'help': 'Help for command2',
-                'args': [
-                    {
-                        'dest': 'option1',
-                        'type': 'bool',
-                        'help': 'Help for option1',
-                        # 'required': False,
-                        'default': False
-                    },
-                    {
-                        'dest': 'option2',
-                        'type': 'str',
-                        'help': 'Help for option2',
-                        # 'required': True,
-                        'default': 'default_value'
-                    }
-                ]
-            },
-            {
-                'name': 'command3',
-                'help': 'Help for command3',
-                'args': [
-                    {
-                        'dest': 'arg3',
-                        'type': 'list',
-                        'help': 'Help for arg3',
-                        # 'required': True,
-                        'default': []
-                    },
-                    {
-                        'dest': 'arg4',
-                        'type': 'dict',
-                        'help': 'Help for arg4',
-                        # 'required': False,
-                        'default': {}
-                    }
-                ]
-            }
-        ]
-    }
-
-    func = SetupParser(data['commands'])
-    print(func)
-
-    main = Main()
-    print(main)
