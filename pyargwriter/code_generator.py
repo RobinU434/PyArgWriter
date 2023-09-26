@@ -45,6 +45,16 @@ class Code:
     def append_line(self, content: str, tab_level: int = 0):
         self._file.append(LineOfCode(content=content, tab_level=tab_level))
         
+
+    def write(self, path: str) -> None: 
+        """where you want to save the file content
+
+        Args:
+            path (str): path to file
+        """
+        with open(path, "w") as text_file:
+            text_file.write(repr(self))
+
     @property
     def file(self) -> List[LineOfCode]:
         return self._file
@@ -137,17 +147,33 @@ class SetupParser(Function):
 
 
 class Main(Code):
-    def __init__(self) -> None:
+    def __init__(self, setup_parser_file: str = "parser.py") -> None:
+        """_summary_
+
+        Args:
+            setup_parser_file (str): relative path to file with setup parser functionalities
+        """
+
         super().__init__()
 
+        self._add_imports(setup_parser_file)
         self._add_content()
+
+
     def _add_content(self):
         self.append_line(content="if __name__ == '__main__':", tab_level=self._tab_level)
         self._tab_level += 1
 
         self.append_line(content="parser = ArgumentParser(description='TODO: make it a variable')", tab_level=self._tab_level)
         self.append_line(content="parser = setup_parser(parser)", tab_level=self._tab_level)
+        # self.append_line(content="raise ValueError", tab_level=1)
         self.append_line(content="parser.parse_args()", tab_level=self._tab_level)
+
+    def _add_imports(self, file: str):
+        self.append_line(content="from argparse import ArgumentParser")
+        file = file.rstrip(".py")
+        file = file.replace("/", ".")
+        self.append_line(content=f"from {file} import setup_parser")
 
 
 
