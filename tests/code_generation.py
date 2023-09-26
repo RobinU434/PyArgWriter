@@ -5,7 +5,7 @@ import subprocess
 from pyargwriter.code_generator import Main, SetupParser
 from pyargwriter.utils.decorator import cleanup_tests
 
-command_data = {
+COMMAND_DATA = {
         'commands': [
             {
                 'name': 'command1',
@@ -70,12 +70,12 @@ command_data = {
         ]
     }
 
-project_path = subprocess.check_output("pwd", shell=True).decode("utf-8")[:-1]
+PROJECT_PATH = subprocess.check_output("pwd", shell=True).decode("utf-8")[:-1]
 
 
 @cleanup_tests
 def test_run_completion():
-    func = SetupParser(command_data['commands'])
+    func = SetupParser(COMMAND_DATA['commands'])
     func.write("./tests/temp/test.py")
     main = Main()
     main.write("./tests/temp/test_main.py")
@@ -84,7 +84,7 @@ def test_run_completion():
 
 @cleanup_tests
 def test_check_generated_code_for_errors():
-    func = SetupParser(command_data['commands'])
+    func = SetupParser(COMMAND_DATA['commands'])
     func.write("./tests/temp/test.py")
     main = Main("test.py")
     main.write("./tests/temp/test_main.py")
@@ -92,14 +92,14 @@ def test_check_generated_code_for_errors():
     error_codes_regex = "E[0-9][0-9][0-9][0-9]:"
     fatal_codes_regex = "F[0-9][0-9][0-9][0-9]:"
     
-    command = f"pylint {project_path}/tests/temp/test.py"
+    command = f"pylint {PROJECT_PATH}/tests/temp/test.py"
     result = subprocess.run(command, shell=True, capture_output=True)
     # run(..., check=True, stdout=PIPE).stdout
     result = result.stdout.decode("utf-8")
     assert(len(re.findall(error_codes_regex, str(result))) == 0)
     assert(len(re.findall(fatal_codes_regex, str(result))) == 0)
 
-    command = f"pylint {project_path}/tests/temp/test_main.py"
+    command = f"pylint {PROJECT_PATH}/tests/temp/test_main.py"
     result = subprocess.run(command, shell=True, capture_output=True)
     assert(len(re.findall(error_codes_regex, str(result))) == 0)
     assert(len(re.findall(fatal_codes_regex, str(result))) == 0)
@@ -107,7 +107,7 @@ def test_check_generated_code_for_errors():
 
 @cleanup_tests
 def test_is_runable():
-    func = SetupParser(command_data['commands'])
+    func = SetupParser(COMMAND_DATA['commands'])
     func.write("./tests/temp/test.py")
     main = Main("tests/temp/test.py")
     main.write("./tests/temp/test_main.py")
