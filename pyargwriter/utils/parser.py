@@ -1,9 +1,56 @@
 from argparse import ArgumentParser
-from ast import AST, Module
-import ast
+import argcomplete
 
 
-def add_input_output_args(parser: ArgumentParser) -> ArgumentParser:
+def add_formatter_args(parser: ArgumentParser) -> ArgumentParser:
+    parser.add_argument(
+        "--format",
+        "-f",
+        dest="pretty",
+        action="store_true",
+        help="If flag is set. The code will be formatted with Black.",
+    )
+    return parser
+
+
+def add_parser_args(parser: ArgumentParser) -> ArgumentParser:
+    parser.add_argument(
+        "--input",
+        dest="files",
+        nargs="+",
+        type=str,
+        help="Collection of paths to the files you want to generate the argument parser for.",
+        required=True,
+    )
+    parser.add_argument(
+        "--output",
+        type=str,
+        default=".",
+        help="Path to file where to store the structural information",
+    )
+
+    return parser
+
+
+def add_writer_args(parser: ArgumentParser) -> ArgumentParser:
+    parser.add_argument(
+        "--input",
+        dest="file",
+        type=str,
+        help="Collection of paths to files with structural information to generate the parser from. ",
+        required=True,
+    )
+    parser.add_argument(
+        "--output",
+        type=str,
+        default=".",
+        help="Relative path to directory where you want to save the generated files",
+    )
+    parser = add_formatter_args(parser)
+    return parser
+
+
+def add_generate_parser_args(parser: ArgumentParser) -> ArgumentParser:
     parser.add_argument(
         "--input",
         nargs="+",
@@ -17,44 +64,30 @@ def add_input_output_args(parser: ArgumentParser) -> ArgumentParser:
         default=".",
         help="Relative path to directory where you want to save the generated files",
     )
-
+    parser = add_formatter_args(parser)
     return parser
 
 
 def setup_parser(parser: ArgumentParser) -> ArgumentParser:
     subparser = parser.add_subparsers(dest="command", title="command")
 
+    parse_code_parser = subparser.add_parser(
+        "parse-code",
+        help="Parse given files and create yaml structure with structural parser information",
+    )
+    parse_code_parser = add_parser_args(parse_code_parser)
+
+    write_code_parser = subparser.add_parser(
+        "write-code",
+        help="Read given parser yaml structure and create argument parser python code",
+    )
+    write_code_parser = add_writer_args(write_code_parser)
+
     gen_arg_pars_parser = subparser.add_parser(
         "generate-argparser",
         help="Generate parser.py which contains a setup_parser function to setup an appropriate parser.",
     )
-    add_input_output_args(gen_arg_pars_parser)
+    gen_arg_pars_parser = add_generate_parser_args(gen_arg_pars_parser)
 
+    argcomplete.autocomplete(parser)
     return parser
-
-
-def generate_module_parser(tree: Module) -> ArgumentParser:
-    module_docstring = ast.get_docstring(tree)
-    first_line = module_docstring.split("\n")[0]
-    name, description = first_line.split("-")
-    parser = ArgumentParser(name, description=description)
-    return parser
-
-
-def generate_class_parser(tree: Module) -> ArgumentParser:
-    pass
-
-
-def generate_method_parser(tree: Module) -> ArgumentParser:
-    pass
-
-
-def parse_class(node: AST):
-    class_name = node.name
-    args = []
-    for item in node.body:
-        if isinstance(item, ast.FunctionDef) and item.name == "__init__":
-            for arg in item.args.args[1:]:  # Exclude 'self' argument
-                if isinstance(arg, ast.arg):
-                    args.append(arg.arg)
-    return class_name, args
