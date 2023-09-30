@@ -64,8 +64,7 @@ class Calculator:
             a (float): The dividend.
             b (float): The divisor.
     """
-
-    def add(self, a, b):
+    def add(self, a:float, b: float):
         """Returns the sum of two numbers.
 
         Args:
