@@ -1,0 +1,38 @@
+modules:
+- commands:
+  - args:
+    - dest: a
+      help: The first number.
+      type: float
+    - dest: b
+      help: The second number.
+      type: float
+    help: Returns the sum of two numbers.
+    name: add
+  - args:
+    - dest: a
+      help: The first number.
+    - dest: b
+      help: The second number.
+    help: Returns the result of subtracting 'b' from 'a'.
+    name: subtract
+  help: ''
+  name: Calculator
+- commands:
+  - args:
+    - dest: item
+      help: The name of the item.
+    - dest: price
+      help: The price of the item.
+    help: Adds an item to the cart with its price.
+    name: add_item
+  - args:
+    - dest: item
+      help: The name of the item.
+    help: Removes an item from the cart.
+    name: remove_item
+  - args: []
+    help: Calculates the total cost of all items in the cart.
+    name: calculate_total
+  help: ''
+  name: ShoppingCart
