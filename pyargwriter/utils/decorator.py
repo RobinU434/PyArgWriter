@@ -18,7 +18,8 @@ def overwrite_protection(func: Callable) -> Callable:
     def wrapper(*args, path: str, **kwargs):
         if check_file_exists(path):
             overwrite = input(f"{path} already exists. Overwrite it? [Y, n]: ")
-            if overwrite.lower() in ["", "y"]:
-                func(*args, path, **kwargs)
-    
+            if overwrite.lower() not in ["", "y"]:
+                return
+        func(*args, path, **kwargs)
+        
     return wrapper

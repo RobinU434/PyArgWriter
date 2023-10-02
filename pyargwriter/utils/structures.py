@@ -113,6 +113,7 @@ class ModuleStructures(Structure):
     def __init__(self) -> None:
         super().__init__()
         self.modules: List[ModuleStructure] = []
+        """List[ModuleStructure]: List of module specifications"""
 
     def __len__(self) -> int:
         """number of modules to create argparse structures to

@@ -1,8 +1,15 @@
 from argparse import ArgumentParser
 import logging
+from types import NoneType
 from typing import Any, Dict, List, Type
 from pyargwriter.utils.casts import dict2args, format_help
-from pyargwriter.utils.code_abstracts import Code, Function, LineOfCode
+from pyargwriter.utils.code_abstracts import (
+    Code,
+    Function,
+    LineOfCode,
+    Match,
+    MatchCase,
+)
 from pyargwriter.utils.file_system import check_file_exists, load_json, load_yaml
 from pyargwriter.utils.structures import (
     ArgumentStructure,
@@ -38,11 +45,11 @@ class AddArguments(Function):
 
     def _add_function(self, arguments: List[ArgumentStructure]) -> None:
         for arg in arguments:
-            self.append_line(
+            self.append(
                 content=f"parser.add_argument({dict2args(vars(arg))})",
             )
 
-        self.append_line(content="return parser")
+        self.append(content="return parser")
 
 
 class SetupCommandParser(Function):
@@ -69,7 +76,7 @@ class SetupCommandParser(Function):
 
     def _add_command_parser(self) -> None:
         subparser_name = "command_subparser"
-        self.append_line(
+        self.append(
             content=f"{subparser_name} = parser.add_subparsers(dest='command', title='command')",
         )
 
@@ -77,7 +84,7 @@ class SetupCommandParser(Function):
             parser_var_name = self._add_parser(
                 subparser_name=subparser_name, **vars(command)
             )
-            self.append_line(
+            self.append(
                 content=f"{parser_var_name} = add_{parser_var_name}_args({parser_var_name})",
             )
 
@@ -89,7 +96,7 @@ class SetupCommandParser(Function):
         args: List[ArgumentStructure] = [],
     ) -> str:
         var_name = name.replace("-", "_").lower()
-        self.append_line(
+        self.append(
             content=f"{var_name} = {subparser_name}.add_parser('{name.replace('_', '-')}', help='{format_help(help)}')",
         )
         self._add_args(name_infix=var_name, args=args)
@@ -100,7 +107,7 @@ class SetupCommandParser(Function):
         self.insert(args_func, 0)
 
     def _add_return(self):
-        self.append_line(content="return parser")
+        self.append(content="return parser")
 
 
 class SetupParser(Function):
@@ -117,17 +124,17 @@ class SetupParser(Function):
             setup_command_parser = SetupCommandParser(module.name)
             setup_command_parser.generate_code(module.commands)
             self.insert(setup_command_parser, 0)
-            self.append_line(content=f"parser = {setup_command_parser.name}(parser)")
-            self.append_line(content="return parser")
+            self.append(content=f"parser = {setup_command_parser.name}(parser)")
+            self.append(content="return parser")
 
         elif len(modules) > 1:
             # multiple classes -> unify multiple parser architectures
-            self.append_line(
+            self.append(
                 content="module_subparser = parser.add_subparsers(dest='module', title='module')"
             )
             no_imports = len(modules) - 1
             for module in modules.modules:
-                self.append_line(
+                self.append(
                     content=f"{module.name.lower()}_parser = module_subparser.add_parser(name='{module.name}', help='TODO')"
                 )
                 setup_command_parser = SetupCommandParser(
@@ -136,10 +143,10 @@ class SetupParser(Function):
                 no_imports -= 1
                 setup_command_parser.generate_code(module.commands)
                 self.insert(setup_command_parser, 0)
-                self.append_line(
+                self.append(
                     content=f"{module.name.lower()}_parser = {setup_command_parser.name}({module.name.lower()}_parser)"
                 )
-            self.append_line(content="return parser")
+            self.append(content="return parser")
         else:
             logging.info("No modules given. No setup parser code needs to be created")
 
@@ -154,44 +161,102 @@ class SetupParser(Function):
         self.generate_code(modules)
 
 
-class ParserMain(Code):
+class MainCaller(Code):
+    def __init__(self) -> None:
+        super().__init__()
+        self._add_content()
+
+    def _add_content(self):
+        self.append(content="if __name__ == '__main__':")
+        self._tab_level += 1
+        self.append(content="main()")
+
+
+class MainFunc(Function):
     def __init__(self) -> None:
         """_summary_
 
         Args:
             setup_parser_file (str): relative path to file with setup parser functionalities
         """
-        super().__init__()
+        name = "main"
+        signature = {}
+        return_type = None
+        super().__init__(name, signature, return_type)
 
-    def __call__(self, setup_parser_file: str = "parser.py") -> Any:
-        self._add_imports(setup_parser_file)
+    def generate_code(
+        self, modules: ModuleStructures, setup_parser_file: str = "parser.py"
+    ) -> Any:
         self._add_content()
+        imports = self._generate_imports(setup_parser_file)
+        self.insert(imports, 0)
+        self._add_module_logic(modules)
 
     def _add_content(self):
-        self.append_line(content="if __name__ == '__main__':")
-        self._tab_level += 1
-
-        self.append_line(
+        self.append(
             content="parser = ArgumentParser(description='TODO: make it a variable')",
         )
-        self.append_line(content="parser = setup_parser(parser)")
+        self.append(content="parser = setup_parser(parser)")
         # self.append_line(content="raise ValueError", tab_level=1)
-        self.append_line(content="parser.parse_args()")
+        self.append(content="args = parser.parse_args()")
+        self.append(content="args_dict = vars(args)")
 
-    def _add_imports(self, file: str):
-        temp_tab_level = self._tab_level
-        self._tab_level = 0
-        self.append_line(content="from argparse import ArgumentParser")
+    def _generate_imports(self, file: str) -> Code:
+        imports = Code()
+        imports.append(content="from argparse import ArgumentParser")
         file = file.rstrip(".py")
         file = file.replace("/", ".")
-        self.append_line(content=f"from {file} import setup_parser")
-        self._tab_level = temp_tab_level
+        imports.append(content=f"from {file} import setup_parser")
+        return imports
+
+    def _add_module_logic(self, data: ModuleStructures):
+        if len(data) == 1:
+            module: ModuleStructure = data.modules[0]
+            self.append(content=f"module = {module.name}(**args_dict)")
+
+            # generate matches from commands
+            match_case = self._generate_command_match_case(module.commands)
+            self.append(match_case)
+        elif len(data) > 1:
+            match_case = self._generate_module_match_case(data.modules)
+            self.append(match_case)
+        else:
+            logging.error("No given modules to process")
+        print(len(self))
+
+    def _generate_command_match_case(
+        self, commands: List[CommandStructure]
+    ) -> MatchCase:
+        matches: List[Match] = []
+
+        for command in commands:
+            command: CommandStructure
+            match_name = command.name
+            body = Code.from_str(code=f"module.{command.name}(**args_dict)")
+            matches.append(Match(match_value=match_name, body=body))
+
+        match_case = MatchCase(match_name="args_dict['command']", matches=matches)
+        return match_case
+
+    def _generate_module_match_case(self, modules: List[ModuleStructure]) -> MatchCase:
+        matches: List[Match] = []
+
+        for module in modules:
+            module: ModuleStructure
+            match_name = module.name
+            body = Code.from_str(f"module = {module.name}(**args_dict)")
+            body.append(self._generate_command_match_case(module.commands))
+            matches.append(Match(match_value=match_name.replace("_", "-"), body=body))
+            
+        match_cases = MatchCase(match_name="args_dict['module']", matches=matches)
+        return match_cases
 
 
 class CodeGenerator:
     def __init__(self) -> None:
         self._setup_parser = SetupParser()
-        self._parser_main = ParserMain()
+        self._main_func = MainFunc()
+        self._main_caller = MainCaller()
 
     def from_dict(self, modules: List[Dict[str, Any]], parser_file: str) -> None:
         """_summary_
@@ -202,16 +267,21 @@ class CodeGenerator:
         """
         modules = ModuleStructures.from_dict(modules)
         self._setup_parser.generate_code(modules)
-        self._parser_main(parser_file)
-        
+        self._main_func.generate_code(modules, parser_file)
+        self._main_func.insert(self._main_caller, len(self._main_func))
+
     def from_yaml(self, yaml_file: str, parser_file: str):
-        self._setup_parser.from_yaml(yaml_file)
-        self._parser_main(parser_file)
+        data = load_yaml(yaml_file)
+        self.from_dict(data, parser_file)
 
     def from_json(self, json_file: str, parser_file: str):
-        self._setup_parser.from_json(json_file)
-        self._parser_main(parser_file)
+        data = load_json(json_file)
+        self.from_dict(data, parser_file)
 
-    def write(self, setup_parser_path: str, main_path: str):
-        self._setup_parser.write(path=setup_parser_path)
-        self._parser_main.write(path=main_path)
+    def write(self, setup_parser_path: str, main_path: str, force: bool = False):
+        if force:
+            self._setup_parser.write_force(path=setup_parser_path)
+            self._main_func.write_force(path=main_path)
+        else:
+            self._setup_parser.write(path=setup_parser_path)
+            self._main_func.write(path=main_path)

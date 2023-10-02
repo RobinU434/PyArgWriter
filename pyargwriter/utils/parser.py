@@ -2,11 +2,20 @@ from argparse import ArgumentParser
 import argcomplete
 
 
+def add_general_args(parser: ArgumentParser) -> ArgumentParser:
+    parser.add_argument(
+        "--log-level",
+        choices=["DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"],
+        default="WARN",
+        help="Sets log level for command execution.",
+    )
+    return parser
+
+
 def add_formatter_args(parser: ArgumentParser) -> ArgumentParser:
     parser.add_argument(
-        "--format",
-        "-f",
-        dest="pretty",
+        "--pretty",
+        "-p",
         action="store_true",
         help="If flag is set. The code will be formatted with Black.",
     )
@@ -28,7 +37,7 @@ def add_parser_args(parser: ArgumentParser) -> ArgumentParser:
         default=".",
         help="Path to file where to store the structural information",
     )
-
+    parser = add_general_args(parser)
     return parser
 
 
@@ -47,6 +56,13 @@ def add_writer_args(parser: ArgumentParser) -> ArgumentParser:
         help="Relative path to directory where you want to save the generated files",
     )
     parser = add_formatter_args(parser)
+    parser = add_general_args(parser)
+
+    parser.add_argument(
+        "--force", "-f",
+        action="store_true",
+        help="Set this argument to force file overwrite."
+    )
     return parser
 
 
@@ -65,6 +81,13 @@ def add_generate_parser_args(parser: ArgumentParser) -> ArgumentParser:
         help="Relative path to directory where you want to save the generated files",
     )
     parser = add_formatter_args(parser)
+    parser = add_general_args(parser)
+
+    parser.add_argument(
+        "--force", "-f",
+        action="store_true",
+        help="Set this argument to force file overwrite."
+    )
     return parser
 
 
