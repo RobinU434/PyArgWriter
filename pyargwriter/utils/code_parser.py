@@ -3,7 +3,7 @@ from ast import AST, ClassDef, Expr, FunctionDef, Module
 import ast
 import json
 import logging
-from typing import Any, List, Type
+from typing import Any, List, Tuple, Type
 
 from pyargwriter.utils.file_system import write_json, write_yaml
 from pyargwriter.utils.structures import ArgumentStructure, CommandStructure, ModuleStructure, ModuleStructures
@@ -77,21 +77,23 @@ class CodeParser:
                 logging.warning(f"Not implemented write method for file type {file_type}")
         write_func(self.modules.to_dict(), path)
                 
-    def _get_class_signature(self, node):
+    def _get_class_signature(self, node) -> Tuple[str, List[ArgumentStructure], str]:
         """Get the signature (name and arguments) of a class.
 
         Args:
             node: The AST node representing the class.
 
         Returns:
-            Tuple[str, List[ArgumentStructure]]: A tuple containing the class name and its arguments.
+            Tuple[str, List[ArgumentStructure], str]: A tuple containing the class name, its arguments and a short explanation.
         """
         class_name = node.name
         args = []
         for item in node.body:
             if isinstance(item, ast.FunctionDef) and item.name == "__init__":
                 args = self._get_arguments(item)
-        return class_name, args
+
+        help = ast.get_docstring(node).split("\n")[0]
+        return class_name, args, help
     
     @staticmethod
     def _get_arguments(func: FunctionDef) -> List[ArgumentStructure]:
@@ -171,8 +173,9 @@ class CodeParser:
         for node in ast.walk(tree):
             if isinstance(node, ast.ClassDef):
                 module = ModuleStructure()
-                class_name, module_args = self._get_class_signature(node)
+                class_name, module_args, help = self._get_class_signature(node)
                 module.name = class_name
+                module.help = help
                 class_commands = self._get_command_structure(node)
                 module.commands.extend(class_commands)
                 module.location = file

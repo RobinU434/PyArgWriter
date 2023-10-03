@@ -244,11 +244,11 @@ class SetupParser(Function):
         >>> print(setup_parser_function)
         def setup_parser(parser: ArgumentParser) -> ArgumentParser:
             module_subparser = parser.add_subparsers(dest='module', title='module')
-            module1_parser = module_subparser.add_parser(name='module1', help='TODO')
+            module1_parser = module_subparser.add_parser(name='module1', help='help of module1')
             setup_module1_parser = SetupCommandParser('module1', no_imports=False)
             setup_module1_parser.generate_code([])
             module1_parser = setup_module1_parser(module1_parser)
-            module2_parser = module_subparser.add_parser(name='module2', help='TODO')
+            module2_parser = module_subparser.add_parser(name='module2', help='help of module2')
             setup_module2_parser = SetupCommandParser('module2', no_imports=True)
             setup_module2_parser.generate_code([])
             module2_parser = setup_module2_parser(module2_parser)
@@ -286,7 +286,7 @@ class SetupParser(Function):
             no_imports = len(modules) - 1
             for module in modules.modules:
                 self.append(
-                    content=f"{module.name.lower()}_parser = module_subparser.add_parser(name='{module.name}', help='TODO')"
+                    content=f"{module.name.lower()}_parser = module_subparser.add_parser(name='{module.name}', help='{module.help}')"
                 )
                 setup_command_parser = SetupCommandParser(
                     module.name, no_imports=bool(no_imports)
@@ -378,7 +378,7 @@ class MainFunc(Function):
         >>> main_function = MainFunc()
         >>> print(main_function)
         def main():
-            parser = ArgumentParser(description='TODO: make it a variable')
+            parser = ArgumentParser(description='description for ArgumentParser')
             parser = setup_parser(parser)
             args = parser.parse_args()
             args_dict = vars(args)
@@ -407,17 +407,25 @@ class MainFunc(Function):
         Returns:
             Any: Generated code for the main function.
         """
-        self._add_content()
+        self._add_content(modules)
         modules_to_import = modules.locations
         modules_to_import["setup_parser"] = setup_parser_file
         imports = self._generate_imports(modules_to_import)
         self.insert(imports, 0)
         self._add_module_logic(modules)
 
-    def _add_content(self):
+    def _add_content(self, modules: ModuleStructures):
         """Adds the main function's content to the code."""
+        # convert module names in comprehensive string
+        
+        if len(modules) == 1:
+            description = modules.modules[0].help
+        elif len(modules) > 1:
+            module_names = ", ".join(modules.names)
+            description = f'Command-line interface for python modules: {module_names}'
+
         self.append(
-            content="parser = ArgumentParser(description='TODO: make it a variable')",
+            content=f"parser = ArgumentParser(description='{description}')",
         )
         self.append(content="parser = setup_parser(parser)")
         # self.append_line(content="raise ValueError", tab_level=1)
