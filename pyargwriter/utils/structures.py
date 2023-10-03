@@ -354,3 +354,18 @@ class ModuleStructures(Structure):
             module: ModuleStructure
             locations[module.name] = module.location
         return locations
+    
+    @property
+    def names(self) -> List[str]:
+        """Return a list of module names.
+
+        Returns:
+            List[str]: A list containing names of all modules.
+        """ 
+        module_names = []
+        for module in self.modules:
+            module: ModuleStructure
+            module_names.append(module.name)
+
+        return module_names
+        
