@@ -19,7 +19,7 @@ def main():
         arg_pars_writer.parse_code(**args_dict)
     elif args_dict["command"] == "write-code":
         arg_pars_writer.write_code(**args_dict)
-    elif args_dict["command"] == "generate-parser":
+    elif args_dict["command"] == "generate-argparser":
         arg_pars_writer.generate_parser(**args_dict)
     else:
         parser.print_usage()

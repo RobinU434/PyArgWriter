@@ -35,12 +35,13 @@ class ArgParseWriter:
         # how to return values
         if output == ".":
             print(repr(self._arg_parse_structure))
+        elif output is None:
+            return
         else:
             self._parser.write(output)
 
     def write_code(self, file: str, output: str, pretty: bool = False, **kwargs):
         file_type = file.split(".")[-1]
-
         match file_type:
             case "yaml":
                 generator_method = self._generator.from_yaml
@@ -73,19 +74,34 @@ class ArgParseWriter:
 
     def generate_parser(
         self,
-        input: List[str],
+        files: List[str],
         output: str,
         pretty: bool = False,
         **kwargs,
     ):
-        self.parse_code(input)
+        self.parse_code(files, None)
 
-        self._generator.from_dict(self._arg_parse_structure)
-        self._generator.write(output, main_output)
+        output = output.rstrip("/")
+        self._generator.from_dict(self._arg_parse_structure.to_dict(), output + "/utils/parser.py")
+
+        create_directory(output + "/utils")
+        self._generator.write(
+            setup_parser_path=output + "/utils/parser.py",
+            main_path=output + "/__main__.py",
+            force=self._force,
+        )
+
+        # create __init__.py ?
+        init_path = output + "/__init__.py"
+        self._create_init(path=init_path)
+        # if not check_file_exists(output + "/__init__.py"):
+        #     create_init = input(f"No __init__.py in {output} found. Create one? [Y, n]:")
+        #     if create_init.lower() in ["", "y"]:
+        #         create_file(output  + "/__init__.py")
 
         if pretty:
-            self._format_code(output, main_output)
-
+            print("format code")
+            self._format_code(output)
     def _format_code(
         self,
         *files,

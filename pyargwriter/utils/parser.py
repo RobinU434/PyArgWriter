@@ -69,6 +69,7 @@ def add_writer_args(parser: ArgumentParser) -> ArgumentParser:
 def add_generate_parser_args(parser: ArgumentParser) -> ArgumentParser:
     parser.add_argument(
         "--input",
+        dest="files",
         nargs="+",
         type=str,
         help="Collection of paths to the files you want to generate the argument parser for.",
