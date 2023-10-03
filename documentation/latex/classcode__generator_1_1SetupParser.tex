@@ -1,0 +1,129 @@
+\hypertarget{classcode__generator_1_1SetupParser}{}\doxysection{code\+\_\+generator.\+Setup\+Parser Class Reference}
+\label{classcode__generator_1_1SetupParser}\index{code\_generator.SetupParser@{code\_generator.SetupParser}}
+
+
+Represents a function generator for setting up an Argument\+Parser with subcommands for multiple modules.  
+
+
+
+
+Inheritance diagram for code\+\_\+generator.\+Setup\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classcode__generator_1_1SetupParser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for code\+\_\+generator.\+Setup\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classcode__generator_1_1SetupParser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcode__generator_1_1SetupParser_a84a234843b6f60afa4b7af5504661ff5}\label{classcode__generator_1_1SetupParser_a84a234843b6f60afa4b7af5504661ff5}} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+None \mbox{\hyperlink{classcode__generator_1_1SetupParser_a85c4a0a9ac36355d321935452b6944c9}{generate\+\_\+code}} (self, Module\+Structures modules)
+\begin{DoxyCompactList}\small\item\em Generates the code to set up the Argument\+Parser with subcommands for multiple modules. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcode__generator_1_1SetupParser_aa0aa1fa0958116c499d33d6b1cc969cd}{from\+\_\+yaml}} (self, str yaml\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Generates the code based on a YAML configuration file. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcode__generator_1_1SetupParser_adfe49b0e0d985c01a60a956b49414b89}{from\+\_\+json}} (self, str json\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Generates the code based on a JSON configuration file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a function generator for setting up an Argument\+Parser with subcommands for multiple modules. 
+
+This class extends the Function class and is designed for generating functions that set up an Argument\+Parser with subcommands for multiple modules based on Module\+Structures. It can handle the case of a single module or multiple modules with individual subparsers. Imports for Argument\+Parser are included based on the number of modules.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \begin{DoxyVerb}    (inherited attributes from Function...)
+\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Methods}
+generate\+\_\+code(self, modules\+: Module\+Structures) -\/$>$ None\+: Generates the code to set up the Argument\+Parser with subcommands for multiple modules. from\+\_\+yaml(self, yaml\+\_\+file\+: str) -\/$>$ None\+: Generates the code based on a YAML configuration file. from\+\_\+json(self, json\+\_\+file\+: str) -\/$>$ None\+: Generates the code based on a JSON configuration file.
+\end{DoxyParagraph}
+{\bfseries{Examples}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{>>> modules = ModuleStructures(modules=[ModuleStructure(name=\textcolor{stringliteral}{'module1'}), ModuleStructure(name=\textcolor{stringliteral}{'module2'})])}
+\DoxyCodeLine{>>> setup\_parser\_function = SetupParser()}
+\DoxyCodeLine{>>> setup\_parser\_function.generate\_code(modules)}
+\DoxyCodeLine{>>> print(setup\_parser\_function)}
+
+\end{DoxyCode}
+ def setup\+\_\+parser(parser\+: Argument\+Parser) -\/$>$ Argument\+Parser\+: module\+\_\+subparser = parser.\+add\+\_\+subparsers(dest=\textquotesingle{}module\textquotesingle{}, title=\textquotesingle{}module\textquotesingle{}) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module1\_parser = module\_subparser.add\_parser(name=\textcolor{stringliteral}{'module1'}, help=\textcolor{stringliteral}{'TODO'})}
+\DoxyCodeLine{setup\_module1\_parser = SetupCommandParser(\textcolor{stringliteral}{'module1'}, no\_imports=\textcolor{keyword}{False})}
+\DoxyCodeLine{setup\_module1\_parser.generate\_code([])}
+\DoxyCodeLine{module1\_parser = setup\_module1\_parser(module1\_parser)}
+\DoxyCodeLine{module2\_parser = module\_subparser.add\_parser(name=\textcolor{stringliteral}{'module2'}, help=\textcolor{stringliteral}{'TODO'})}
+\DoxyCodeLine{setup\_module2\_parser = SetupCommandParser(\textcolor{stringliteral}{'module2'}, no\_imports=\textcolor{keyword}{True})}
+\DoxyCodeLine{setup\_module2\_parser.generate\_code([])}
+\DoxyCodeLine{module2\_parser = setup\_module2\_parser(module2\_parser)}
+
+\end{DoxyCode}
+ return parser 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcode__generator_1_1SetupParser_adfe49b0e0d985c01a60a956b49414b89}\label{classcode__generator_1_1SetupParser_adfe49b0e0d985c01a60a956b49414b89}} 
+\index{code\_generator.SetupParser@{code\_generator.SetupParser}!from\_json@{from\_json}}
+\index{from\_json@{from\_json}!code\_generator.SetupParser@{code\_generator.SetupParser}}
+\doxysubsubsection{\texorpdfstring{from\_json()}{from\_json()}}
+{\footnotesize\ttfamily def code\+\_\+generator.\+Setup\+Parser.\+from\+\_\+json (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{json\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Generates the code based on a JSON configuration file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+\_\+file} & The path to the JSON configuration file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcode__generator_1_1SetupParser_aa0aa1fa0958116c499d33d6b1cc969cd}\label{classcode__generator_1_1SetupParser_aa0aa1fa0958116c499d33d6b1cc969cd}} 
+\index{code\_generator.SetupParser@{code\_generator.SetupParser}!from\_yaml@{from\_yaml}}
+\index{from\_yaml@{from\_yaml}!code\_generator.SetupParser@{code\_generator.SetupParser}}
+\doxysubsubsection{\texorpdfstring{from\_yaml()}{from\_yaml()}}
+{\footnotesize\ttfamily def code\+\_\+generator.\+Setup\+Parser.\+from\+\_\+yaml (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{yaml\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Generates the code based on a YAML configuration file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em yaml\+\_\+file} & The path to the YAML configuration file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcode__generator_1_1SetupParser_a85c4a0a9ac36355d321935452b6944c9}\label{classcode__generator_1_1SetupParser_a85c4a0a9ac36355d321935452b6944c9}} 
+\index{code\_generator.SetupParser@{code\_generator.SetupParser}!generate\_code@{generate\_code}}
+\index{generate\_code@{generate\_code}!code\_generator.SetupParser@{code\_generator.SetupParser}}
+\doxysubsubsection{\texorpdfstring{generate\_code()}{generate\_code()}}
+{\footnotesize\ttfamily  None code\+\_\+generator.\+Setup\+Parser.\+generate\+\_\+code (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Module\+Structures}]{modules }\end{DoxyParamCaption})}
+
+
+
+Generates the code to set up the Argument\+Parser with subcommands for multiple modules. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em modules} & A Module\+Structures object containing information about the modules and their subcommands. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/code\+\_\+generator.\+py\end{DoxyCompactItemize}

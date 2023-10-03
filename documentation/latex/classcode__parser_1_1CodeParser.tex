@@ -1,0 +1,113 @@
+\hypertarget{classcode__parser_1_1CodeParser}{}\doxysection{code\+\_\+parser.\+Code\+Parser Class Reference}
+\label{classcode__parser_1_1CodeParser}\index{code\_parser.CodeParser@{code\_parser.CodeParser}}
+
+
+A parser for analyzing Python code and extracting structured information.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcode__parser_1_1CodeParser_a68d3dcd71b48288c53b29e9515d1ef4a}\label{classcode__parser_1_1CodeParser_a68d3dcd71b48288c53b29e9515d1ef4a}} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+str \mbox{\hyperlink{classcode__parser_1_1CodeParser_a0abbd5a6da47d0912bee0ce389ae0d82}{\+\_\+\+\_\+repr\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Return a string representation of the parsed modules. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcode__parser_1_1CodeParser_a96bad0d4af73f8d6851ee94099d48314}{module\+\_\+serialized}} (self)
+\begin{DoxyCompactList}\small\item\em Serialize the module information as a list of dictionaries. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcode__parser_1_1CodeParser_ae7890ea4175980f12c55ff8dc786eead}{write}} (self, str path)
+\begin{DoxyCompactList}\small\item\em Write the extracted structured information to a file in YAML or JSON format. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcode__parser_1_1CodeParser_af7609af3d759814b906735cc5184e741}{parse\+\_\+tree}} (self, Module tree, str file)
+\begin{DoxyCompactList}\small\item\em Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcode__parser_1_1CodeParser_aa12ca7258329b6140ddeb0f6a6c1ae34}\label{classcode__parser_1_1CodeParser_aa12ca7258329b6140ddeb0f6a6c1ae34}} 
+\mbox{\hyperlink{classcode__parser_1_1CodeParser_aa12ca7258329b6140ddeb0f6a6c1ae34}{modules}}
+\begin{DoxyCompactList}\small\item\em A collection of Module\+Structure objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A parser for analyzing Python code and extracting structured information. 
+
+This class is designed to parse Python code and extract structured information about classes, methods, and their associated arguments and documentation.
+
+\begin{DoxyParagraph}{Methods}
+parse\+\_\+tree(self, tree\+: Module, file\+: str) -\/$>$ None\+: Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+write(self, path\+: str) -\/$>$ None\+: Write the extracted structured information to a file in YAML or JSON format.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties}
+module\+\_\+serialized A list of dictionaries representing serialized module information. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcode__parser_1_1CodeParser_a0abbd5a6da47d0912bee0ce389ae0d82}\label{classcode__parser_1_1CodeParser_a0abbd5a6da47d0912bee0ce389ae0d82}} 
+\index{code\_parser.CodeParser@{code\_parser.CodeParser}!\_\_repr\_\_@{\_\_repr\_\_}}
+\index{\_\_repr\_\_@{\_\_repr\_\_}!code\_parser.CodeParser@{code\_parser.CodeParser}}
+\doxysubsubsection{\texorpdfstring{\_\_repr\_\_()}{\_\_repr\_\_()}}
+{\footnotesize\ttfamily  str code\+\_\+parser.\+Code\+Parser.\+\_\+\+\_\+repr\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Return a string representation of the parsed modules. 
+
+\begin{DoxyReturn}{Returns}
+
+
+str A string representation of the parsed modules. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcode__parser_1_1CodeParser_a96bad0d4af73f8d6851ee94099d48314}\label{classcode__parser_1_1CodeParser_a96bad0d4af73f8d6851ee94099d48314}} 
+\index{code\_parser.CodeParser@{code\_parser.CodeParser}!module\_serialized@{module\_serialized}}
+\index{module\_serialized@{module\_serialized}!code\_parser.CodeParser@{code\_parser.CodeParser}}
+\doxysubsubsection{\texorpdfstring{module\_serialized()}{module\_serialized()}}
+{\footnotesize\ttfamily def code\+\_\+parser.\+Code\+Parser.\+module\+\_\+serialized (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Serialize the module information as a list of dictionaries. 
+
+\begin{DoxyReturn}{Returns}
+
+
+List A list of dictionaries representing serialized module information. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcode__parser_1_1CodeParser_af7609af3d759814b906735cc5184e741}\label{classcode__parser_1_1CodeParser_af7609af3d759814b906735cc5184e741}} 
+\index{code\_parser.CodeParser@{code\_parser.CodeParser}!parse\_tree@{parse\_tree}}
+\index{parse\_tree@{parse\_tree}!code\_parser.CodeParser@{code\_parser.CodeParser}}
+\doxysubsubsection{\texorpdfstring{parse\_tree()}{parse\_tree()}}
+{\footnotesize\ttfamily def code\+\_\+parser.\+Code\+Parser.\+parse\+\_\+tree (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Module}]{tree,  }\item[{str}]{file }\end{DoxyParamCaption})}
+
+
+
+Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & The AST of the Python module. \\
+\hline
+{\em file} & The path to the Python module file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcode__parser_1_1CodeParser_ae7890ea4175980f12c55ff8dc786eead}\label{classcode__parser_1_1CodeParser_ae7890ea4175980f12c55ff8dc786eead}} 
+\index{code\_parser.CodeParser@{code\_parser.CodeParser}!write@{write}}
+\index{write@{write}!code\_parser.CodeParser@{code\_parser.CodeParser}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily def code\+\_\+parser.\+Code\+Parser.\+write (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{path }\end{DoxyParamCaption})}
+
+
+
+Write the extracted structured information to a file in YAML or JSON format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the output file. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/code\+\_\+parser.\+py\end{DoxyCompactItemize}

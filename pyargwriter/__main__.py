@@ -7,6 +7,13 @@ from pyargwriter.utils.parser import setup_parser
 from pyargwriter.process import ArgParseWriter
 
 def main():
+    """Main entry point for the PyArgWriter script.
+
+    This function sets up the ArgumentParser, parses command-line arguments,
+    initializes the ArgParseWriter, and calls the appropriate method based on
+    the provided command.
+
+    """
     parser = ArgumentParser(description="PyArgWriter: Python Argument Parser Setup Writer",
         epilog="Automatically generates ArgumentParser setups for Python classes and their methods.",)
     parser = setup_parser(parser)

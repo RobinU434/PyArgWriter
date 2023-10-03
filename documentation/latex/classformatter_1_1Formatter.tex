@@ -1,0 +1,70 @@
+\hypertarget{classformatter_1_1Formatter}{}\doxysection{formatter.\+Formatter Class Reference}
+\label{classformatter_1_1Formatter}\index{formatter.Formatter@{formatter.Formatter}}
+
+
+Abstract base class for code formatters.  
+
+
+
+
+Inheritance diagram for formatter.\+Formatter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classformatter_1_1Formatter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for formatter.\+Formatter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{classformatter_1_1Formatter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classformatter_1_1Formatter_a28123da5917541e05bb41a249aba5461}{format}} (self)
+\begin{DoxyCompactList}\small\item\em Format the given list of source code files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for code formatters. 
+
+This class defines an abstract method \textquotesingle{}format\textquotesingle{} that should be implemented by subclasses. Code formatters are used to automatically format source code files.
+
+\begin{DoxyParagraph}{Methods}
+format(self, files\+: List\mbox{[}str\mbox{]}) -\/$>$ None\+: Abstract method to format the given list of source code files. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classformatter_1_1Formatter_a28123da5917541e05bb41a249aba5461}\label{classformatter_1_1Formatter_a28123da5917541e05bb41a249aba5461}} 
+\index{formatter.Formatter@{formatter.Formatter}!format@{format}}
+\index{format@{format}!formatter.Formatter@{formatter.Formatter}}
+\doxysubsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily def formatter.\+Formatter.\+format (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Format the given list of source code files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em files} & A list of file paths to be formatted.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Error} & This method should be implemented in subclasses. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/formatter.\+py\end{DoxyCompactItemize}

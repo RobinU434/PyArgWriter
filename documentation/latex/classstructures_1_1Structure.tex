@@ -1,0 +1,109 @@
+\hypertarget{classstructures_1_1Structure}{}\doxysection{structures.\+Structure Class Reference}
+\label{classstructures_1_1Structure}\index{structures.Structure@{structures.Structure}}
+
+
+Abstract base class for defining structured objects.  
+
+
+
+
+Inheritance diagram for structures.\+Structure\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classstructures_1_1Structure__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for structures.\+Structure\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{classstructures_1_1Structure__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classstructures_1_1Structure_ae3a9dfb4ca173d07f648d32cdd3ec24c}\label{classstructures_1_1Structure_ae3a9dfb4ca173d07f648d32cdd3ec24c}} 
+def \mbox{\hyperlink{classstructures_1_1Structure_ae3a9dfb4ca173d07f648d32cdd3ec24c}{\+\_\+\+\_\+repr\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Return a JSON representation of the structured object. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classstructures_1_1Structure_a6c35e52ed639de7176e19253cf87f2d9}{from\+\_\+dict}} (\mbox{\hyperlink{classstructures_1_1Structure}{Structure}} cls, dict data)
+\begin{DoxyCompactList}\small\item\em Create an instance of the class from a dictionary. \end{DoxyCompactList}\item 
+dict \mbox{\hyperlink{classstructures_1_1Structure_ad4a3e90716ab884ea0e9962813705f83}{to\+\_\+dict}} (self)
+\begin{DoxyCompactList}\small\item\em Convert the object to a dictionary representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for defining structured objects. 
+
+This class defines methods for converting structured objects to and from dictionaries, as well as providing a JSON representation of the object.
+
+\begin{DoxyParagraph}{Methods}
+from\+\_\+dict(cls, data\+: dict) -\/$>$ \mbox{\hyperlink{classstructures_1_1Structure}{Structure}}\+: Abstract method for creating an instance of the class from a dictionary. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+to\+\_\+dict(self) -\/$>$ dict\+: Abstract method for converting the object to a dictionary representation. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classstructures_1_1Structure_a6c35e52ed639de7176e19253cf87f2d9}\label{classstructures_1_1Structure_a6c35e52ed639de7176e19253cf87f2d9}} 
+\index{structures.Structure@{structures.Structure}!from\_dict@{from\_dict}}
+\index{from\_dict@{from\_dict}!structures.Structure@{structures.Structure}}
+\doxysubsubsection{\texorpdfstring{from\_dict()}{from\_dict()}}
+{\footnotesize\ttfamily def structures.\+Structure.\+from\+\_\+dict (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstructures_1_1Structure}{Structure}}}]{cls,  }\item[{dict}]{data }\end{DoxyParamCaption})}
+
+
+
+Create an instance of the class from a dictionary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cls} & The class itself. \\
+\hline
+{\em data} & The dictionary containing data to create the instance from.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Error} & This method should be implemented in subclasses.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+
+
+\mbox{\hyperlink{classstructures_1_1Structure}{Structure}} An instance of the class created from the dictionary. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstructures_1_1Structure_ad4a3e90716ab884ea0e9962813705f83}\label{classstructures_1_1Structure_ad4a3e90716ab884ea0e9962813705f83}} 
+\index{structures.Structure@{structures.Structure}!to\_dict@{to\_dict}}
+\index{to\_dict@{to\_dict}!structures.Structure@{structures.Structure}}
+\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
+{\footnotesize\ttfamily  dict structures.\+Structure.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Convert the object to a dictionary representation. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Error} & This method should be implemented in subclasses.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+
+
+dict A dictionary representation of the object. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classstructures_1_1ModuleStructures_ac1f708b394e90bb4670078ed8db124bb}{structures.\+Module\+Structures}}, \mbox{\hyperlink{classstructures_1_1ModuleStructure_ac7588bd8af80f1c20af16a9fe34f28e2}{structures.\+Module\+Structure}}, \mbox{\hyperlink{classstructures_1_1CommandStructure_a557172e14d726d63940339bc0ae9e659}{structures.\+Command\+Structure}}, and \mbox{\hyperlink{classstructures_1_1ArgumentStructure_a4a5b32295b9f20ecd7ed1d35c5413ef0}{structures.\+Argument\+Structure}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/structures.\+py\end{DoxyCompactItemize}

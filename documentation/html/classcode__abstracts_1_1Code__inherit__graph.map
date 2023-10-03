@@ -1,0 +1,6 @@
+<map id="code_abstracts.Code" name="code_abstracts.Code">
+<area shape="rect" id="node1" title="Represents a collection of code lines." alt="" coords="212,5,369,32"/>
+<area shape="rect" id="node2" href="$classcode__abstracts_1_1Function.html" title="Represents a Python function." alt="" coords="5,80,184,107"/>
+<area shape="rect" id="node3" href="$classcode__abstracts_1_1Match.html" title="Represents a Python &#39;match&#39; expression." alt="" coords="209,80,373,107"/>
+<area shape="rect" id="node4" href="$classcode__abstracts_1_1MatchCase.html" title="Represents a &#39;case&#39; in a Python &#39;match&#39; expression." alt="" coords="397,80,593,107"/>
+</map>

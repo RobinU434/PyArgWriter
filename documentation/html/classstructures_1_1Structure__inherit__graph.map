@@ -1,0 +1,8 @@
+<map id="structures.Structure" name="structures.Structure">
+<area shape="rect" id="node1" title="Abstract base class for defining structured objects." alt="" coords="103,81,253,108"/>
+<area shape="rect" id="node3" href="$classstructures_1_1ArgumentStructure.html" title=" " alt="" coords="303,5,517,32"/>
+<area shape="rect" id="node4" href="$classstructures_1_1CommandStructure.html" title="Class representing a command structure." alt="" coords="301,56,519,83"/>
+<area shape="rect" id="node5" href="$classstructures_1_1ModuleStructure.html" title="Class representing a module structure." alt="" coords="311,107,509,133"/>
+<area shape="rect" id="node6" href="$classstructures_1_1ModuleStructures.html" title="Class representing a collection of module structures." alt="" coords="307,157,513,184"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,81,55,108"/>
+</map>

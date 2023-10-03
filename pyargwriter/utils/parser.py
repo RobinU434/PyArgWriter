@@ -3,6 +3,14 @@ import argcomplete
 
 
 def add_general_args(parser: ArgumentParser) -> ArgumentParser:
+    """Add general arguments to the given ArgumentParser.
+
+    Args:
+        parser (ArgumentParser): The ArgumentParser to which general arguments will be added.
+
+    Returns:
+        ArgumentParser: The modified ArgumentParser.
+    """
     parser.add_argument(
         "--log-level",
         choices=["DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"],
@@ -13,6 +21,14 @@ def add_general_args(parser: ArgumentParser) -> ArgumentParser:
 
 
 def add_formatter_args(parser: ArgumentParser) -> ArgumentParser:
+    """Add formatter-related arguments to the given ArgumentParser.
+
+    Args:
+        parser (ArgumentParser): The ArgumentParser to which formatter-related arguments will be added.
+
+    Returns:
+        ArgumentParser: The modified ArgumentParser.
+    """
     parser.add_argument(
         "--pretty",
         "-p",
@@ -23,6 +39,14 @@ def add_formatter_args(parser: ArgumentParser) -> ArgumentParser:
 
 
 def add_parser_args(parser: ArgumentParser) -> ArgumentParser:
+    """Add arguments for parsing code to the given ArgumentParser.
+
+    Args:
+        parser (ArgumentParser): The ArgumentParser to which parsing-related arguments will be added.
+
+    Returns:
+        ArgumentParser: The modified ArgumentParser.
+    """
     parser.add_argument(
         "--input",
         dest="files",
@@ -42,6 +66,14 @@ def add_parser_args(parser: ArgumentParser) -> ArgumentParser:
 
 
 def add_writer_args(parser: ArgumentParser) -> ArgumentParser:
+    """Add arguments for writing code to the given ArgumentParser.
+
+    Args:
+        parser (ArgumentParser): The ArgumentParser to which writing-related arguments will be added.
+
+    Returns:
+        ArgumentParser: The modified ArgumentParser.
+    """
     parser.add_argument(
         "--input",
         dest="file",
@@ -67,6 +99,14 @@ def add_writer_args(parser: ArgumentParser) -> ArgumentParser:
 
 
 def add_generate_parser_args(parser: ArgumentParser) -> ArgumentParser:
+    """Add arguments for generating an argument parser to the given ArgumentParser.
+
+    Args:
+        parser (ArgumentParser): The ArgumentParser to which generation-related arguments will be added.
+
+    Returns:
+        ArgumentParser: The modified ArgumentParser.
+    """
     parser.add_argument(
         "--input",
         dest="files",
@@ -93,6 +133,14 @@ def add_generate_parser_args(parser: ArgumentParser) -> ArgumentParser:
 
 
 def setup_parser(parser: ArgumentParser) -> ArgumentParser:
+    """Set up the main ArgumentParser with subparsers for different commands.
+
+    Args:
+        parser (ArgumentParser): The main ArgumentParser.
+
+    Returns:
+        ArgumentParser: The main ArgumentParser with subparsers.
+    """
     subparser = parser.add_subparsers(dest="command", title="command")
 
     parse_code_parser = subparser.add_parser(

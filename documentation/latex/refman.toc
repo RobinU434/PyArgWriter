@@ -1,0 +1,100 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Hierarchical Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Documentation}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}generator.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Add\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Arguments Class Reference}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{6}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}pyargwriter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}process.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Arg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parse\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Writer Class Reference}{7}{section.3.2}%
+\contentsline {section}{\numberline {3.3}structures.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Argument\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Structure Class Reference}{7}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Member Function Documentation}{8}{subsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.1.1}from\_dict()}{8}{subsubsection.3.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.3.1.2}to\_dict()}{8}{subsubsection.3.3.1.2}%
+\contentsline {section}{\numberline {3.4}formatter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Black\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Formatter Class Reference}{9}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Detailed Description}{10}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.5}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}abstracts.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Code Class Reference}{10}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Detailed Description}{11}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Member Function Documentation}{12}{subsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.2.1}append()}{12}{subsubsection.3.5.2.1}%
+\contentsline {subsubsection}{\numberline {3.5.2.2}file()}{12}{subsubsection.3.5.2.2}%
+\contentsline {subsubsection}{\numberline {3.5.2.3}from\_lines\_of\_code()}{12}{subsubsection.3.5.2.3}%
+\contentsline {subsubsection}{\numberline {3.5.2.4}from\_str()}{13}{subsubsection.3.5.2.4}%
+\contentsline {subsubsection}{\numberline {3.5.2.5}insert()}{13}{subsubsection.3.5.2.5}%
+\contentsline {subsubsection}{\numberline {3.5.2.6}set\_tab\_level()}{13}{subsubsection.3.5.2.6}%
+\contentsline {subsubsection}{\numberline {3.5.2.7}write()}{14}{subsubsection.3.5.2.7}%
+\contentsline {subsubsection}{\numberline {3.5.2.8}write\_force()}{14}{subsubsection.3.5.2.8}%
+\contentsline {section}{\numberline {3.6}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}generator.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Generator Class Reference}{14}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Detailed Description}{15}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Member Function Documentation}{15}{subsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {3.6.2.1}from\_dict()}{15}{subsubsection.3.6.2.1}%
+\contentsline {subsubsection}{\numberline {3.6.2.2}from\_json()}{16}{subsubsection.3.6.2.2}%
+\contentsline {subsubsection}{\numberline {3.6.2.3}from\_yaml()}{16}{subsubsection.3.6.2.3}%
+\contentsline {subsubsection}{\numberline {3.6.2.4}write()}{16}{subsubsection.3.6.2.4}%
+\contentsline {section}{\numberline {3.7}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}parser.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parser Class Reference}{17}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Detailed Description}{17}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}Member Function Documentation}{18}{subsection.3.7.2}%
+\contentsline {subsubsection}{\numberline {3.7.2.1}\_\_repr\_\_()}{18}{subsubsection.3.7.2.1}%
+\contentsline {subsubsection}{\numberline {3.7.2.2}module\_serialized()}{18}{subsubsection.3.7.2.2}%
+\contentsline {subsubsection}{\numberline {3.7.2.3}parse\_tree()}{18}{subsubsection.3.7.2.3}%
+\contentsline {subsubsection}{\numberline {3.7.2.4}write()}{19}{subsubsection.3.7.2.4}%
+\contentsline {section}{\numberline {3.8}structures.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Command\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Structure Class Reference}{19}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Detailed Description}{20}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Member Function Documentation}{20}{subsection.3.8.2}%
+\contentsline {subsubsection}{\numberline {3.8.2.1}\_\_len\_\_()}{21}{subsubsection.3.8.2.1}%
+\contentsline {subsubsection}{\numberline {3.8.2.2}from\_dict()}{21}{subsubsection.3.8.2.2}%
+\contentsline {subsubsection}{\numberline {3.8.2.3}to\_dict()}{21}{subsubsection.3.8.2.3}%
+\contentsline {section}{\numberline {3.9}formatter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Formatter Class Reference}{22}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Detailed Description}{22}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Member Function Documentation}{23}{subsection.3.9.2}%
+\contentsline {subsubsection}{\numberline {3.9.2.1}format()}{23}{subsubsection.3.9.2.1}%
+\contentsline {section}{\numberline {3.10}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}abstracts.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Function Class Reference}{23}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}Detailed Description}{24}{subsection.3.10.1}%
+\contentsline {section}{\numberline {3.11}pyargwriter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Instances Class Reference}{25}{section.3.11}%
+\contentsline {section}{\numberline {3.12}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}abstracts.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Line\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Of\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Code Class Reference}{25}{section.3.12}%
+\contentsline {subsection}{\numberline {3.12.1}Detailed Description}{26}{subsection.3.12.1}%
+\contentsline {subsection}{\numberline {3.12.2}Member Function Documentation}{26}{subsection.3.12.2}%
+\contentsline {subsubsection}{\numberline {3.12.2.1}content()}{26}{subsubsection.3.12.2.1}%
+\contentsline {subsubsection}{\numberline {3.12.2.2}tab\_level()}{26}{subsubsection.3.12.2.2}%
+\contentsline {section}{\numberline {3.13}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}generator.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Main\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Caller Class Reference}{27}{section.3.13}%
+\contentsline {subsection}{\numberline {3.13.1}Detailed Description}{27}{subsection.3.13.1}%
+\contentsline {section}{\numberline {3.14}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}generator.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Main\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Func Class Reference}{28}{section.3.14}%
+\contentsline {subsection}{\numberline {3.14.1}Detailed Description}{29}{subsection.3.14.1}%
+\contentsline {subsection}{\numberline {3.14.2}Constructor \& Destructor Documentation}{29}{subsection.3.14.2}%
+\contentsline {subsubsection}{\numberline {3.14.2.1}\_\_init\_\_()}{29}{subsubsection.3.14.2.1}%
+\contentsline {subsection}{\numberline {3.14.3}Member Function Documentation}{30}{subsection.3.14.3}%
+\contentsline {subsubsection}{\numberline {3.14.3.1}generate\_code()}{30}{subsubsection.3.14.3.1}%
+\contentsline {section}{\numberline {3.15}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}abstracts.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Match Class Reference}{30}{section.3.15}%
+\contentsline {subsection}{\numberline {3.15.1}Detailed Description}{31}{subsection.3.15.1}%
+\contentsline {section}{\numberline {3.16}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}abstracts.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Match\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Case Class Reference}{32}{section.3.16}%
+\contentsline {subsection}{\numberline {3.16.1}Detailed Description}{32}{subsection.3.16.1}%
+\contentsline {section}{\numberline {3.17}structures.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Module\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Structure Class Reference}{33}{section.3.17}%
+\contentsline {subsection}{\numberline {3.17.1}Detailed Description}{34}{subsection.3.17.1}%
+\contentsline {subsection}{\numberline {3.17.2}Member Function Documentation}{34}{subsection.3.17.2}%
+\contentsline {subsubsection}{\numberline {3.17.2.1}\_\_len\_\_()}{34}{subsubsection.3.17.2.1}%
+\contentsline {subsubsection}{\numberline {3.17.2.2}add\_args()}{34}{subsubsection.3.17.2.2}%
+\contentsline {subsubsection}{\numberline {3.17.2.3}from\_dict()}{35}{subsubsection.3.17.2.3}%
+\contentsline {subsubsection}{\numberline {3.17.2.4}to\_dict()}{35}{subsubsection.3.17.2.4}%
+\contentsline {section}{\numberline {3.18}structures.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Module\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Structures Class Reference}{36}{section.3.18}%
+\contentsline {subsection}{\numberline {3.18.1}Detailed Description}{37}{subsection.3.18.1}%
+\contentsline {subsection}{\numberline {3.18.2}Member Function Documentation}{37}{subsection.3.18.2}%
+\contentsline {subsubsection}{\numberline {3.18.2.1}\_\_len\_\_()}{37}{subsubsection.3.18.2.1}%
+\contentsline {subsubsection}{\numberline {3.18.2.2}from\_dict()}{37}{subsubsection.3.18.2.2}%
+\contentsline {subsubsection}{\numberline {3.18.2.3}locations()}{38}{subsubsection.3.18.2.3}%
+\contentsline {subsubsection}{\numberline {3.18.2.4}to\_dict()}{38}{subsubsection.3.18.2.4}%
+\contentsline {section}{\numberline {3.19}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}generator.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Setup\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Command\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parser Class Reference}{39}{section.3.19}%
+\contentsline {subsection}{\numberline {3.19.1}Detailed Description}{39}{subsection.3.19.1}%
+\contentsline {subsection}{\numberline {3.19.2}Member Function Documentation}{40}{subsection.3.19.2}%
+\contentsline {subsubsection}{\numberline {3.19.2.1}generate\_code()}{40}{subsubsection.3.19.2.1}%
+\contentsline {section}{\numberline {3.20}code\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}generator.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Setup\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parser Class Reference}{40}{section.3.20}%
+\contentsline {subsection}{\numberline {3.20.1}Detailed Description}{41}{subsection.3.20.1}%
+\contentsline {subsection}{\numberline {3.20.2}Member Function Documentation}{42}{subsection.3.20.2}%
+\contentsline {subsubsection}{\numberline {3.20.2.1}from\_json()}{42}{subsubsection.3.20.2.1}%
+\contentsline {subsubsection}{\numberline {3.20.2.2}from\_yaml()}{42}{subsubsection.3.20.2.2}%
+\contentsline {subsubsection}{\numberline {3.20.2.3}generate\_code()}{43}{subsubsection.3.20.2.3}%
+\contentsline {section}{\numberline {3.21}structures.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Structure Class Reference}{43}{section.3.21}%
+\contentsline {subsection}{\numberline {3.21.1}Detailed Description}{44}{subsection.3.21.1}%
+\contentsline {subsection}{\numberline {3.21.2}Member Function Documentation}{44}{subsection.3.21.2}%
+\contentsline {subsubsection}{\numberline {3.21.2.1}from\_dict()}{44}{subsubsection.3.21.2.1}%
+\contentsline {subsubsection}{\numberline {3.21.2.2}to\_dict()}{45}{subsubsection.3.21.2.2}%
+\contentsline {chapter}{Index}{47}{section*.58}%

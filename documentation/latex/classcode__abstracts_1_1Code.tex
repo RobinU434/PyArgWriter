@@ -1,0 +1,227 @@
+\hypertarget{classcode__abstracts_1_1Code}{}\doxysection{code\+\_\+abstracts.\+Code Class Reference}
+\label{classcode__abstracts_1_1Code}\index{code\_abstracts.Code@{code\_abstracts.Code}}
+
+
+Represents a collection of code lines.  
+
+
+
+
+Inheritance diagram for code\+\_\+abstracts.\+Code\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcode__abstracts_1_1Code__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_aa8c015b510190b15143dddcacf07a1b6}\label{classcode__abstracts_1_1Code_aa8c015b510190b15143dddcacf07a1b6}} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_a245995224367bbf950d178a1d28c353f}\label{classcode__abstracts_1_1Code_a245995224367bbf950d178a1d28c353f}} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_aed0f7c7e84fcafc24c22e8c119526d6b}\label{classcode__abstracts_1_1Code_aed0f7c7e84fcafc24c22e8c119526d6b}} 
+int {\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\item 
+\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} \mbox{\hyperlink{classcode__abstracts_1_1Code_a01b87ebca9a73d70adfe9cc951561fc6}{from\+\_\+lines\+\_\+of\+\_\+code}} (\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} cls, List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} code)
+\begin{DoxyCompactList}\small\item\em Create a \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} instance from a list of \mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}} objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} \mbox{\hyperlink{classcode__abstracts_1_1Code_a5c7b96d380ae9e53ac911cf50880a6e6}{from\+\_\+str}} (\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} cls, str code)
+\begin{DoxyCompactList}\small\item\em Create a \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} instance from a single string representing a line of code. \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classcode__abstracts_1_1Code_a4d31f92add5eeb69dbf003bccae59ef1}{insert}} (self, List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}$\vert$\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}$\vert$\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} content, int index)
+\begin{DoxyCompactList}\small\item\em insert given lines of code into self.\+\_\+file of class at given index \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classcode__abstracts_1_1Code_af6b9b20f12c466f351a7495cf43f3e4c}{append}} (self, str$\vert$\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}$\vert$\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}$\vert$List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} content)
+\begin{DoxyCompactList}\small\item\em Append content to the end of the code block. \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classcode__abstracts_1_1Code_a497b3ce3b3ac79b4b1813093a6ab45f3}{write}} (self, str path)
+\begin{DoxyCompactList}\small\item\em Write the code block to a file. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcode__abstracts_1_1Code_a7691180014d3891438c63754e07179d2}{write\+\_\+force}} (self, str path)
+\begin{DoxyCompactList}\small\item\em Write the code block to a file without asking if you to overwrite existing files. \end{DoxyCompactList}\item 
+List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} \mbox{\hyperlink{classcode__abstracts_1_1Code_a4d1c53eebd25cd66fdd52afc4449b13c}{file}} (self)
+\begin{DoxyCompactList}\small\item\em Get the list of code lines in the code block. \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classcode__abstracts_1_1Code_ae2e38a3d3b7d07a15f740d4df9249841}{set\+\_\+tab\+\_\+level}} (self, int tab\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Set the tab level for all lines of code in the code block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a collection of code lines. 
+
+This class represents a collection of code lines with indentation. It is used to build and manipulate code blocks.
+
+\begin{DoxyParagraph}{Methods}
+insert(self, content\+: List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} $\vert$ \mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}} $\vert$ \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}, index\+: int) -\/$>$ None\+: Insert code lines at a specified index. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+append(self, content\+: str $\vert$ \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} $\vert$ \mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}} $\vert$ List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}) -\/$>$ None\+: Append code lines to the end of the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+from\+\_\+lines\+\_\+of\+\_\+code \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}, code\+: List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}) -\/$>$ \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}\+: Create a \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} instance from a list of \mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}} objects. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+from\+\_\+str \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}, code\+: str) -\/$>$ \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}\+: Create a \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} instance from a single string representing a line of code. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+split\+\_\+file(self, index\+: int) -\/$>$ Tuple\mbox{[}List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\mbox{]}\+: Split the code block into two parts at the specified index. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+insert\+\_\+line\+\_\+of\+\_\+code( first List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, line\+\_\+of\+\_\+code\+: \mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}, second\+: List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} ) -\/$>$ List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\+: Insert a single line of code into the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+insert\+\_\+lines\+\_\+of\+\_\+code( first List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, lines\+\_\+of\+\_\+code List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, second List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, ) -\/$>$ List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\+: Insert multiple lines of code into the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+insert\+\_\+code( self, first\+: List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, code\+: \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}, second\+: List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} ) -\/$>$ List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\+: Insert another \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} instance into the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+write(self, path\+: str) -\/$>$ None\+: Write the code block to a specified file path. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+file(self) -\/$>$ List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\+: Get the list of code lines in the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+set\+\_\+tab\+\_\+level(self, tab\+\_\+level\+: int) -\/$>$ None\+: Set the tab level for all lines of code in the code block. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_af6b9b20f12c466f351a7495cf43f3e4c}\label{classcode__abstracts_1_1Code_af6b9b20f12c466f351a7495cf43f3e4c}} 
+\index{code\_abstracts.Code@{code\_abstracts.Code}!append@{append}}
+\index{append@{append}!code\_abstracts.Code@{code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}}
+{\footnotesize\ttfamily  None code\+\_\+abstracts.\+Code.\+append (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str $\vert$ \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} $\vert$ \mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}} $\vert$ List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}}]{content }\end{DoxyParamCaption})}
+
+
+
+Append content to the end of the code block. 
+
+\begin{DoxyVerb}        content (str | Code | LineOfCode | List[LineOfCode]): Content to append.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classcode__abstracts_1_1Code_a4d1c53eebd25cd66fdd52afc4449b13c}\label{classcode__abstracts_1_1Code_a4d1c53eebd25cd66fdd52afc4449b13c}} 
+\index{code\_abstracts.Code@{code\_abstracts.Code}!file@{file}}
+\index{file@{file}!code\_abstracts.Code@{code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{file()}{file()}}
+{\footnotesize\ttfamily  List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} code\+\_\+abstracts.\+Code.\+file (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Get the list of code lines in the code block. 
+
+\begin{DoxyReturn}{Returns}
+
+
+List The list of code lines. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_a01b87ebca9a73d70adfe9cc951561fc6}\label{classcode__abstracts_1_1Code_a01b87ebca9a73d70adfe9cc951561fc6}} 
+\index{code\_abstracts.Code@{code\_abstracts.Code}!from\_lines\_of\_code@{from\_lines\_of\_code}}
+\index{from\_lines\_of\_code@{from\_lines\_of\_code}!code\_abstracts.Code@{code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{from\_lines\_of\_code()}{from\_lines\_of\_code()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} code\+\_\+abstracts.\+Code.\+from\+\_\+lines\+\_\+of\+\_\+code (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}}]{cls,  }\item[{List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}}]{code }\end{DoxyParamCaption})}
+
+
+
+Create a \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} instance from a list of \mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & List of \mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}} objects.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} A \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} instance containing the specified code lines. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_a5c7b96d380ae9e53ac911cf50880a6e6}\label{classcode__abstracts_1_1Code_a5c7b96d380ae9e53ac911cf50880a6e6}} 
+\index{code\_abstracts.Code@{code\_abstracts.Code}!from\_str@{from\_str}}
+\index{from\_str@{from\_str}!code\_abstracts.Code@{code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{from\_str()}{from\_str()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} code\+\_\+abstracts.\+Code.\+from\+\_\+str (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}}]{cls,  }\item[{str}]{code }\end{DoxyParamCaption})}
+
+
+
+Create a \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} instance from a single string representing a line of code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & A single string representing a line of code.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+\mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} A \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}} instance containing the specified code line. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_a4d31f92add5eeb69dbf003bccae59ef1}\label{classcode__abstracts_1_1Code_a4d31f92add5eeb69dbf003bccae59ef1}} 
+\index{code\_abstracts.Code@{code\_abstracts.Code}!insert@{insert}}
+\index{insert@{insert}!code\_abstracts.Code@{code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily  None code\+\_\+abstracts.\+Code.\+insert (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{List\mbox{[}\mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} $\vert$ \mbox{\hyperlink{classcode__abstracts_1_1LineOfCode}{Line\+Of\+Code}} $\vert$ \mbox{\hyperlink{classcode__abstracts_1_1Code}{Code}}}]{content,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+insert given lines of code into self.\+\_\+file of class at given index 
+
+\begin{DoxyVerb}        content (List[LineOfCode] | LineOfCode): Lines of code to insert
+\end{DoxyVerb}
+ 
+\begin{DoxyParams}{Parameters}
+{\em index} & Where to insert the given content \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_ae2e38a3d3b7d07a15f740d4df9249841}\label{classcode__abstracts_1_1Code_ae2e38a3d3b7d07a15f740d4df9249841}} 
+\index{code\_abstracts.Code@{code\_abstracts.Code}!set\_tab\_level@{set\_tab\_level}}
+\index{set\_tab\_level@{set\_tab\_level}!code\_abstracts.Code@{code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{set\_tab\_level()}{set\_tab\_level()}}
+{\footnotesize\ttfamily  None code\+\_\+abstracts.\+Code.\+set\+\_\+tab\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{tab\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Set the tab level for all lines of code in the code block. 
+
+\begin{DoxyVerb}   This method sets the tab level for all lines of code in the code block.
+   It adjusts the indentation of each line based on the specified tab level.
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab\+\_\+level} & The tab level to set. Must be a non-\/negative integer. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_a497b3ce3b3ac79b4b1813093a6ab45f3}\label{classcode__abstracts_1_1Code_a497b3ce3b3ac79b4b1813093a6ab45f3}} 
+\index{code\_abstracts.Code@{code\_abstracts.Code}!write@{write}}
+\index{write@{write}!code\_abstracts.Code@{code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily  None code\+\_\+abstracts.\+Code.\+write (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{path }\end{DoxyParamCaption})}
+
+
+
+Write the code block to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The file path where the code block should be written. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcode__abstracts_1_1Code_a7691180014d3891438c63754e07179d2}\label{classcode__abstracts_1_1Code_a7691180014d3891438c63754e07179d2}} 
+\index{code\_abstracts.Code@{code\_abstracts.Code}!write\_force@{write\_force}}
+\index{write\_force@{write\_force}!code\_abstracts.Code@{code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{write\_force()}{write\_force()}}
+{\footnotesize\ttfamily def code\+\_\+abstracts.\+Code.\+write\+\_\+force (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{path }\end{DoxyParamCaption})}
+
+
+
+Write the code block to a file without asking if you to overwrite existing files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The file path where the code block should be written. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/code\+\_\+abstracts.\+py\end{DoxyCompactItemize}

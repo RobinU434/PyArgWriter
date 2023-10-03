@@ -1,0 +1,161 @@
+\begin{theindex}
+
+  \item {\_\_init\_\_}
+    \subitem {code\_generator.MainFunc}, \hyperpage{29}
+  \item {\_\_len\_\_}
+    \subitem {structures.CommandStructure}, \hyperpage{20}
+    \subitem {structures.ModuleStructure}, \hyperpage{34}
+    \subitem {structures.ModuleStructures}, \hyperpage{37}
+  \item {\_\_repr\_\_}
+    \subitem {code\_parser.CodeParser}, \hyperpage{18}
+
+  \indexspace
+
+  \item {add\_args}
+    \subitem {structures.ModuleStructure}, \hyperpage{34}
+  \item {append}
+    \subitem {code\_abstracts.Code}, \hyperpage{12}
+
+  \indexspace
+
+  \item {code\_abstracts.Code}, \hyperpage{10}
+    \subitem {append}, \hyperpage{12}
+    \subitem {file}, \hyperpage{12}
+    \subitem {from\_lines\_of\_code}, \hyperpage{12}
+    \subitem {from\_str}, \hyperpage{12}
+    \subitem {insert}, \hyperpage{13}
+    \subitem {set\_tab\_level}, \hyperpage{13}
+    \subitem {write}, \hyperpage{14}
+    \subitem {write\_force}, \hyperpage{14}
+  \item {code\_abstracts.Function}, \hyperpage{23}
+  \item {code\_abstracts.LineOfCode}, \hyperpage{25}
+    \subitem {content}, \hyperpage{26}
+    \subitem {tab\_level}, \hyperpage{26}
+  \item {code\_abstracts.Match}, \hyperpage{30}
+  \item {code\_abstracts.MatchCase}, \hyperpage{32}
+  \item {code\_generator.AddArguments}, \hyperpage{5}
+  \item {code\_generator.CodeGenerator}, \hyperpage{14}
+    \subitem {from\_dict}, \hyperpage{15}
+    \subitem {from\_json}, \hyperpage{16}
+    \subitem {from\_yaml}, \hyperpage{16}
+    \subitem {write}, \hyperpage{16}
+  \item {code\_generator.MainCaller}, \hyperpage{27}
+  \item {code\_generator.MainFunc}, \hyperpage{28}
+    \subitem {\_\_init\_\_}, \hyperpage{29}
+    \subitem {generate\_code}, \hyperpage{30}
+  \item {code\_generator.SetupCommandParser}, \hyperpage{39}
+    \subitem {generate\_code}, \hyperpage{40}
+  \item {code\_generator.SetupParser}, \hyperpage{40}
+    \subitem {from\_json}, \hyperpage{42}
+    \subitem {from\_yaml}, \hyperpage{42}
+    \subitem {generate\_code}, \hyperpage{43}
+  \item {code\_parser.CodeParser}, \hyperpage{17}
+    \subitem {\_\_repr\_\_}, \hyperpage{18}
+    \subitem {module\_serialized}, \hyperpage{18}
+    \subitem {parse\_tree}, \hyperpage{18}
+    \subitem {write}, \hyperpage{18}
+  \item {content}
+    \subitem {code\_abstracts.LineOfCode}, \hyperpage{26}
+
+  \indexspace
+
+  \item {file}
+    \subitem {code\_abstracts.Code}, \hyperpage{12}
+  \item {format}
+    \subitem {formatter.Formatter}, \hyperpage{23}
+  \item {formatter.BlackFormatter}, \hyperpage{9}
+  \item {formatter.Formatter}, \hyperpage{22}
+    \subitem {format}, \hyperpage{23}
+  \item {from\_dict}
+    \subitem {code\_generator.CodeGenerator}, \hyperpage{15}
+    \subitem {structures.ArgumentStructure}, \hyperpage{8}
+    \subitem {structures.CommandStructure}, \hyperpage{21}
+    \subitem {structures.ModuleStructure}, \hyperpage{35}
+    \subitem {structures.ModuleStructures}, \hyperpage{37}
+    \subitem {structures.Structure}, \hyperpage{44}
+  \item {from\_json}
+    \subitem {code\_generator.CodeGenerator}, \hyperpage{16}
+    \subitem {code\_generator.SetupParser}, \hyperpage{42}
+  \item {from\_lines\_of\_code}
+    \subitem {code\_abstracts.Code}, \hyperpage{12}
+  \item {from\_str}
+    \subitem {code\_abstracts.Code}, \hyperpage{12}
+  \item {from\_yaml}
+    \subitem {code\_generator.CodeGenerator}, \hyperpage{16}
+    \subitem {code\_generator.SetupParser}, \hyperpage{42}
+
+  \indexspace
+
+  \item {generate\_code}
+    \subitem {code\_generator.MainFunc}, \hyperpage{30}
+    \subitem {code\_generator.SetupCommandParser}, \hyperpage{40}
+    \subitem {code\_generator.SetupParser}, \hyperpage{43}
+
+  \indexspace
+
+  \item {insert}
+    \subitem {code\_abstracts.Code}, \hyperpage{13}
+
+  \indexspace
+
+  \item {locations}
+    \subitem {structures.ModuleStructures}, \hyperpage{38}
+
+  \indexspace
+
+  \item {module\_serialized}
+    \subitem {code\_parser.CodeParser}, \hyperpage{18}
+
+  \indexspace
+
+  \item {parse\_tree}
+    \subitem {code\_parser.CodeParser}, \hyperpage{18}
+  \item {pyargwriter.Instances}, \hyperpage{25}
+  \item {pyargwriter.process.ArgParseWriter}, \hyperpage{7}
+
+  \indexspace
+
+  \item {set\_tab\_level}
+    \subitem {code\_abstracts.Code}, \hyperpage{13}
+  \item {structures.ArgumentStructure}, \hyperpage{7}
+    \subitem {from\_dict}, \hyperpage{8}
+    \subitem {to\_dict}, \hyperpage{8}
+  \item {structures.CommandStructure}, \hyperpage{19}
+    \subitem {\_\_len\_\_}, \hyperpage{20}
+    \subitem {from\_dict}, \hyperpage{21}
+    \subitem {to\_dict}, \hyperpage{21}
+  \item {structures.ModuleStructure}, \hyperpage{33}
+    \subitem {\_\_len\_\_}, \hyperpage{34}
+    \subitem {add\_args}, \hyperpage{34}
+    \subitem {from\_dict}, \hyperpage{35}
+    \subitem {to\_dict}, \hyperpage{35}
+  \item {structures.ModuleStructures}, \hyperpage{36}
+    \subitem {\_\_len\_\_}, \hyperpage{37}
+    \subitem {from\_dict}, \hyperpage{37}
+    \subitem {locations}, \hyperpage{38}
+    \subitem {to\_dict}, \hyperpage{38}
+  \item {structures.Structure}, \hyperpage{43}
+    \subitem {from\_dict}, \hyperpage{44}
+    \subitem {to\_dict}, \hyperpage{45}
+
+  \indexspace
+
+  \item {tab\_level}
+    \subitem {code\_abstracts.LineOfCode}, \hyperpage{26}
+  \item {to\_dict}
+    \subitem {structures.ArgumentStructure}, \hyperpage{8}
+    \subitem {structures.CommandStructure}, \hyperpage{21}
+    \subitem {structures.ModuleStructure}, \hyperpage{35}
+    \subitem {structures.ModuleStructures}, \hyperpage{38}
+    \subitem {structures.Structure}, \hyperpage{45}
+
+  \indexspace
+
+  \item {write}
+    \subitem {code\_abstracts.Code}, \hyperpage{14}
+    \subitem {code\_generator.CodeGenerator}, \hyperpage{16}
+    \subitem {code\_parser.CodeParser}, \hyperpage{18}
+  \item {write\_force}
+    \subitem {code\_abstracts.Code}, \hyperpage{14}
+
+\end{theindex}

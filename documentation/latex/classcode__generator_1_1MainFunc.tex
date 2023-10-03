@@ -1,0 +1,109 @@
+\hypertarget{classcode__generator_1_1MainFunc}{}\doxysection{code\+\_\+generator.\+Main\+Func Class Reference}
+\label{classcode__generator_1_1MainFunc}\index{code\_generator.MainFunc@{code\_generator.MainFunc}}
+
+
+Represents the main function of a Python script that uses argparse for command-\/line arguments.  
+
+
+
+
+Inheritance diagram for code\+\_\+generator.\+Main\+Func\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classcode__generator_1_1MainFunc__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for code\+\_\+generator.\+Main\+Func\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classcode__generator_1_1MainFunc__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classcode__generator_1_1MainFunc_abe215ad7c5520b0cf18269574aec07d8}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em {\itshape summary} \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classcode__generator_1_1MainFunc_ac5822fe42e27567e347d2254e79b3798}{generate\+\_\+code}} (self, Module\+Structures modules, str setup\+\_\+parser\+\_\+file=\char`\"{}parser.\+py\char`\"{})
+\begin{DoxyCompactList}\small\item\em Generates the code for the main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the main function of a Python script that uses argparse for command-\/line arguments. 
+
+This class extends the Function class and is designed to generate the code for the main function of a Python script that uses argparse for command-\/line argument parsing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Methods}
+generate\+\_\+code Module\+Structures, setup\+\_\+parser\+\_\+file\+: str = \char`\"{}parser.\+py\char`\"{}) -\/$>$ Any\+: Generates the code for the main function. \+\_\+add\+\_\+content Adds the main function\textquotesingle{}s content. \+\_\+generate\+\_\+imports Dict\mbox{[}str, str\mbox{]}) -\/$>$ Code\+: Generates import statements for modules. \+\_\+add\+\_\+module\+\_\+logic Module\+Structures)\+: Adds the logic to handle modules and commands. \+\_\+generate\+\_\+command\+\_\+match\+\_\+case List\mbox{[}Command\+Structure\mbox{]}) -\/$>$ Match\+Case\+: Generates match cases for commands. \+\_\+generate\+\_\+module\+\_\+match\+\_\+case List\mbox{[}Module\+Structure\mbox{]}) -\/$>$ Match\+Case\+: Generates match cases for modules.
+\end{DoxyParagraph}
+{\bfseries{Examples}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{>>> main\_function = MainFunc()}
+\DoxyCodeLine{>>> print(main\_function)}
+
+\end{DoxyCode}
+ def main()\+: parser = Argument\+Parser(description=\textquotesingle{}TODO\+: make it a variable\textquotesingle{}) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser = setup\_parser(parser)}
+\DoxyCodeLine{args = parser.parse\_args()}
+\DoxyCodeLine{args\_dict = vars(args)}
+\DoxyCodeLine{\textcolor{comment}{\# (module and command logic)}}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcode__generator_1_1MainFunc_abe215ad7c5520b0cf18269574aec07d8}\label{classcode__generator_1_1MainFunc_abe215ad7c5520b0cf18269574aec07d8}} 
+\index{code\_generator.MainFunc@{code\_generator.MainFunc}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!code\_generator.MainFunc@{code\_generator.MainFunc}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily  None code\+\_\+generator.\+Main\+Func.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+{\itshape summary} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em setup\+\_\+parser\+\_\+file} & relative path to file with setup parser functionalities \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcode__generator_1_1MainFunc_ac5822fe42e27567e347d2254e79b3798}\label{classcode__generator_1_1MainFunc_ac5822fe42e27567e347d2254e79b3798}} 
+\index{code\_generator.MainFunc@{code\_generator.MainFunc}!generate\_code@{generate\_code}}
+\index{generate\_code@{generate\_code}!code\_generator.MainFunc@{code\_generator.MainFunc}}
+\doxysubsubsection{\texorpdfstring{generate\_code()}{generate\_code()}}
+{\footnotesize\ttfamily  None code\+\_\+generator.\+Main\+Func.\+generate\+\_\+code (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Module\+Structures}]{modules,  }\item[{str }]{setup\+\_\+parser\+\_\+file = {\ttfamily \char`\"{}parser.py\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Generates the code for the main function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em modules} & A Module\+Structures object containing module and command information. setup\+\_\+parser\+\_\+file (str, optional)\+: The relative path to the setup parser file. Defaults to \char`\"{}parser.\+py\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+Any Generated code for the main function. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/code\+\_\+generator.\+py\end{DoxyCompactItemize}
