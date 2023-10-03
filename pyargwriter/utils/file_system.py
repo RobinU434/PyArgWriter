@@ -14,7 +14,7 @@ def write_yaml(data: dict, path: str):
 
 def write_json(data: dict, path: str):
     with open(path, "w") as outfile:
-        json.dump(data, outfile)
+        json.dump(data, outfile, indent=4)
 
 
 def load_yaml(path) -> dict:
