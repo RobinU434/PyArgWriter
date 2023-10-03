@@ -2,7 +2,7 @@ import logging
 import re
 import subprocess
 
-from pyargwriter.utils.code_generator import CodeGenerator, ParserMain, SetupParser
+from pyargwriter.utils.code_generator import CodeGenerator, MainFunc, SetupParser
 from pyargwriter.utils.decorator import cleanup_tests
 from tests.utils.checks import check_pylint, check_run
 from tests import PROJECT_PATH

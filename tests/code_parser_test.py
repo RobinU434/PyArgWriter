@@ -63,7 +63,7 @@ def test_run_completion():
     with open("examples/shopping.py", 'r') as file:
         tree = ast.parse(file.read())
     
-    func.parse_tree(tree)
+    func.parse_tree(tree, "examples/shopping.py")
 
     assert func.modules.to_dict() == MODULES
 
@@ -74,7 +74,7 @@ def test_write_yaml():
     with open("examples/shopping.py", 'r') as file:
         tree = ast.parse(file.read())
     
-    func.parse_tree(tree)
+    func.parse_tree(tree, "examples/shopping.py")
     func.write("tests/temp/test.yaml")
     func.write("tests/temp/test.yml")
 
@@ -85,6 +85,6 @@ def test_write_json():
     with open("examples/shopping.py", 'r') as file:
         tree = ast.parse(file.read())
     
-    func.parse_tree(tree)
+    func.parse_tree(tree, "examples/shopping.py")
     func.write("tests/temp/test.json")
 
