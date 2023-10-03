@@ -6,11 +6,20 @@ PyArgWriter is a Python module that simplifies the generation of ArgumentParser 
 
 You can install PyArgWriter using `pip`:
 
+TODO: does not work yet
+
 ```bash
 pip install pyargwriter
 ```
 
-Does not work yet. TODO: add setup.py
+Alternative:
+
+In root folder:
+
+```bash
+pip install .
+```
+
 
 ## Command-Line Interface
 
