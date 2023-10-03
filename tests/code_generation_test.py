@@ -23,11 +23,13 @@ MODULES = {
                     "help": "Returns the sum of two numbers.",
                     "args": [
                         {
+                            "name_or_flags": "a",
                             "dest": "a",
                             "help": "The first number.",
                             "type": "float"
-                        }, 
+                        },
                         {
+                            "name_or_flags": "b",
                             "dest": "b",
                             "help": "The second number.",
                             "type": "float"
@@ -39,16 +41,20 @@ MODULES = {
                     "help": "Returns the result of subtracting 'b' from 'a'.",
                     "args": [
                         {
+                            "name_or_flags": "a",
                             "dest": "a",
                             "help": "The first number."
                         },
                         {
+                            "name_or_flags": "b",
                             "dest": "b",
                             "help": "The second number."
                         }
                     ]
                 }
-            ]
+            ],
+            "location": "tests/temp/shopping.py",
+            "args": []
         },
         {
             "name": "ShoppingCart",
@@ -59,10 +65,12 @@ MODULES = {
                     "help": "Adds an item to the cart with its price.",
                     "args": [
                         {
+                            "name_or_flags": "item",
                             "dest": "item",
                             "help": "The name of the item."
                         },
                         {
+                            "name_or_flags": "price",
                             "dest": "price",
                             "help": "The price of the item."
                         }
@@ -73,6 +81,7 @@ MODULES = {
                     "help": "Removes an item from the cart.",
                     "args": [
                         {
+                            "name_or_flags": "item",
                             "dest": "item",
                             "help": "The name of the item."
                         }
@@ -82,6 +91,16 @@ MODULES = {
                     "name": "calculate_total",
                     "help": "Calculates the total cost of all items in the cart.",
                     "args": []
+                }
+            ],
+            "location": "tests/temp/shopping.py",
+            "args": [
+                {
+                    "name_or_flags": "tax_rate",
+                    "dest": "tax_rate",
+                    "help": "rate for taxes",
+                    "type": "float",
+                    "default": 0.2
                 }
             ]
         }
@@ -97,7 +116,7 @@ def test_run_single_module_from_dict():
     generator = CodeGenerator()
     data = {"modules": [MODULES["modules"][0]]}
     generator.from_dict(data, "tests/temp/test.py")
-    generator.write(setup_parser_path, main_path)
+    generator.write(setup_parser_path, main_path, force=True)
     # os.system("rm tests/temp/*.py")
     assert check_pylint(f"{PROJECT_PATH}/tests/temp/test.py")
     assert check_pylint(f"{PROJECT_PATH}/tests/temp/test_main.py")
