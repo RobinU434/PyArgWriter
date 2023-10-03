@@ -76,6 +76,7 @@ class CodeParser:
         for arg, help, default in zip(func.args.args[-num_args:], helps, defaults):
             argument = ArgumentStructure()
             argument.dest = arg.arg
+            argument.name_or_flags = arg.arg
             argument.help = help
             
             if arg.annotation:

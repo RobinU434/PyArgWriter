@@ -252,7 +252,7 @@ class MainFunc(Function):
             match_name = module.name
             body = Code.from_str(f"module = {module.name}({create_call_args(module.args)})")
             body.append(self._generate_command_match_case(module.commands))
-            matches.append(Match(match_value=match_name.replace("_", "-"), body=body))
+            matches.append(Match(match_value=match_name, body=body))
 
         match_cases = MatchCase(match_name="args_dict['module']", matches=matches)
         return match_cases
