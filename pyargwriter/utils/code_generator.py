@@ -417,9 +417,15 @@ class MainFunc(Function):
     def _add_content(self, modules: ModuleStructures):
         """Adds the main function's content to the code."""
         # convert module names in comprehensive string
-        module_names = ", ".join(modules.names)
+        
+        if len(modules) == 1:
+            description = modules.modules[0].help
+        elif len(modules) > 1:
+            module_names = ", ".join(modules.names)
+            description = f'Command-line interface for python modules: {module_names}'
+
         self.append(
-            content=f"parser = ArgumentParser(description='Command-line interface for python modules: {module_names}')",
+            content=f"parser = ArgumentParser(description='{description}')",
         )
         self.append(content="parser = setup_parser(parser)")
         # self.append_line(content="raise ValueError", tab_level=1)
