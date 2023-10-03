@@ -1,7 +1,3 @@
-Certainly! Here's a template for a Code of Conduct for your PyArgWriter project:
-
----
-
 # Code of Conduct
 
 ## Introduction
