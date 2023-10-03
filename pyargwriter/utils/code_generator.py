@@ -1,8 +1,9 @@
 from argparse import ArgumentParser
+from copy import deepcopy
 import logging
 from types import NoneType
 from typing import Any, Dict, List, Type
-from pyargwriter.utils.casts import dict2args, format_help
+from pyargwriter.utils.casts import create_call_args, dict2args, format_help
 from pyargwriter.utils.code_abstracts import (
     Code,
     Function,
@@ -122,6 +123,7 @@ class SetupParser(Function):
             # only one class -> only command parser as setup_parser
             module: ModuleStructure = modules.modules[0]
             setup_command_parser = SetupCommandParser(module.name)
+            module.add_args(module.args)
             setup_command_parser.generate_code(module.commands)
             self.insert(setup_command_parser, 0)
             self.append(content=f"parser = {setup_command_parser.name}(parser)")
@@ -141,6 +143,7 @@ class SetupParser(Function):
                     module.name, no_imports=bool(no_imports)
                 )
                 no_imports -= 1
+                module.add_args(module.args)
                 setup_command_parser.generate_code(module.commands)
                 self.insert(setup_command_parser, 0)
                 self.append(
@@ -188,7 +191,9 @@ class MainFunc(Function):
         self, modules: ModuleStructures, setup_parser_file: str = "parser.py"
     ) -> Any:
         self._add_content()
-        imports = self._generate_imports(setup_parser_file)
+        modules_to_import = modules.locations
+        modules_to_import["setup_parser"] = setup_parser_file
+        imports = self._generate_imports(modules_to_import)
         self.insert(imports, 0)
         self._add_module_logic(modules)
 
@@ -201,18 +206,20 @@ class MainFunc(Function):
         self.append(content="args = parser.parse_args()")
         self.append(content="args_dict = vars(args)")
 
-    def _generate_imports(self, file: str) -> Code:
+    def _generate_imports(self, files: Dict[str, str]) -> Code:
         imports = Code()
         imports.append(content="from argparse import ArgumentParser")
-        file = file.rstrip(".py")
-        file = file.replace("/", ".")
-        imports.append(content=f"from {file} import setup_parser")
+
+        for module_name, path in files.items():
+            path = path.rstrip(".py")
+            path = path.replace("/", ".")
+            imports.append(content=f"from {path} import {module_name}")
         return imports
 
     def _add_module_logic(self, data: ModuleStructures):
         if len(data) == 1:
             module: ModuleStructure = data.modules[0]
-            self.append(content=f"module = {module.name}(**args_dict)")
+            self.append(content=f"module = {module.name}({create_call_args(module.args)})")
 
             # generate matches from commands
             match_case = self._generate_command_match_case(module.commands)
@@ -222,7 +229,6 @@ class MainFunc(Function):
             self.append(match_case)
         else:
             logging.error("No given modules to process")
-        print(len(self))
 
     def _generate_command_match_case(
         self, commands: List[CommandStructure]
@@ -231,8 +237,8 @@ class MainFunc(Function):
 
         for command in commands:
             command: CommandStructure
-            match_name = command.name
-            body = Code.from_str(code=f"module.{command.name}(**args_dict)")
+            match_name = command.name.replace("_", "-")
+            body = Code.from_str(code=f"module.{command.name}({create_call_args(command.args)})")
             matches.append(Match(match_value=match_name, body=body))
 
         match_case = MatchCase(match_name="args_dict['command']", matches=matches)
@@ -244,10 +250,10 @@ class MainFunc(Function):
         for module in modules:
             module: ModuleStructure
             match_name = module.name
-            body = Code.from_str(f"module = {module.name}(**args_dict)")
+            body = Code.from_str(f"module = {module.name}({create_call_args(module.args)})")
             body.append(self._generate_command_match_case(module.commands))
             matches.append(Match(match_value=match_name.replace("_", "-"), body=body))
-            
+
         match_cases = MatchCase(match_name="args_dict['module']", matches=matches)
         return match_cases
 
@@ -266,8 +272,9 @@ class CodeGenerator:
             parser_file (str): path to future parser file
         """
         modules = ModuleStructures.from_dict(modules)
-        self._setup_parser.generate_code(modules)
-        self._main_func.generate_code(modules, parser_file)
+        
+        self._setup_parser.generate_code(deepcopy(modules))
+        self._main_func.generate_code(deepcopy(modules), parser_file)
         self._main_func.insert(self._main_caller, len(self._main_func))
 
     def from_yaml(self, yaml_file: str, parser_file: str):

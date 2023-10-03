@@ -28,7 +28,7 @@ class ArgParseWriter:
     def parse_code(self, files: List[str], output: str, **kwargs):
         for file in files:
             tree = self._load_file_tree(file)
-            self._parser.parse_tree(tree)
+            self._parser.parse_tree(tree, file)
 
         self._arg_parse_structure = self._parser.modules
 

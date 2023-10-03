@@ -230,7 +230,6 @@ class MatchCase(Code):
         super().__init__()
         self._name = match_name
         self._matches = matches
-        print(matches)
         self._generate()
 
     def _generate(self):

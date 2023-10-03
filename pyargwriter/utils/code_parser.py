@@ -42,15 +42,12 @@ class CodeParser:
                 logging.warning(f"Not implemented write method for file type {file_type}")
         write_func(self.modules.to_dict(), path)
                 
-    @staticmethod
-    def _get_class_signature(node):
+    def _get_class_signature(self, node):
         class_name = node.name
         args = []
         for item in node.body:
             if isinstance(item, ast.FunctionDef) and item.name == "__init__":
-                for arg in item.args.args[1:]:  # Exclude 'self' argument
-                    if isinstance(arg, ast.arg):
-                        args.append(arg.arg)
+                args = self._get_arguments(item)
         return class_name, args
     
     @staticmethod
@@ -58,15 +55,17 @@ class CodeParser:
         num_args = len(func.args.args)
         if "staticmethod" not in [decorator.id for decorator in func.decorator_list]:
             num_args -= 1
-        doc_str = ast.get_docstring(func).split("\n")
-        #get argument docstring
+        doc_str = ast.get_docstring(func)
+        if doc_str is None:
+            logging.error(f"No docstring for method {func.name} available")
+        doc_str = doc_str.split("\n")
+        # get argument docstring
         if num_args:
             args_index = doc_str.index("Args:") + 1
             arg_doc_strs = doc_str[args_index:args_index+num_args]
             helps = [":".join(arg_doc_str.split(":")[1:]).strip(" ") for arg_doc_str in arg_doc_strs]
         else:
             helps = []
-
 
         # add defaults
         defaults = [None] * num_args
@@ -101,12 +100,14 @@ class CodeParser:
                 commands.append(command)
         return commands
     
-    def parse_tree(self, tree: Module):
+    def parse_tree(self, tree: Module, file: str):
         for node in ast.walk(tree):
             if isinstance(node, ast.ClassDef):
                 module = ModuleStructure()
-                class_name, args = self._get_class_signature(node)
+                class_name, module_args = self._get_class_signature(node)
                 module.name = class_name
                 class_commands = self._get_command_structure(node)
                 module.commands.extend(class_commands)
+                module.location = file
+                module.args.extend(module_args)
                 self.modules.modules.append(module)
