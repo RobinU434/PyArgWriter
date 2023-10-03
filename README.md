@@ -71,4 +71,4 @@ If you would like to contribute to PyArgWriter, please read our [Contributing Gu
 
 ## Contact
 
-For any questions, issues, or feedback, please [open an issue](https://github.com/RobinU434/pyargwriter/issues) on our GitHub repository.
+For any questions, issues, or feedback, please [open an issue](https://github.com/RobinU434/PyArgWriter/issues) on our GitHub repository.

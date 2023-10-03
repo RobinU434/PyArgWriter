@@ -6,9 +6,9 @@ Before you start contributing, please read through these guidelines to ensure a 
 
 ## How to Contribute
 
-1. **Create an Issue**: Before starting work on a new feature or bug fix, please open an issue on the [GitHub repository](https://github.com/your-username/pyargwriter) to discuss your proposal or report a bug. This helps prevent duplicated work and ensures that your contribution is aligned with the project's goals.
+1. **Create an Issue**: Before starting work on a new feature or bug fix, please open an issue on the [GitHub repository](https://github.com/RobinU434/PyArgWriter) to discuss your proposal or report a bug. This helps prevent duplicated work and ensures that your contribution is aligned with the project's goals.
 
-2. **Fork the Repository**: If you're ready to work on an issue or feature, fork the [PyArgWriter repository](https://github.com/your-username/pyargwriter) on GitHub.
+2. **Fork the Repository**: If you're ready to work on an issue or feature, fork the [PyArgWriter repository](https://github.com/RobinU434/PyArgWriter) on GitHub.
 
 3. **Create a Branch**: Create a new branch in your forked repository for your contribution. Name the branch in a descriptive and meaningful way, e.g., `feature/add-new-command`.
 
@@ -34,10 +34,10 @@ Please note that by contributing to PyArgWriter, you are expected to follow our 
 
 ## Reporting Issues
 
-If you encounter any issues or have questions about PyArgWriter, please feel free to [open an issue](https://github.com/your-username/pyargwriter/issues). We appreciate your feedback and will do our best to address your concerns.
+If you encounter any issues or have questions about PyArgWriter, please feel free to [open an issue](https://github.com/RobinU434/PyArgWriter/issues). We appreciate your feedback and will do our best to address your concerns.
 
 ## Contact
 
-If you have any further questions or need assistance with contributing to PyArgWriter, please reach out via [GitHub issues](https://github.com/your-username/pyargwriter/issues) or contact the project maintainers directly.
+If you have any further questions or need assistance with contributing to PyArgWriter, please reach out via [GitHub issues](https://github.com/RobinU434/PyArgWriter/issues) or contact the project maintainers directly.
 
 Thank you for your contributions and for helping make PyArgWriter better for everyone!
