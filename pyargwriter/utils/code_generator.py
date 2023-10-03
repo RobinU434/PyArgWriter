@@ -1,8 +1,7 @@
 from argparse import ArgumentParser
 from copy import deepcopy
 import logging
-from types import NoneType
-from typing import Any, Dict, List, Type
+from typing import Any, Dict, List
 from pyargwriter.utils.casts import create_call_args, dict2args, format_help
 from pyargwriter.utils.code_abstracts import (
     Code,
@@ -11,7 +10,7 @@ from pyargwriter.utils.code_abstracts import (
     Match,
     MatchCase,
 )
-from pyargwriter.utils.file_system import check_file_exists, load_json, load_yaml
+from pyargwriter.utils.file_system import load_json, load_yaml
 from pyargwriter.utils.structures import (
     ArgumentStructure,
     CommandStructure,
@@ -21,8 +20,40 @@ from pyargwriter.utils.structures import (
 
 
 class AddArguments(Function):
-    """class adds function to add arguments function"""
+    """Represents a class for adding arguments to a function.
 
+    This class extends the Function class and is designed for generating functions that add arguments
+    to an ArgumentParser instance. It automatically creates and appends the necessary code to add
+    arguments to the parser function.
+
+    Args:
+        infix (str): The infix string used to construct the function name and as a part of the argument names.
+        arguments (List[ArgumentStructure], optional): A list of ArgumentStructure objects representing the arguments to be added.
+
+    Attributes:
+        (inherited attributes from Function...)
+
+    Methods:
+        __init__(self, infix: str, arguments: List[ArgumentStructure] = {}) -> None:
+            Initializes a new AddArguments instance with the specified infix and arguments.
+
+        _check_infix(self, infix: str) -> None:
+            Checks the validity of the provided infix string and raises an error if it contains spaces,
+            dashes, or is not in lowercase.
+
+        _add_function(self, arguments: List[ArgumentStructure]) -> None:
+            Adds the code to add arguments to the ArgumentParser instance in the function.
+
+    Example:
+        >>> arguments = [ArgumentStructure(dest='input_file'), ArgumentStructure(dest='output_file')]
+        >>> add_args_function = AddArguments("input", arguments)
+        >>> print(add_args_function)
+        def add_input_args(parser: ArgumentParser) -> ArgumentParser:
+            parser.add_argument('--input-file', type = <class 'str'>, help = 'Path to input file')
+            parser.add_argument('--output-file', type = <class 'str'>, help = 'Path to output file')
+            return parser
+
+    """
     def __init__(self, infix: str, arguments: List[ArgumentStructure] = {}) -> None:
         self._check_infix(infix)
         name = f"add_{infix}_args"
@@ -33,6 +64,15 @@ class AddArguments(Function):
         self._add_function(arguments)
 
     def _check_infix(self, infix: str) -> None:
+        """Check the validity of the provided infix string.
+
+        Args:
+            infix (str): The infix string to be checked.
+
+        Raises:
+            ValueError: If the infix contains spaces, dashes, or is not in lowercase.
+
+        """
         if " " in infix:
             raise ValueError(
                 f"Insufficient character in infix found. ' ' not allowed in {infix}"
@@ -45,6 +85,12 @@ class AddArguments(Function):
             raise ValueError("infix is not correctly formatted")
 
     def _add_function(self, arguments: List[ArgumentStructure]) -> None:
+        """Add code to add arguments to the ArgumentParser instance in the function.
+
+        Args:
+            arguments (List[ArgumentStructure]): A list of ArgumentStructure objects representing the arguments to be added.
+
+        """
         for arg in arguments:
             self.append(
                 content=f"parser.add_argument({dict2args(vars(arg))})",
@@ -54,6 +100,36 @@ class AddArguments(Function):
 
 
 class SetupCommandParser(Function):
+    """Represents a function generator for setting up an ArgumentParser with subcommands.
+
+    This class extends the Function class and is designed for generating functions that set up an ArgumentParser
+    with subcommands based on a list of CommandStructure objects. It can optionally include imports for ArgumentParser.
+    
+    Args:
+        module_name (str): The name of the module or command group.
+        no_imports (bool, optional): If True, omit importing ArgumentParser; otherwise, include the import.
+
+    Attributes:
+        (inherited attributes from Function...)
+        _commands (List[CommandStructure]): A list of CommandStructure objects representing the subcommands to be added.
+        _imports (bool): Indicates whether ArgumentParser should be imported.
+
+    Methods:
+        generate_code(self, commands: List[CommandStructure]) -> Any:
+            Generates the code to set up the ArgumentParser with subcommands, including imports (if enabled).
+
+    Example:
+        >>> commands = [CommandStructure(name='create', help='Create a new item'), CommandStructure(name='delete', help='Delete an existing item')]
+        >>> setup_parser_function = SetupCommandParser('my_module', no_imports=True)
+        >>> setup_parser_function.generate_code(commands)
+        >>> print(setup_parser_function)
+        def setup_my_module_parser(parser: ArgumentParser) -> ArgumentParser:
+            command_subparser = parser.add_subparsers(dest='command', title='command')
+            create = command_subparser.add_parser('create', help='Create a new item')
+            delete = command_subparser.add_parser('delete', help='Delete an existing item')
+            return parser
+
+    """
     def __init__(self, module_name: str, no_imports: bool = False) -> None:
         name = f"setup_{module_name.lower()}_parser"
         signature = {"parser": ArgumentParser.__name__}
@@ -63,7 +139,13 @@ class SetupCommandParser(Function):
         self._commands: List[CommandStructure]
         self._imports = not no_imports
 
-    def generate_code(self, commands: List[CommandStructure]) -> Any:
+    def generate_code(self, commands: List[CommandStructure]) -> None:
+        """Generates the code to set up the ArgumentParser with subcommands, including imports (if enabled).
+
+        Args:
+            commands (List[CommandStructure]): A list of CommandStructure objects representing the subcommands to be added.
+
+        """
         self._commands = commands
         self._add_command_parser()
         if self._imports:
@@ -71,11 +153,14 @@ class SetupCommandParser(Function):
         self._add_return()
 
     def _add_imports(self):
+        """Add an import statement for ArgumentParser."""
         self.insert(
             LineOfCode(content="from argparse import ArgumentParser", tab_level=0), 0
         )
 
     def _add_command_parser(self) -> None:
+        """Add code to set up the subcommand parser and add subcommands."""
+
         subparser_name = "command_subparser"
         self.append(
             content=f"{subparser_name} = parser.add_subparsers(dest='command', title='command')",
@@ -96,6 +181,18 @@ class SetupCommandParser(Function):
         help: str = "",
         args: List[ArgumentStructure] = [],
     ) -> str:
+        """Add code to set up a subcommand parser and add its arguments.
+
+        Args:
+            subparser_name (str): The name of the subparser.
+            name (str): The name of the subcommand.
+            help (str, optional): The help message for the subcommand.
+            args (List[ArgumentStructure], optional): A list of ArgumentStructure objects representing the subcommand's arguments.
+
+        Returns:
+            str: The variable name of the subcommand parser.
+
+        """
         var_name = name.replace("-", "_").lower()
         self.append(
             content=f"{var_name} = {subparser_name}.add_parser('{name.replace('_', '-')}', help='{format_help(help)}')",
@@ -103,22 +200,74 @@ class SetupCommandParser(Function):
         self._add_args(name_infix=var_name, args=args)
         return var_name
 
-    def _add_args(self, name_infix: str, args: List[ArgumentStructure]):
+    def _add_args(self, name_infix: str, args: List[ArgumentStructure]) -> None:
+        """Add arguments to a subcommand parser.
+
+        Args:
+            name_infix (str): The infix used to construct variable names.
+            args (List[ArgumentStructure]): A list of ArgumentStructure objects representing the subcommand's arguments.
+
+        """
         args_func = AddArguments(infix=name_infix, arguments=args)
         self.insert(args_func, 0)
 
     def _add_return(self):
+        """Add a return statement for the ArgumentParser."""
         self.append(content="return parser")
 
 
 class SetupParser(Function):
+    """Represents a function generator for setting up an ArgumentParser with subcommands for multiple modules.
+
+    This class extends the Function class and is designed for generating functions that set up an ArgumentParser
+    with subcommands for multiple modules based on ModuleStructures. It can handle the case of a single module or
+    multiple modules with individual subparsers. Imports for ArgumentParser are included based on the number of modules.
+
+    Args:
+        None
+
+    Attributes:
+        (inherited attributes from Function...)
+
+    Methods:
+        generate_code(self, modules: ModuleStructures) -> None:
+            Generates the code to set up the ArgumentParser with subcommands for multiple modules.
+        from_yaml(self, yaml_file: str) -> None:
+            Generates the code based on a YAML configuration file.
+        from_json(self, json_file: str) -> None:
+            Generates the code based on a JSON configuration file.
+
+    Example:
+        >>> modules = ModuleStructures(modules=[ModuleStructure(name='module1'), ModuleStructure(name='module2')])
+        >>> setup_parser_function = SetupParser()
+        >>> setup_parser_function.generate_code(modules)
+        >>> print(setup_parser_function)
+        def setup_parser(parser: ArgumentParser) -> ArgumentParser:
+            module_subparser = parser.add_subparsers(dest='module', title='module')
+            module1_parser = module_subparser.add_parser(name='module1', help='TODO')
+            setup_module1_parser = SetupCommandParser('module1', no_imports=False)
+            setup_module1_parser.generate_code([])
+            module1_parser = setup_module1_parser(module1_parser)
+            module2_parser = module_subparser.add_parser(name='module2', help='TODO')
+            setup_module2_parser = SetupCommandParser('module2', no_imports=True)
+            setup_module2_parser.generate_code([])
+            module2_parser = setup_module2_parser(module2_parser)
+            return parser
+
+    """
     def __init__(self) -> None:
         name = "setup_parser"
         signature = {"parser": ArgumentParser.__name__}
         return_type = ArgumentParser.__name__
         super().__init__(name, signature, return_type)
 
-    def generate_code(self, modules: ModuleStructures) -> Any:
+    def generate_code(self, modules: ModuleStructures) -> None:
+        """Generates the code to set up the ArgumentParser with subcommands for multiple modules.
+
+        Args:
+            modules (ModuleStructures): A ModuleStructures object containing information about the modules and their subcommands.
+
+        """
         if len(modules) == 1:
             # only one class -> only command parser as setup_parser
             module: ModuleStructure = modules.modules[0]
@@ -154,17 +303,48 @@ class SetupParser(Function):
             logging.info("No modules given. No setup parser code needs to be created")
 
     def from_yaml(self, yaml_file: str):
+        """Generates the code based on a YAML configuration file.
+
+        Args:
+            yaml_file (str): The path to the YAML configuration file.
+
+        """
         data = load_yaml(yaml_file)
         modules = ModuleStructures.from_dict(data)
         self.generate_code(modules)
 
     def from_json(self, json_file: str):
+        """Generates the code based on a JSON configuration file.
+
+        Args:
+            json_file (str): The path to the JSON configuration file.
+
+        """
         data = load_json(json_file)
         modules = ModuleStructures.from_dict(data)
         self.generate_code(modules)
 
 
 class MainCaller(Code):
+    """Represents a code block for calling the `main()` function if the script is executed as the main program.
+
+    This class extends the Code class and is designed to generate code that calls the `main()` function if the script is executed as the main program.
+
+    Args:
+        None
+
+    Attributes:
+        None
+
+    Methods:
+        None
+
+    Example:
+        >>> main_caller = MainCaller()
+        >>> print(main_caller)
+        if __name__ == '__main__':
+            main()
+    """
     def __init__(self) -> None:
         super().__init__()
         self._add_content()
@@ -176,6 +356,34 @@ class MainCaller(Code):
 
 
 class MainFunc(Function):
+    """Represents the main function of a Python script that uses argparse for command-line arguments.
+
+    This class extends the Function class and is designed to generate the code for the main function of a Python script that uses argparse for command-line argument parsing.
+
+    Args:
+        None
+
+    Attributes:
+        None
+
+    Methods:
+        generate_code(modules: ModuleStructures, setup_parser_file: str = "parser.py") -> Any: Generates the code for the main function.
+        _add_content(): Adds the main function's content.
+        _generate_imports(files: Dict[str, str]) -> Code: Generates import statements for modules.
+        _add_module_logic(data: ModuleStructures): Adds the logic to handle modules and commands.
+        _generate_command_match_case(commands: List[CommandStructure]) -> MatchCase: Generates match cases for commands.
+        _generate_module_match_case(modules: List[ModuleStructure]) -> MatchCase: Generates match cases for modules.
+
+    Example:
+        >>> main_function = MainFunc()
+        >>> print(main_function)
+        def main():
+            parser = ArgumentParser(description='TODO: make it a variable')
+            parser = setup_parser(parser)
+            args = parser.parse_args()
+            args_dict = vars(args)
+            # (module and command logic)
+    """
     def __init__(self) -> None:
         """_summary_
 
@@ -189,7 +397,16 @@ class MainFunc(Function):
 
     def generate_code(
         self, modules: ModuleStructures, setup_parser_file: str = "parser.py"
-    ) -> Any:
+    ) -> None:
+        """Generates the code for the main function.
+
+        Args:
+            modules (ModuleStructures): A ModuleStructures object containing module and command information.
+            setup_parser_file (str, optional): The relative path to the setup parser file. Defaults to "parser.py".
+
+        Returns:
+            Any: Generated code for the main function.
+        """
         self._add_content()
         modules_to_import = modules.locations
         modules_to_import["setup_parser"] = setup_parser_file
@@ -198,6 +415,7 @@ class MainFunc(Function):
         self._add_module_logic(modules)
 
     def _add_content(self):
+        """Adds the main function's content to the code."""
         self.append(
             content="parser = ArgumentParser(description='TODO: make it a variable')",
         )
@@ -207,6 +425,14 @@ class MainFunc(Function):
         self.append(content="args_dict = vars(args)")
 
     def _generate_imports(self, files: Dict[str, str]) -> Code:
+        """Generates import statements for modules.
+
+        Args:
+            files (Dict[str, str]): A dictionary mapping module names to their file paths.
+
+        Returns:
+            Code: A Code object containing import statements.
+        """
         imports = Code()
         imports.append(content="from argparse import ArgumentParser")
 
@@ -216,7 +442,12 @@ class MainFunc(Function):
             imports.append(content=f"from {path} import {module_name}")
         return imports
 
-    def _add_module_logic(self, data: ModuleStructures):
+    def _add_module_logic(self, data: ModuleStructures) -> None:
+        """Adds logic to handle modules and commands.
+
+        Args:
+            data (ModuleStructures): A ModuleStructures object containing module and command information.
+        """
         if len(data) == 1:
             module: ModuleStructure = data.modules[0]
             self.append(content=f"module = {module.name}({create_call_args(module.args)})")
@@ -233,6 +464,14 @@ class MainFunc(Function):
     def _generate_command_match_case(
         self, commands: List[CommandStructure]
     ) -> MatchCase:
+        """Generates match cases for commands.
+
+        Args:
+            commands (List[CommandStructure]): A list of CommandStructure objects representing the subcommands.
+
+        Returns:
+            MatchCase: A MatchCase object containing match cases for commands.
+        """
         matches: List[Match] = []
 
         for command in commands:
@@ -245,6 +484,14 @@ class MainFunc(Function):
         return match_case
 
     def _generate_module_match_case(self, modules: List[ModuleStructure]) -> MatchCase:
+        """Generates match cases for modules.
+
+        Args:
+            modules (List[ModuleStructure]): A list of ModuleStructure objects representing the modules.
+
+        Returns:
+            MatchCase: A MatchCase object containing match cases for modules.
+        """
         matches: List[Match] = []
 
         for module in modules:
@@ -259,17 +506,42 @@ class MainFunc(Function):
 
 
 class CodeGenerator:
+    """Generates Python code for creating argparse-based command-line parsers.
+
+    This class provides methods to generate Python code for creating argparse-based command-line parsers, including the setup parser, main function, and main caller.
+
+    Args:
+        None
+
+    Attributes:
+        _setup_parser (SetupParser): An instance of the SetupParser class for generating setup parser code.
+        _main_func (MainFunc): An instance of the MainFunc class for generating main function code.
+        _main_caller (MainCaller): An instance of the MainCaller class for generating main caller code.
+
+    Methods:
+        from_dict(modules: List[Dict[str, Any]], parser_file: str) -> None: Generates code based on a list of module dictionaries and a parser file name.
+        from_yaml(yaml_file: str, parser_file: str): Generates code from a YAML file and a parser file name.
+        from_json(json_file: str, parser_file: str): Generates code from a JSON file and a parser file name.
+        write(setup_parser_path: str, main_path: str, force: bool = False): Writes the generated code to specified files.
+
+    Example:
+        >>> generator = CodeGenerator()
+        >>> modules_data = [{"name": "module1", "commands": [...]}, {"name": "module2", "commands": [...]}]
+        >>> parser_file = "my_parser.py"
+        >>> generator.from_dict(modules_data, parser_file)
+        >>> generator.write("setup_parser.py", "main.py")
+    """
     def __init__(self) -> None:
         self._setup_parser = SetupParser()
         self._main_func = MainFunc()
         self._main_caller = MainCaller()
 
     def from_dict(self, modules: List[Dict[str, Any]], parser_file: str) -> None:
-        """_summary_
+        """Generates code based on a list of module dictionaries and a parser file name.
 
         Args:
-            modules (List[Dict[str, Any]]): parser structure
-            parser_file (str): path to future parser file
+            modules (List[Dict[str, Any]]): A list of dictionaries representing the module structure.
+            parser_file (str): The path to the future parser file.
         """
         modules = ModuleStructures.from_dict(modules)
         
@@ -277,15 +549,35 @@ class CodeGenerator:
         self._main_func.generate_code(deepcopy(modules), parser_file)
         self._main_func.insert(self._main_caller, len(self._main_func))
 
-    def from_yaml(self, yaml_file: str, parser_file: str):
+    def from_yaml(self, yaml_file: str, parser_file: str) -> None:
+        """Generates code from a YAML file and a parser file name.
+
+        Args:
+            yaml_file (str): The path to the YAML file containing module structure data.
+            parser_file (str): The path to the future parser file.
+
+        """
         data = load_yaml(yaml_file)
         self.from_dict(data, parser_file)
 
-    def from_json(self, json_file: str, parser_file: str):
+    def from_json(self, json_file: str, parser_file: str) -> None:
+        """Generates code from a JSON file and a parser file name.
+
+        Args:
+            json_file (str): The path to the JSON file containing module structure data.
+            parser_file (str): The path to the future parser file.
+
+        """
         data = load_json(json_file)
         self.from_dict(data, parser_file)
 
-    def write(self, setup_parser_path: str, main_path: str, force: bool = False):
+    def write(self, setup_parser_path: str, main_path: str, force: bool = False) -> None:
+        """Generates code from a JSON file and a parser file name.
+
+        Args:
+            json_file (str): The path to the JSON file containing module structure data.
+            parser_file (str): The path to the future parser file.
+        """
         if force:
             self._setup_parser.write_force(path=setup_parser_path)
             self._main_func.write_force(path=main_path)

@@ -10,10 +10,34 @@ from pyargwriter.utils.structures import ArgumentStructure, CommandStructure, Mo
 
     
 class CodeParser:
+    """A parser for analyzing Python code and extracting structured information.
+
+    This class is designed to parse Python code and extract structured information
+    about classes, methods, and their associated arguments and documentation.
+
+    Attributes:
+        modules (ModuleStructures): A collection of ModuleStructure objects.
+
+    Methods:
+        parse_tree(self, tree: Module, file: str) -> None:
+            Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information.
+
+        write(self, path: str) -> None:
+            Write the extracted structured information to a file in YAML or JSON format.
+
+    Properties:
+        module_serialized: A list of dictionaries representing serialized module information.
+
+    """
     def __init__(self) -> None:
         self.modules = ModuleStructures()
 
     def __repr__(self) -> str:
+        """Return a string representation of the parsed modules.
+
+        Returns:
+            str: A string representation of the parsed modules.
+        """
         result = "["
         for module in self.modules:
             result += repr(module)
@@ -24,12 +48,23 @@ class CodeParser:
     
     @property
     def module_serialized(self):
+        """Serialize the module information as a list of dictionaries.
+
+        Returns:
+            List[dict]: A list of dictionaries representing serialized module information.
+        """
         result = []
         for module in self.modules:
             result.append(module.to_dict())
         return result
 
     def write(self, path: str):
+        """Write the extracted structured information to a file in YAML or JSON format.
+
+        Args:
+            path (str): The path to the output file.
+
+        """
         file_type = path.split(".")[-1]
         match file_type:
             case "yaml":
@@ -43,6 +78,14 @@ class CodeParser:
         write_func(self.modules.to_dict(), path)
                 
     def _get_class_signature(self, node):
+        """Get the signature (name and arguments) of a class.
+
+        Args:
+            node: The AST node representing the class.
+
+        Returns:
+            Tuple[str, List[ArgumentStructure]]: A tuple containing the class name and its arguments.
+        """
         class_name = node.name
         args = []
         for item in node.body:
@@ -52,6 +95,14 @@ class CodeParser:
     
     @staticmethod
     def _get_arguments(func: FunctionDef) -> List[ArgumentStructure]:
+        """Get the arguments of a function.
+
+        Args:
+            func (FunctionDef): The AST node representing the function.
+
+        Returns:
+            List[ArgumentStructure]: A list of ArgumentStructure objects representing function arguments.
+        """
         num_args = len(func.args.args)
         if "staticmethod" not in [decorator.id for decorator in func.decorator_list]:
             num_args -= 1
@@ -89,6 +140,14 @@ class CodeParser:
         return arguments
         
     def _get_command_structure(self, node: ClassDef) -> List[CommandStructure]:
+        """Get the command structures defined within a class.
+
+        Args:
+            node (ClassDef): The AST node representing the class.
+
+        Returns:
+            List[CommandStructure]: A list of CommandStructure objects representing class methods as commands.
+        """
         commands = []
         for func in node.body:
             # public function
@@ -102,6 +161,13 @@ class CodeParser:
         return commands
     
     def parse_tree(self, tree: Module, file: str):
+        """Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information.
+
+        Args:
+            tree (Module): The AST of the Python module.
+            file (str): The path to the Python module file.
+
+        """
         for node in ast.walk(tree):
             if isinstance(node, ast.ClassDef):
                 module = ModuleStructure()
