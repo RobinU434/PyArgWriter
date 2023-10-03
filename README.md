@@ -10,6 +10,8 @@ You can install PyArgWriter using `pip`:
 pip install pyargwriter
 ```
 
+Does not work yet. TODO: add setup.py
+
 ## Command-Line Interface
 
 PyArgWriter offers the following command-line commands:
