@@ -57,6 +57,12 @@ For more detailed information on each command and additional options, run:
 python -m pyargwriter <command> --help
 ```
 
+## Example
+
+```bash
+python -m pyargwriter generate-argparser --input examples/shopping.py examples/car.py --output examples --pretty
+```
+
 ## Documentation
 
 The complete documentation for PyArgWriter, including detailed usage instructions and examples, can be found in the [official documentation](documentation/latex/refman.pdf). To look into the html version open: `documentation/html/index.html` in your browser
