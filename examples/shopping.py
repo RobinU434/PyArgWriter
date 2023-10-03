@@ -64,7 +64,12 @@ class Calculator:
             a (float): The dividend.
             b (float): The divisor.
     """
-    def add(self, a:float, b: float):
+
+    def __init__(self) -> None:
+        """init calculator"""
+        pass
+
+    def add(self, a: float, b: float):
         """Returns the sum of two numbers.
 
         Args:
@@ -140,9 +145,9 @@ class ShoppingCart:
             float: The final price after applying tax.
     """
 
-    def __init__(self, tax_rate: float):
+    def __init__(self, tax_rate: float = 0.2, **kwargs):
         """Initialize the shopping cart.
-        
+
         Args:
             tax_rate (float): rate for taxes
         """
@@ -198,4 +203,3 @@ class ShoppingCart:
             float: The final price after applying tax.
         """
         return price + (price * self.tax_rate)
-

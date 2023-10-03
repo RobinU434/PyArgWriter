@@ -41,6 +41,7 @@ Optional Arguments for BankAccount:
 This module provides convenient classes for simulating a car and managing a bank account, offering simple and reusable functionality for various Python projects.
 """
 
+
 class Car:
     """
     A class representing a car.
@@ -53,11 +54,11 @@ class Car:
         _ignition_sequence(): Performs the ignition sequence.
     """
 
-    def __init__(self, make, model, year, fuel_type="Petrol"):
+    def __init__(self, make, model, year, fuel_type="Petrol", **kwargs):
         """
         Initialize the car.
 
-        Parameters:
+        Args:
             make (str): The make of the car (e.g., Toyota, Honda, etc.).
             model (str): The model of the car (e.g., Camry, Civic, etc.).
             year (int): The manufacturing year of the car.
