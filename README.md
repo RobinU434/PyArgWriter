@@ -76,7 +76,7 @@ python -m pyargwriter generate-argparser --input examples/shopping.py examples/c
 
 ## Documentation
 
-The complete documentation for PyArgWriter, including detailed usage instructions and examples, can be found in the [official documentation](documentation/latex/refman.pdf). To look into the html version open: `documentation/html/index.html` in your browser
+The complete documentation for PyArgWriter, including detailed usage instructions and examples, can be found in the [official documentation](documentation/latex/refman.pdf) or at the [documentation website](https://htmlpreview.github.io/?https://github.com/RobinU434/PyArgWriter/blob/main/documentation/html/index.htm).
 
 ## License
 
