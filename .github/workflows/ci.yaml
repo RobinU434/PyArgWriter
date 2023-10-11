@@ -24,3 +24,41 @@ jobs:
     - name: Run tests
       run: python -m unittest test/test_pyargwriter.py  # Replace with your actual test command
 
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint unittests coverage
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with pylint
+      run: |
+        pylint pyargwriter --fail-under 7.5
+      continue-on-error: true
+    - name: Test with unittest
+      run: |
+        python -m coverage run -m unittest test/test_pyargwriter.py
+    - name: pytest coverage
+      run:
+        python -m coverage report > documentation/coverage_report.md
+
+
