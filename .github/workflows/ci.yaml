@@ -24,9 +24,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint coverage
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: see content
+      run: ls -la
     - name: Lint with pylint
-      run: |
-        pylint pyargwriter --fail-under 7.5
+      run: pylint pyargwriter --fail-under 7.5
       continue-on-error: true
     - name: Test with unittest
       run: |
