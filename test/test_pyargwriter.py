@@ -60,8 +60,11 @@ class TestPyArgWriter(unittest.TestCase):
     def test_ArgParseWriter_parse_code(self):
         # Mock ArgParseWriter and its methods
         args = Namespace(
-                command="parse-code", log_level="DEBUG", files=["examples/shopping.py"], output="test/temp/structure.yaml"
-            )
+            command="parse-code",
+            log_level="DEBUG",
+            files=["examples/shopping.py"],
+            output="test/temp/structure.yaml",
+        )
         execute(vars(args))
 
         args.output = "test/temp/structure.yml"
@@ -70,37 +73,38 @@ class TestPyArgWriter(unittest.TestCase):
         args.output = "test/temp/structure.json"
         execute(vars(args))
 
-
     def test_ArgParseWriter_write_code(self):
         # create structure to write code from
         args = Namespace(
-                command="parse-code", log_level="DEBUG", files=["examples/shopping.py"], output="test/temp/structure.yaml"
-            )
+            command="parse-code",
+            log_level="DEBUG",
+            files=["examples/shopping.py"],
+            output="test/temp/structure.yaml",
+        )
         execute(vars(args))
 
         args = Namespace(
-                command="write-code",
-                log_level="DEBUG",
-                file="test/temp/structure.yaml",
-                output="test/temp",
-                pretty=True,
-                force=True,
-            )
+            command="write-code",
+            log_level="DEBUG",
+            file="test/temp/structure.yaml",
+            output="test/temp",
+            pretty=True,
+            force=True,
+        )
         execute(vars(args))
 
     def test_ArgParseWriter_generate_parser(self):
         # Mock ArgParseWriter and its methods
 
         args = Namespace(
-                command="generate-argparser",
-                log_level="DEBUG",
-                files=["examples/shopping.py"],
-                output="test/temp",
-                pretty=True,
-                force=True,
-            )
+            command="generate-argparser",
+            log_level="DEBUG",
+            files=["examples/shopping.py"],
+            output="test/temp",
+            pretty=True,
+            force=True,
+        )
         execute(vars(args))
-
 
     def test_ArgParseWriter_unknown_command(self):
         # Mock ArgParseWriter and its methods
@@ -109,7 +113,7 @@ class TestPyArgWriter(unittest.TestCase):
             execute(vars(args))
         except KeyError:
             pass
-            
+
 
 if __name__ == "__main__":
     unittest.main()
