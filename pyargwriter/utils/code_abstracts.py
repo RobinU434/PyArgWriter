@@ -1,4 +1,5 @@
 from __future__ import annotations
+from abc import ABC
 
 import logging
 from typing import Any, Dict, List, Tuple, Type
@@ -291,7 +292,6 @@ class Code:
 
         """
         logging.info(f"Create {path}")
-        print("write")
         with open(path, "w") as text_file:
             text_file.write(repr(self))
 
@@ -366,10 +366,30 @@ class Function(Code):
     ) -> None:
         super().__init__()
 
-        self._name = name
-        self._signature = signature
-        self._return_type = return_type
+        self._name: str = name
+        self._signature: Dict[str, str] = self._serialize_signature(signature)
+        self._return_type_name: str = self._serialize_type(return_type)
         self._generate_header()
+
+    def _serialize_signature(self, signature: Dict[str, Type]) -> Dict[str, str]:
+        """serialized signature
+
+        Args:
+            signature (Dict[str, Type]): dict of variable names and type of variables
+
+        Returns:
+            Dict[str, str]: dictionary of variable names and name of types
+        """
+        result = {}
+        for key, value in signature.items():
+            result[key] = self._serialize_type(value)
+        return result
+    
+    @staticmethod
+    def _serialize_type(type: Type) -> str:
+        if type is None:
+            return "None"
+        return type.__name__
 
     def _generate_header(self):
         """Generate the function header based on the name, signature, and return type."""
@@ -377,8 +397,8 @@ class Function(Code):
 
         first_line = f"def {self._name}({signature})"
 
-        if self._return_type:
-            first_line += f" -> {str(self._return_type)}"
+        if self._return_type_name:
+            first_line += f" -> {str(self._return_type_name)}"
         first_line += ":"
 
         self.append(content=first_line)
