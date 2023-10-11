@@ -129,8 +129,7 @@ class CodeParser:
             args_index = doc_str.index("Args:") + 1
             arg_doc_strs = doc_str[args_index : args_index + num_args]
             helps = [
-                ":".join(arg_doc_str.split(":")[1:]).strip(" ")
-                for arg_doc_str in arg_doc_strs
+                ":".join(arg_doc_str.split(":")[1:]).strip(" ") for arg_doc_str in arg_doc_strs
             ]
         else:
             helps = []

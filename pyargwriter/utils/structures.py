@@ -254,9 +254,7 @@ class ModuleStructure(Structure):
         module: ModuleStructure = cls()
         module.name = data["name"]
         module.help = data["help"]
-        module.commands = [
-            CommandStructure.from_dict(command) for command in data["commands"]
-        ]
+        module.commands = [CommandStructure.from_dict(command) for command in data["commands"]]
         module.location = data["location"]
         module.args = [ArgumentStructure.from_dict(arg) for arg in data["args"]]
 
@@ -333,9 +331,7 @@ class ModuleStructures(Structure):
             ModuleStructures: An instance of the ModuleStructures class created from the dictionary.
         """
         modules: ModuleStructures = cls()
-        modules.modules = [
-            ModuleStructure.from_dict(module) for module in data["modules"]
-        ]
+        modules.modules = [ModuleStructure.from_dict(module) for module in data["modules"]]
         return modules
 
     def to_dict(self) -> Dict[str, str]:
