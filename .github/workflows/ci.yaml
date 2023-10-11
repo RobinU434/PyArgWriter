@@ -1,29 +1,3 @@
-name: Run Unit Tests
-
-on:
-  push:
-    branches:
-      - main  # You can change this to the branch you want to trigger on
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.10"  # Specify your desired Python version
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt  # Replace with your actual dependency installation command
-
-    - name: Run tests
-      run: python -m unittest test/test_pyargwriter.py  # Replace with your actual test command
-
 name: Python application
 
 on:
