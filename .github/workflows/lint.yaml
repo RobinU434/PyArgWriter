@@ -26,6 +26,5 @@ jobs:
 
     - name: Run Pylint
       run: |
-        pylint *.py  # Replace with the path to your Python module or package
         pylint */*.py  # Replace with the path to your Python module or package
-        pylint */**.py  # Replace with the path to your Python module or package
+        pylint */*/*.py  # Replace with the path to your Python module or package
