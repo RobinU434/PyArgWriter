@@ -1,3 +1,4 @@
+import logging
 from typing import Any, Dict, List
 from ast import Module
 import ast
@@ -69,7 +70,6 @@ class ArgParseWriter:
         #         create_file(output  + "/__init__.py")
 
         if pretty:
-            print("format code")
             self._format_code(output)
 
     def generate_parser(
@@ -82,7 +82,9 @@ class ArgParseWriter:
         self.parse_code(files, None)
 
         output = output.rstrip("/")
-        self._generator.from_dict(self._arg_parse_structure.to_dict(), output + "/utils/parser.py")
+        self._generator.from_dict(
+            self._arg_parse_structure.to_dict(), output + "/utils/parser.py"
+        )
 
         create_directory(output + "/utils")
         self._generator.write(
@@ -100,23 +102,25 @@ class ArgParseWriter:
         #         create_file(output  + "/__init__.py")
 
         if pretty:
-            print("format code")
             self._format_code(output)
+
     def _format_code(
         self,
         *files,
-    ):
+    ):  
+        logging.info(f"Format code with {type(self._formatter).__name__}")
         self._formatter.format(files)
 
     def _create_init(self, path):
         if self._force:
             create_file(path)
         else:
+
             @overwrite_protection
             def wrapper(path):
                 create_file(path)
-            wrapper(path=path)
 
+            wrapper(path=path)
 
     @staticmethod
     def _load_file_tree(file_path: str) -> Module:

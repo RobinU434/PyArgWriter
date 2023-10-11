@@ -65,7 +65,7 @@ def create_call_args(args: List[ArgumentStructure]) -> str:
     result = ""
     for arg in args:
         arg: ArgumentStructure
-        result += f"{arg.dest} = args_dict['{arg.dest}']"
+        result += f"{arg.dest} = args['{arg.dest}']"
         result += ", "
     result = result[:-2]
     return result

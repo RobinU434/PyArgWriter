@@ -81,7 +81,8 @@ def create_file(file_path: str) -> None:
 
     """
 
-    open(file_path, "w")
+    f = open(file_path, "w")
+    f.close()
 
 
 def check_file_exists(file_path: str) -> bool:
