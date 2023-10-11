@@ -1,5 +1,4 @@
 from argparse import ArgumentParser
-import argcomplete
 
 
 def add_general_args(parser: ArgumentParser) -> ArgumentParser:
@@ -163,5 +162,4 @@ def setup_parser(parser: ArgumentParser) -> ArgumentParser:
     )
     gen_arg_pars_parser = add_generate_parser_args(gen_arg_pars_parser)
 
-    argcomplete.autocomplete(parser)
     return parser
