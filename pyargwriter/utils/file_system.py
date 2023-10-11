@@ -1,5 +1,3 @@
-
-
 import json
 import logging
 import os
@@ -15,7 +13,7 @@ def write_yaml(data: dict, path: str) -> None:
         path (str): The path to the YAML file.
 
     """
-    with open(path, 'w') as outfile:
+    with open(path, "w") as outfile:
         yaml.dump(data, outfile, default_flow_style=False)
 
 
@@ -41,7 +39,7 @@ def load_yaml(path) -> dict:
         dict: The loaded data as a dictionary.
 
     """
-    with open(path, 'r') as file:
+    with open(path, "r") as file:
         data = yaml.safe_load(file)
     return data
 
@@ -56,7 +54,7 @@ def load_json(path) -> dict:
         dict: The loaded data as a dictionary.
 
     """
-    with open(path, 'r') as file:
+    with open(path, "r") as file:
         data = json.load(file)
     return data
 
@@ -72,6 +70,7 @@ def create_directory(path: str) -> None:
         os.makedirs(path)
     except FileExistsError as e:
         logging.warning(str(e))
+
 
 def create_file(file_path: str) -> None:
     """Create an empty file.

@@ -384,7 +384,7 @@ class Function(Code):
         for key, value in signature.items():
             result[key] = self._serialize_type(value)
         return result
-    
+
     @staticmethod
     def _serialize_type(type: Type) -> str:
         if type is None:

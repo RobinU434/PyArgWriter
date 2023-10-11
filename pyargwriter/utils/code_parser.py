@@ -6,9 +6,14 @@ import logging
 from typing import Any, List, Tuple, Type
 
 from pyargwriter.utils.file_system import write_json, write_yaml
-from pyargwriter.utils.structures import ArgumentStructure, CommandStructure, ModuleStructure, ModuleStructures
+from pyargwriter.utils.structures import (
+    ArgumentStructure,
+    CommandStructure,
+    ModuleStructure,
+    ModuleStructures,
+)
 
-    
+
 class CodeParser:
     """A parser for analyzing Python code and extracting structured information.
 
@@ -29,6 +34,7 @@ class CodeParser:
         module_serialized: A list of dictionaries representing serialized module information.
 
     """
+
     def __init__(self) -> None:
         self.modules = ModuleStructures()
 
@@ -45,7 +51,7 @@ class CodeParser:
         result = result.rstrip(",\n")
         result += "]"
         return result
-    
+
     @property
     def module_serialized(self):
         """Serialize the module information as a list of dictionaries.
@@ -66,9 +72,11 @@ class CodeParser:
 
         """
         if "." not in path:
-            logging.error("No file specified but directory specified. Please provide a file as output.")
+            logging.error(
+                "No file specified but directory specified. Please provide a file as output."
+            )
             return
-        
+
         file_type = path.split(".")[-1]
         match file_type:
             case "yaml":
@@ -80,7 +88,7 @@ class CodeParser:
             case _:
                 logging.error(f"Not implemented write method for file type {file_type}")
         write_func(self.modules.to_dict(), path)
-                
+
     def _get_class_signature(self, node) -> Tuple[str, List[ArgumentStructure], str]:
         """Get the signature (name and arguments) of a class.
 
@@ -98,7 +106,7 @@ class CodeParser:
 
         help = ast.get_docstring(node).split("\n")[0]
         return class_name, args, help
-    
+
     @staticmethod
     def _get_arguments(func: FunctionDef) -> List[ArgumentStructure]:
         """Get the arguments of a function.
@@ -119,32 +127,35 @@ class CodeParser:
         # get argument docstring
         if num_args:
             args_index = doc_str.index("Args:") + 1
-            arg_doc_strs = doc_str[args_index:args_index+num_args]
-            helps = [":".join(arg_doc_str.split(":")[1:]).strip(" ") for arg_doc_str in arg_doc_strs]
+            arg_doc_strs = doc_str[args_index : args_index + num_args]
+            helps = [
+                ":".join(arg_doc_str.split(":")[1:]).strip(" ")
+                for arg_doc_str in arg_doc_strs
+            ]
         else:
             helps = []
 
         # add defaults
         defaults = [None] * num_args
         if len(func.args.defaults):
-            defaults[-len(func.args.defaults):] = func.args.defaults
-        
+            defaults[-len(func.args.defaults) :] = func.args.defaults
+
         arguments = []
         for arg, help, default in zip(func.args.args[-num_args:], helps, defaults):
             argument = ArgumentStructure()
             argument.dest = arg.arg
             argument.name_or_flags = arg.arg
             argument.help = help
-            
+
             if arg.annotation:
                 argument.type = eval(arg.annotation.id)
-            
+
             if default is not None:
                 argument.default = default.value
-            
+
             arguments.append(argument)
         return arguments
-        
+
     def _get_command_structure(self, node: ClassDef) -> List[CommandStructure]:
         """Get the command structures defined within a class.
 
@@ -165,7 +176,7 @@ class CodeParser:
                 command.args.extend(self._get_arguments(func))
                 commands.append(command)
         return commands
-    
+
     def parse_tree(self, tree: Module, file: str):
         """Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information.
 

@@ -1,5 +1,3 @@
-
-
 from abc import ABC, abstractmethod
 import subprocess
 from typing import List
@@ -29,6 +27,7 @@ class Formatter(ABC):
         """
         raise NotImplementedError
 
+
 class BlackFormatter(Formatter):
     """Formatter for code using the 'black' code formatter.
 
@@ -47,7 +46,6 @@ class BlackFormatter(Formatter):
         self.name = "black"
 
     def format(self, files: List[str]):
-        
         files = " ".join(files)
-        
+
         subprocess.run(f"black {files}", shell=True)

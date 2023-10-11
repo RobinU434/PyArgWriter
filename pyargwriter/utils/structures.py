@@ -22,6 +22,7 @@ class Structure(ABC):
             Abstract method for converting the object to a dictionary representation.
 
     """
+
     def __repr__(self):
         """Return a JSON representation of the structured object."""
         structure = self.to_dict()
@@ -153,6 +154,7 @@ class CommandStructure(Structure):
             Convert the command structure to a dictionary representation.
 
     """
+
     def __init__(self) -> None:
         self.name: str
         self.help: str = ""
@@ -219,6 +221,7 @@ class ModuleStructure(Structure):
             Add given arguments to all commands in the module.
 
     """
+
     def __init__(self) -> None:
         self.name: str
         self.help: str = ""
@@ -304,6 +307,7 @@ class ModuleStructures(Structure):
             Returns a dictionary of module names and their corresponding locations.
 
     """
+
     def __init__(self) -> None:
         super().__init__()
         self.modules: List[ModuleStructure] = []
@@ -348,24 +352,23 @@ class ModuleStructures(Structure):
 
         Returns:
             dict: A dictionary mapping module names to their corresponding locations.
-        """ 
+        """
         locations = {}
         for module in self.modules:
             module: ModuleStructure
             locations[module.name] = module.location
         return locations
-    
+
     @property
     def names(self) -> List[str]:
         """Return a list of module names.
 
         Returns:
             List[str]: A list containing names of all modules.
-        """ 
+        """
         module_names = []
         for module in self.modules:
             module: ModuleStructure
             module_names.append(module.name)
 
         return module_names
-        

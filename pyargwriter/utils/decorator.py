@@ -23,6 +23,7 @@ def cleanup_tests(func: Callable) -> Callable:
             pass
 
     """
+
     def wrapper(*args, **kwargs):
         func(*args, **kwargs)
 
@@ -51,11 +52,12 @@ def overwrite_protection(func: Callable) -> Callable:
             pass
 
     """
+
     def wrapper(*args, path: str, **kwargs):
         if check_file_exists(path):
             overwrite = input(f"{path} already exists. Overwrite it? [Y, n]: ")
             if overwrite.lower() not in ["", "y"]:
                 return
         func(*args, path, **kwargs)
-        
+
     return wrapper

@@ -107,7 +107,7 @@ class ArgParseWriter:
     def _format_code(
         self,
         *files,
-    ):  
+    ):
         logging.info(f"Format code with {type(self._formatter).__name__}")
         self._formatter.format(files)
 

@@ -91,9 +91,10 @@ def add_writer_args(parser: ArgumentParser) -> ArgumentParser:
     parser = add_general_args(parser)
 
     parser.add_argument(
-        "--force", "-f",
+        "--force",
+        "-f",
         action="store_true",
-        help="Set this argument to force file overwrite."
+        help="Set this argument to force file overwrite.",
     )
     return parser
 
@@ -125,9 +126,10 @@ def add_generate_parser_args(parser: ArgumentParser) -> ArgumentParser:
     parser = add_general_args(parser)
 
     parser.add_argument(
-        "--force", "-f",
+        "--force",
+        "-f",
         action="store_true",
-        help="Set this argument to force file overwrite."
+        help="Set this argument to force file overwrite.",
     )
     return parser
 

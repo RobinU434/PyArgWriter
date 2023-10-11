@@ -350,6 +350,8 @@ class CreateParser(Function):
 
 
 class Execute(Function):
+    """Creates execute function to execute program logic"""
+
     def __init__(self) -> None:
         name = "execute"
         signature = {"args": dict}
@@ -592,12 +594,12 @@ class CodeGenerator:
         modules = ModuleStructures.from_dict(modules)
 
         self._setup_parser.generate_code(deepcopy(modules))
-        
+
         self._execute.generate_code(deepcopy(modules), parser_file)
-        
+
         self._create_parser.generate_code(deepcopy(modules))
         self._execute.append(self._create_parser)
-        
+
         self._main_func.generate_code()
         self._main_func.insert(self._execute, 0)
 
