@@ -3,7 +3,7 @@ from typing import Any, Dict, List
 from pyargwriter.utils.structures import ArgumentStructure
 
 
-def dict2args(d: Dict[str,Any]) -> str:
+def dict2args(d: Dict[str, Any]) -> str:
     """Convert a dictionary into a string of keyword arguments.
 
     This function takes a dictionary and converts it into a string representation of keyword arguments
@@ -32,10 +32,10 @@ def dict2args(d: Dict[str,Any]) -> str:
             flags += flag
             flags += ", "
             continue
-            
+
         if key == "type":
             value = f"{value}"
-        else: 
+        else:
             value = f"'{value}'"
 
         result += f"{key} = {value}, "
@@ -91,4 +91,3 @@ def format_help(help: str) -> str:
     """
     help = help.replace("'", '"')
     return help
-

@@ -159,11 +159,7 @@ class Code:
         first, second = self._split_file(index)
 
         # insert content
-        if (
-            isinstance(content, list)
-            and type_of_all(content, LineOfCode)
-            and len(content)
-        ):
+        if isinstance(content, list) and type_of_all(content, LineOfCode) and len(content):
             method = self._insert_lines_of_code
         elif isinstance(content, LineOfCode):
             method = self._insert_line_of_code
@@ -259,9 +255,7 @@ class Code:
             content.set_tab_level(self._tab_level)
             self.insert(content, len(self))
         elif isinstance(content, LineOfCode) or (
-            isinstance(content, list)
-            and type_of_all(content, LineOfCode)
-            and len(content)
+            isinstance(content, list) and type_of_all(content, LineOfCode) and len(content)
         ):
             self.insert(content, len(self))
 
@@ -384,7 +378,7 @@ class Function(Code):
         for key, value in signature.items():
             result[key] = self._serialize_type(value)
         return result
-    
+
     @staticmethod
     def _serialize_type(type: Type) -> str:
         if type is None:

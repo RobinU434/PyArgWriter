@@ -82,9 +82,7 @@ class ArgParseWriter:
         self.parse_code(files, None)
 
         output = output.rstrip("/")
-        self._generator.from_dict(
-            self._arg_parse_structure.to_dict(), output + "/utils/parser.py"
-        )
+        self._generator.from_dict(self._arg_parse_structure.to_dict(), output + "/utils/parser.py")
 
         create_directory(output + "/utils")
         self._generator.write(
@@ -107,7 +105,7 @@ class ArgParseWriter:
     def _format_code(
         self,
         *files,
-    ):  
+    ):
         logging.info(f"Format code with {type(self._formatter).__name__}")
         self._formatter.format(files)
 

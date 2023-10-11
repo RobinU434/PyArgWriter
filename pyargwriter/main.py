@@ -17,7 +17,6 @@ def create_parser() -> ArgumentParser:
 
 
 def execute(args: Dict[str, Any]) -> bool:
-
     arg_pars_writer = ArgParseWriter(**args)
 
     match args["command"]:
@@ -30,7 +29,7 @@ def execute(args: Dict[str, Any]) -> bool:
         case _:
             return False
     return True
-    
+
 
 def main():
     """Main entry point for the PyArgWriter script.
@@ -46,5 +45,3 @@ def main():
 
     if not execute(args):
         parser.print_usage()
-
-
