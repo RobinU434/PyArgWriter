@@ -1,0 +1,31 @@
+name: Run Pylint
+
+on:
+  push:
+    branches:
+      - main  # You can change this to the branch you want to trigger on
+
+jobs:
+  pylint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.10"  # Specify your desired Python version
+
+    - name: Install Pylint
+      run: pip install pylint
+
+    - name: Install requirements
+      run: pip install -r requirements.txt
+
+    - name: Run Pylint
+      run: |
+        pylint *.py  # Replace with the path to your Python module or package
+        pylint */*.py  # Replace with the path to your Python module or package
+        pylint */**.py  # Replace with the path to your Python module or package
