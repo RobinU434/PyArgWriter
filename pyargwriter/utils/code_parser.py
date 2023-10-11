@@ -65,6 +65,10 @@ class CodeParser:
             path (str): The path to the output file.
 
         """
+        if "." not in path:
+            logging.error("No file specified but directory specified. Please provide a file as output.")
+            return
+        
         file_type = path.split(".")[-1]
         match file_type:
             case "yaml":
@@ -74,7 +78,7 @@ class CodeParser:
             case "json":
                 write_func = write_json
             case _:
-                logging.warning(f"Not implemented write method for file type {file_type}")
+                logging.error(f"Not implemented write method for file type {file_type}")
         write_func(self.modules.to_dict(), path)
                 
     def _get_class_signature(self, node) -> Tuple[str, List[ArgumentStructure], str]:
