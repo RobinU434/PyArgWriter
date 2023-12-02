@@ -1,3 +1,4 @@
 argparse
 pytest
 pyaml
+black
