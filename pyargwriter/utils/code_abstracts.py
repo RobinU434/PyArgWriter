@@ -444,10 +444,21 @@ class Match(Code):
                 return f"'{self._match_value}'"
             case float() | int():
                 return str(self._match_value)
+            case None:
+                print(self.body)
             case _:
                 raise NotImplementedError(
                     f"Not implemented conversion type for {type(self._match_value)}"
                 )
+            
+class DefaultCase(Match):
+    def __init__(self, body: Code) -> None:
+        super().__init__(None, body=body)
+        
+    def _generate(self):
+        self.append(content=f"case _:")
+        self._tab_level += 1
+        self.append(self.body)
 
 
 class MatchCase(Code):

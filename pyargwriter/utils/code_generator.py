@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Type
 from pyargwriter.utils.casts import create_call_args, dict2args, format_help
 from pyargwriter.utils.code_abstracts import (
     Code,
+    DefaultCase,
     Function,
     LineOfCode,
     Match,
@@ -377,6 +378,8 @@ class Execute(Function):
             self.append(match_case)
         else:
             logging.error("No given modules to process")
+        
+        self.append("return True")
 
     def _generate_command_match_case(self, commands: List[CommandStructure]) -> MatchCase:
         """Generates match cases for commands.
@@ -394,6 +397,9 @@ class Execute(Function):
             match_name = command.name.replace("_", "-")
             body = Code.from_str(code=f"module.{command.name}({create_call_args(command.args)})")
             matches.append(Match(match_value=match_name, body=body))
+
+        # add default case 
+        matches.append(DefaultCase(body="return False"))
 
         match_case = MatchCase(match_name="args['command']", matches=matches)
         return match_case
@@ -415,6 +421,9 @@ class Execute(Function):
             body = Code.from_str(f"module = {module.name}({create_call_args(module.args)})")
             body.append(self._generate_command_match_case(module.commands))
             matches.append(Match(match_value=match_name, body=body))
+
+        # add default case
+        matches.append(DefaultCase(body="return False"))
 
         match_cases = MatchCase(match_name="args['module']", matches=matches)
         return match_cases
@@ -577,6 +586,7 @@ class CodeGenerator:
 
         self._setup_parser.generate_code(deepcopy(modules))
 
+        print("build execute")
         self._execute.generate_code(deepcopy(modules), parser_file)
 
         self._create_parser.generate_code(deepcopy(modules))
