@@ -31,10 +31,31 @@ PyArgWriter offers the following command-line commands:
 
 For more detailed information on available command-line arguments and usage examples, refer to the official documentation.
 
+## Requirements
+
+PyArgWriter depends strongly on information stated in the docstring. Your docstring should have ha minimal structure like:
+
+```python
+def add(a: int, b: int) -> int:
+    """_summary_
+
+    Args:
+        a (int): _description_
+        b (int): _description_
+
+    Returns:
+        int: _description_
+    """
+    return a + b
+```
+
+
+
 ## Usage
 
 Usage
-PyArgWriter offers a command-line interface for generating and managing ArgumentParser setups. Below are the available commands and their usage:
+PyArgWriter offers a command-line interface for generating and managing ArgumentParser setups.
+Below are the available commands and their usage:
 
 ### parse-code
 

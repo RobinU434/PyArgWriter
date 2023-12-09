@@ -122,7 +122,8 @@ class CodeParser:
             num_args -= 1
         doc_str = ast.get_docstring(func)
         if doc_str is None:
-            logging.error(f"No docstring for method {func.name} available")
+            logging.fatal(f"No docstring for method {func.name} available")
+            raise ValueError("Process was aborted because of missing doc-string.")
         doc_str = doc_str.split("\n")
         # get argument docstring
         if num_args:
@@ -170,11 +171,30 @@ class CodeParser:
             if isinstance(func, FunctionDef) and func.name[0] != "_":
                 command = CommandStructure()
                 command.name = func.name
-                doc_str = ast.get_docstring(func)
-                command.help = doc_str.split("\n")[0]
+                command.help = self._get_command_help(func)
                 command.args.extend(self._get_arguments(func))
                 commands.append(command)
         return commands
+    
+    @staticmethod
+    def _get_command_help(func: FunctionDef) -> str:
+        """if there is a docstring for the function extract the first line as the a help description.
+        Otherwise return "---no-documentation-exists--"
+
+        Args:
+            func (FunctionDef): function definition parsed from ast
+
+        Returns:
+            str: command help
+        """
+        doc_str = ast.get_docstring(func)
+        # if dox string is None
+        if not doc_str:
+            doc_str = "---no-documentation-exists--"
+        else:
+            doc_str = doc_str.split("\n")[0]
+
+        return doc_str
 
     def parse_tree(self, tree: Module, file: str):
         """Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information.
