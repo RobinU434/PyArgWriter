@@ -587,7 +587,6 @@ class CodeGenerator:
 
         self._setup_parser.generate_code(deepcopy(modules))
 
-        print("build execute")
         self._execute.generate_code(deepcopy(modules), parser_file)
 
         self._create_parser.generate_code(deepcopy(modules))

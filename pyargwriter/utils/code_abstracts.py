@@ -254,6 +254,7 @@ class Code:
             content: Code
             content.set_tab_level(self._tab_level)
             self.insert(content, len(self))
+    
         elif isinstance(content, LineOfCode) or (
             isinstance(content, list) and type_of_all(content, LineOfCode) and len(content)
         ):
@@ -444,8 +445,6 @@ class Match(Code):
                 return f"'{self._match_value}'"
             case float() | int():
                 return str(self._match_value)
-            case None:
-                print(self.body)
             case _:
                 raise NotImplementedError(
                     f"Not implemented conversion type for {type(self._match_value)}"
