@@ -508,6 +508,7 @@ class MainFunc(Function):
         self.append(content="if not execute(args_dict):")
         self._tab_level += 1
         self.append(content="parser.print_usage()")
+        self._tab_level = 0
 
 
 class MainCaller(Code):
