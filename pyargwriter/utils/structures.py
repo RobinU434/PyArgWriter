@@ -2,6 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from ast import List
 import json
+import logging
 from typing import Dict, Type
 
 
@@ -98,42 +99,29 @@ class ArgumentStructure(Structure):
             ArgumentStructure: An instance of the ArgumentStructure class created from the dictionary.
         """
         arg = cls()
-        arg.dest = data["dest"]
-        arg.name_or_flags = data["name_or_flags"]
-        try:
-            arg.type = data["type"]
-        except KeyError:
-            pass
-
-        arg.help = data["help"]
-        try:
-            arg.default = data["default"]
-        except KeyError:
-            pass
-
+        for key, value in data.items():
+            setattr(arg, key, value)
+        
         return arg
-
+        
     def to_dict(self) -> Dict[str, str]:
         """Convert the argument structure to a dictionary representation.
 
         Returns:
             dict: A dictionary representation of the argument structure.
         """
-        structure = {
-            "name_or_flags": self.name_or_flags,
-            "dest": self.dest,
-            "help": self.help,
-        }
-
-        try:
-            structure["type"] = self.type.__name__
-        except AttributeError:
-            pass
-
-        try:
-            structure["default"] = self.default
-        except AttributeError:
-            pass
+        structure = {}
+        for name, value in vars(self).items():
+            if isinstance(value, Type):
+                value = value.__name__
+            structure[name] = value
+        
+        # check if the minimal number of args is in the dict:
+        required_keys = set(["name_or_flags", "dest", "help"])
+        keys = set(structure.keys())
+        if required_keys.intersection(keys) != required_keys:
+            logging.warning("There are keys in the generated structure missing")
+        
         return structure
 
 
