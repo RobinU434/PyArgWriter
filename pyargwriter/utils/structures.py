@@ -82,6 +82,7 @@ class ArgumentStructure(Structure):
         self.name_or_flags: str
         self.dest: str
         self.type: Type
+        self.nargs: str
         self.help: str = ""
         self.default: None
 
