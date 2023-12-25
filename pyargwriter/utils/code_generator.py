@@ -76,9 +76,13 @@ class AddArguments(Function):
 
         """
         if " " in infix:
-            raise ValueError(f"Insufficient character in infix found. ' ' not allowed in {infix}")
+            raise ValueError(
+                f"Insufficient character in infix found. ' ' not allowed in {infix}"
+            )
         if "-" in infix:
-            raise ValueError(f"Insufficient character in infix found. '-' not allowed in {infix}")
+            raise ValueError(
+                f"Insufficient character in infix found. '-' not allowed in {infix}"
+            )
         if infix != infix.lower():
             raise ValueError("infix is not correctly formatted")
 
@@ -153,7 +157,9 @@ class SetupCommandParser(Function):
 
     def _add_imports(self):
         """Add an import statement for ArgumentParser."""
-        self.insert(LineOfCode(content="from argparse import ArgumentParser", tab_level=0), 0)
+        self.insert(
+            LineOfCode(content="from argparse import ArgumentParser", tab_level=0), 0
+        )
 
     def _add_command_parser(self) -> None:
         """Add code to set up the subcommand parser and add subcommands."""
@@ -164,7 +170,9 @@ class SetupCommandParser(Function):
         )
 
         for command in self._commands:
-            parser_var_name = self._add_parser(subparser_name=subparser_name, **vars(command))
+            parser_var_name = self._add_parser(
+                subparser_name=subparser_name, **vars(command)
+            )
             self.append(
                 content=f"{parser_var_name} = add_{parser_var_name}_args({parser_var_name})",
             )
@@ -284,7 +292,9 @@ class SetupParser(Function):
                 self.append(
                     content=f"{module.name.lower()}_parser = module_subparser.add_parser(name='{module.name}', help='{module.help}')"
                 )
-                setup_command_parser = SetupCommandParser(module.name, no_imports=bool(no_imports))
+                setup_command_parser = SetupCommandParser(
+                    module.name, no_imports=bool(no_imports)
+                )
                 no_imports -= 1
                 module.add_args(module.args)
                 setup_command_parser.generate_code(module.commands)
@@ -368,7 +378,9 @@ class Execute(Function):
         """
         if len(modules) == 1:
             module: ModuleStructure = modules.modules[0]
-            self.append(content=f"module = {module.name}({create_call_args(module.args)})")
+            self.append(
+                content=f"module = {module.name}({create_call_args(module.args)})"
+            )
 
             # generate matches from commands
             match_case = self._generate_command_match_case(module.commands)
@@ -378,10 +390,12 @@ class Execute(Function):
             self.append(match_case)
         else:
             logging.error("No given modules to process")
-        
+
         self.append("return True")
 
-    def _generate_command_match_case(self, commands: List[CommandStructure]) -> MatchCase:
+    def _generate_command_match_case(
+        self, commands: List[CommandStructure]
+    ) -> MatchCase:
         """Generates match cases for commands.
 
         Args:
@@ -395,10 +409,12 @@ class Execute(Function):
         for command in commands:
             command: CommandStructure
             match_name = command.name.replace("_", "-")
-            body = Code.from_str(code=f"module.{command.name}({create_call_args(command.args)})")
+            body = Code.from_str(
+                code=f"module.{command.name}({create_call_args(command.args)})"
+            )
             matches.append(Match(match_value=match_name, body=body))
 
-        # add default case 
+        # add default case
         matches.append(DefaultCase(body="return False"))
 
         match_case = MatchCase(match_name="args['command']", matches=matches)
@@ -418,7 +434,9 @@ class Execute(Function):
         for module in modules:
             module: ModuleStructure
             match_name = module.name
-            body = Code.from_str(f"module = {module.name}({create_call_args(module.args)})")
+            body = Code.from_str(
+                f"module = {module.name}({create_call_args(module.args)})"
+            )
             body.append(self._generate_command_match_case(module.commands))
             matches.append(Match(match_value=match_name, body=body))
 
@@ -619,7 +637,9 @@ class CodeGenerator:
         data = load_json(json_file)
         self.from_dict(data, parser_file)
 
-    def write(self, setup_parser_path: str, main_path: str, force: bool = False) -> None:
+    def write(
+        self, setup_parser_path: str, main_path: str, force: bool = False
+    ) -> None:
         """Generates code from a JSON file and a parser file name.
 
         Args:
