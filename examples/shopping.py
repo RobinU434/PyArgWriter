@@ -34,6 +34,9 @@ This module provides convenient classes to handle calculations and shopping task
 """
 
 
+from typing import List
+
+
 class Calculator:
     """
     A simple calculator class for basic arithmetic operations.
@@ -154,7 +157,7 @@ class ShoppingCart:
         self.items = {}
         self.tax_rate = tax_rate
 
-    def add_item(self, item, price):
+    def add_item(self, item: str, price: float):
         """Adds an item to the cart with its price.
 
         Args:
@@ -171,6 +174,15 @@ class ShoppingCart:
         """
         if item in self.items:
             del self.items[item]
+
+    def remove_items(self, items: List[str]):
+        """Removes multiple items from the cart
+
+        Args:
+            items (List[str]): A List of names of items
+        """
+        for item in items:
+            self.remove_item(item)
 
     def calculate_total(self):
         """Calculates the total cost of all items in the cart.
