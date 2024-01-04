@@ -123,7 +123,9 @@ class CodeParser:
         doc_str = ast.get_docstring(func)
         if doc_str is None:
             logging.fatal(f"No docstring for method {func.name} available")
-            raise ValueError("Process was aborted because of missing doc-string.")
+            raise ValueError(
+                f"Process was aborted because of missing doc-string in function: {func.name}"
+            )
         doc_str = doc_str.split("\n")
         # get argument docstring
         if num_args:
