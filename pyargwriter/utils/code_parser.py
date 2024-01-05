@@ -160,7 +160,10 @@ class CodeParser:
                     argument.type = str
                     argument.nargs = "+"
             if default is not None:
-                argument.default = default.value
+                if isinstance(default, ast.List):
+                    argument.default = [item.value for item in default.elts]
+                else:
+                    argument.default = default.value
 
             arguments.append(argument)
         return arguments
