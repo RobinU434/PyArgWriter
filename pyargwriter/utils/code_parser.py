@@ -104,8 +104,8 @@ class CodeParser:
             if isinstance(item, ast.FunctionDef) and item.name == "__init__":
                 args = self._get_arguments(item)
 
-        help = ast.get_docstring(node).split("\n")[0]
-        return class_name, args, help
+        help_message = ast.get_docstring(node).split("\n")[0]
+        return class_name, args, help_message
 
     @staticmethod
     def _get_arguments(func: FunctionDef) -> List[ArgumentStructure]:
@@ -123,14 +123,17 @@ class CodeParser:
         doc_str = ast.get_docstring(func)
         if doc_str is None:
             logging.fatal(f"No docstring for method {func.name} available")
-            raise ValueError("Process was aborted because of missing doc-string.")
+            raise ValueError(
+                f"Process was aborted because of missing doc-string in function: {func.name}"
+            )
         doc_str = doc_str.split("\n")
         # get argument docstring
         if num_args:
             args_index = doc_str.index("Args:") + 1
             arg_doc_strs = doc_str[args_index : args_index + num_args]
             helps = [
-                ":".join(arg_doc_str.split(":")[1:]).strip(" ") for arg_doc_str in arg_doc_strs
+                ":".join(arg_doc_str.split(":")[1:]).strip(" ")
+                for arg_doc_str in arg_doc_strs
             ]
         else:
             helps = []
@@ -141,21 +144,26 @@ class CodeParser:
             defaults[-len(func.args.defaults) :] = func.args.defaults
 
         arguments = []
-        for arg, help, default in zip(func.args.args[-num_args:], helps, defaults):
+        for arg, help_message, default in zip(func.args.args[-num_args:], helps, defaults):
             argument = ArgumentStructure()
             argument.dest = arg.arg
             argument.name_or_flags = arg.arg
-            argument.help = help
+            argument.help = help_message
 
             if arg.annotation:
                 if isinstance(arg.annotation, ast.Name):
                     argument.type = eval(arg.annotation.id)
                 elif isinstance(arg.annotation, ast.Subscript):
-                    logging.warning("List annotation automatically set to List[str]. Please adapt in generated code if this is not equal to your application.")
+                    logging.warning(
+                        "List annotation automatically set to List[str]. Please adapt in generated code if this is not equal to your application."
+                    )
                     argument.type = str
                     argument.nargs = "+"
             if default is not None:
-                argument.default = default.value
+                if isinstance(default, ast.List):
+                    argument.default = [item.value for item in default.elts]
+                else:
+                    argument.default = default.value
 
             arguments.append(argument)
         return arguments
@@ -179,7 +187,7 @@ class CodeParser:
                 command.args.extend(self._get_arguments(func))
                 commands.append(command)
         return commands
-    
+
     @staticmethod
     def _get_command_help(func: FunctionDef) -> str:
         """if there is a docstring for the function extract the first line as the a help description.
