@@ -32,8 +32,12 @@ def dict2args(d: Dict[str, Any]) -> str:
             flags += flag
             flags += ", "
             continue
+        elif key == "type":
 
-        if key == "type":
+            if "bool" == value:
+                result += "action = 'store_true', "
+                continue
+            
             value = f"{value}"
         else:
             value = f"'{value}'"
