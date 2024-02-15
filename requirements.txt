@@ -1,4 +1,0 @@
-argparse
-pytest
-pyaml
-black
