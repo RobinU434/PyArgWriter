@@ -15,7 +15,12 @@ def test_code_parser():
     parser.write("test/tmp/out.yaml")
     parser.write("test/tmp/out.yml")
     parser.write("test/tmp/out.json")
+    with pytest.raises(UnboundLocalError):
+        parser.write("test/tmp/out.xyz")
     parser.modules.to_dict()
+
+    repr(parser)
+    modules = parser.module_serialized
 
 
 def test_code_generator():
