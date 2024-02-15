@@ -1,5 +1,8 @@
 # PyArgWriter
 
+![Coveralls](https://img.shields.io/coverallsCoverage/github/RobinU434/https%3A%2F%2Fgithub.com%2FRobinU434%2FPyArgWriter)[documentation/test_coverage.md]
+
+
 PyArgWriter is a Python module that simplifies the generation of ArgumentParser setups for Python classes and their methods. It provides a convenient way to define and manage command-line arguments for your Python applications.
 
 ## Installation
