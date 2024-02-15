@@ -33,17 +33,18 @@ def dict2args(d: Dict[str, Any]) -> str:
             flags += ", "
             continue
         elif key == "type":
-
-            if "bool" == value:
+            if value == "bool":
                 result += "action = 'store_true', "
                 continue
             
             value = f"{value}"
+        elif key == "default" and isinstance(value, bool):
+            continue
         else:
             value = f"'{value}'"
-
+        
         result += f"{key} = {value}, "
-
+               
     result = flags + result
     return result
 
