@@ -97,6 +97,20 @@ For more detailed information on each command and additional options, run:
 python -m pyargwriter <command> --help
 ```
 
+### Supported Argument Types
+
+In the function of the process class you want to create the argument parser, following types of an argument are supported:
+
+- int
+- float
+- str
+
+Plan to add in future versions:
+
+- list of int
+- list of float
+- list of str
+
 ## Example
 
 ```bash
