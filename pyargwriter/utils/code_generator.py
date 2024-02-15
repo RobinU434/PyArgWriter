@@ -461,6 +461,7 @@ class Execute(Function):
         for module_name, path in files.items():
             path = path.rstrip(".py")
             path = path.replace("/", ".")
+            path = path.lstrip(".")
             imports.append(content=f"from {path} import {module_name}")
         self.insert(imports, 0)
 
