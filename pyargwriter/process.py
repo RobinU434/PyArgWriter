@@ -2,13 +2,10 @@ import logging
 from typing import Any, Dict, List
 from ast import Module
 import ast
-import argparse
-from argparse import ArgumentParser
 from pyargwriter.utils.code_generator import CodeGenerator
 from pyargwriter.utils.code_parser import CodeParser
 from pyargwriter.utils.decorator import overwrite_protection
 from pyargwriter.utils.file_system import (
-    check_file_exists,
     create_directory,
     create_file,
 )
@@ -82,7 +79,9 @@ class ArgParseWriter:
         self.parse_code(files, None)
 
         output = output.rstrip("/")
-        self._generator.from_dict(self._arg_parse_structure.to_dict(), output + "/utils/parser.py")
+        self._generator.from_dict(
+            self._arg_parse_structure.to_dict(), output + "/utils/parser.py"
+        )
 
         create_directory(output + "/utils")
         self._generator.write(

@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from copy import deepcopy
 import logging
-from typing import Any, Dict, List, Type
+from typing import Any, Dict, List
 from pyargwriter.utils.casts import create_call_args, dict2args, format_help
 from pyargwriter.utils.code_abstracts import (
     Code,
