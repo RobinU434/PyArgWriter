@@ -1,36 +1,6 @@
-import os
 from typing import Callable
 
 from pyargwriter.utils.file_system import check_file_exists
-
-
-def cleanup_tests(func: Callable) -> Callable:
-    """Decorator to clean up test-related files after a function call.
-
-    This decorator is designed to be used with test functions. It will call the
-    wrapped function and then clean up temporary test files.
-
-    Args:
-        func (Callable): The function to be wrapped.
-
-    Returns:
-        Callable: The decorated function.
-
-    Example:
-        @cleanup_tests
-        def test_example():
-            # Your test code here
-            pass
-
-    """
-
-    def wrapper(*args, **kwargs):
-        func(*args, **kwargs)
-
-        os.system("rm ./tests/temp/*.py")
-        os.system("rm ./tests/temp/*/*.py")
-
-    return wrapper
 
 
 def overwrite_protection(func: Callable) -> Callable:
