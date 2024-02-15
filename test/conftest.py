@@ -1,3 +1,4 @@
+import glob
 import os
 import pytest
 from pyargwriter.process import ArgParseWriter
@@ -23,3 +24,19 @@ def cleanup_generated_files():
 def setup_files(request: pytest.FixtureRequest) -> None:
     run_pyargwriter()
     request.addfinalizer(cleanup_generated_files)
+
+
+@pytest.fixture(scope="session")
+def cleanup_tmp_dir(request: pytest.FixtureRequest) -> None:
+    
+    def cleanup():
+        yaml_files = glob.glob("test/tmp/*.yaml")
+        yml_files = glob.glob("test/tmp/*.yml")
+        python_files = glob.glob("test/tmp/*.py")
+        
+        files = [*yaml_files, *yml_files, *python_files]
+        
+        for file in files:
+            os.remove(file)
+
+    request.addfinalizer(cleanup)

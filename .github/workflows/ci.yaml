@@ -24,16 +24,17 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint coverage
+        pip install pylint coverage pytest "poetry==1.7.1" pyaml
+        poetry install 
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: see content
       run: ls -la
     - name: Lint with pylint
       run: pylint pyargwriter --fail-under 7.5
       continue-on-error: true
-    - name: Test with unittest
+    - name: Test with pytest
       run: |
-        python -m coverage run -m unittest test/test_pyargwriter.py
+        python -m coverage run -m pytest
     - name: pytest coverage
       run:
         python -m coverage report > documentation/coverage_report.md
