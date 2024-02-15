@@ -14,7 +14,7 @@ from test import (
 )
 
 
-def test_int():
+def test_int(setup_files):
     a = INT
     b = INT
     cmd = f"python -m test.test_project int-test --a {a}"
@@ -23,7 +23,7 @@ def test_int():
     subprocess.run(cmd, shell=True, check=True)
 
 
-def test_str():
+def test_str(setup_files):
     a = STR
     b = STR
     cmd = f"python -m test.test_project str-test --a {a}"
@@ -32,7 +32,7 @@ def test_str():
     subprocess.run(cmd, shell=True, check=True)
 
 
-def test_float():
+def test_float(setup_files):
     a = FLOAT
     b = FLOAT
     cmd = f"python -m test.test_project float-test --a {a}"
@@ -41,14 +41,14 @@ def test_float():
     subprocess.run(cmd, shell=True, check=True)
 
 
-def test_bool_false():
+def test_bool_false(setup_files):
     cmd = "python -m test.test_project bool-false-test"
     subprocess.run(cmd, shell=True, check=True)
     cmd = "python -m test.test_project bool-false-test --b"
     subprocess.run(cmd, shell=True, check=True)
 
 
-def test_bool_true():
+def test_bool_true(setup_files):
     cmd = "python -m test.test_project bool-true-test --a"
     subprocess.run(cmd, shell=True, check=True)
     cmd = "python -m test.test_project bool-true-test --a --b"
