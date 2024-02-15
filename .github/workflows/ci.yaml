@@ -33,7 +33,7 @@ jobs:
       continue-on-error: true
     - name: Test with unittest
       run: |
-        python -m coverage run -m unittest test/test_pyargwriter.py
+        python -m coverage run -m pytest
     - name: pytest coverage
       run:
         python -m coverage report > documentation/coverage_report.md
