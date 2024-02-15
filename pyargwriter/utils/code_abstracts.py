@@ -1,5 +1,4 @@
 from __future__ import annotations
-from abc import ABC
 
 import logging
 from typing import Any, Dict, List, Tuple, Type
@@ -159,16 +158,19 @@ class Code:
         first, second = self._split_file(index)
 
         # insert content
-        if isinstance(content, list) and type_of_all(content, LineOfCode) and len(content):
+        if (
+            isinstance(content, list)
+            and type_of_all(content, LineOfCode)
+            and len(content)
+        ):
             method = self._insert_lines_of_code
         elif isinstance(content, LineOfCode):
             method = self._insert_line_of_code
         elif isinstance(content, Code):
             method = self._insert_code
         else:
-            logging.error(
-                f"Wrong type to insert into content. You provided: {type(content), type(content) == Code, type(self)}"
-            )
+            msg = f"Wrong type to insert into content. You provided: {type(content), isinstance(content, Code), type(self)}"
+            logging.error(msg)
             return
 
         self._file = method(first, content, second)
@@ -254,9 +256,11 @@ class Code:
             content: Code
             content.set_tab_level(self._tab_level)
             self.insert(content, len(self))
-    
+
         elif isinstance(content, LineOfCode) or (
-            isinstance(content, list) and type_of_all(content, LineOfCode) and len(content)
+            isinstance(content, list)
+            and type_of_all(content, LineOfCode)
+            and len(content)
         ):
             self.insert(content, len(self))
 
@@ -279,15 +283,17 @@ class Code:
         """
         self._write(path)
 
-    def _write(self, path: str):
+    def _write(self, path: str, encoding: str = "utf-8"):
         """Write the code block to a specified file path.
 
         Args:
             path (str): The file path where the code block should be written.
+            encoding (str, optional): How to encode the text to write. Defaults to utf-8
 
         """
-        logging.info(f"Create {path}")
-        with open(path, "w") as text_file:
+        msg = f"Create {path}"
+        logging.info(msg)
+        with open(path, "w", encoding=encoding) as text_file:
             text_file.write(repr(self))
 
     @property
@@ -319,7 +325,7 @@ class Code:
         renewed_files: List[LineOfCode] = []
         for line in self._file:
             # reset by first tab-level
-            content = line.content[TAB_SIZE * first_tab_level :]
+            content = line.content[(TAB_SIZE * first_tab_level) :]  # noqa: E203
             internal_tab_level = line.tab_level
             renewed_files.append(
                 LineOfCode(content=content, tab_level=internal_tab_level + tab_level)
@@ -381,10 +387,10 @@ class Function(Code):
         return result
 
     @staticmethod
-    def _serialize_type(type: Type) -> str:
-        if type is None:
+    def _serialize_type(var_type: Type) -> str:
+        if var_type is None:
             return "None"
-        return type.__name__
+        return var_type.__name__
 
     def _generate_header(self):
         """Generate the function header based on the name, signature, and return type."""
@@ -449,13 +455,14 @@ class Match(Code):
                 raise NotImplementedError(
                     f"Not implemented conversion type for {type(self._match_value)}"
                 )
-            
+
+
 class DefaultCase(Match):
     def __init__(self, body: Code) -> None:
         super().__init__(None, body=body)
-        
+
     def _generate(self):
-        self.append(content=f"case _:")
+        self.append(content="case _:")
         self._tab_level += 1
         self.append(self.body)
 

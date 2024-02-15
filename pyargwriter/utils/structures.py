@@ -101,9 +101,9 @@ class ArgumentStructure(Structure):
         arg = cls()
         for key, value in data.items():
             setattr(arg, key, value)
-        
+
         return arg
-        
+
     def to_dict(self) -> Dict[str, str]:
         """Convert the argument structure to a dictionary representation.
 
@@ -115,13 +115,13 @@ class ArgumentStructure(Structure):
             if isinstance(value, Type):
                 value = value.__name__
             structure[name] = value
-        
+
         # check if the minimal number of args is in the dict:
         required_keys = set(["name_or_flags", "dest", "help"])
         keys = set(structure.keys())
         if required_keys.intersection(keys) != required_keys:
             logging.warning("There are keys in the generated structure missing")
-        
+
         return structure
 
 
@@ -243,7 +243,9 @@ class ModuleStructure(Structure):
         module: ModuleStructure = cls()
         module.name = data["name"]
         module.help = data["help"]
-        module.commands = [CommandStructure.from_dict(command) for command in data["commands"]]
+        module.commands = [
+            CommandStructure.from_dict(command) for command in data["commands"]
+        ]
         module.location = data["location"]
         module.args = [ArgumentStructure.from_dict(arg) for arg in data["args"]]
 
@@ -320,7 +322,9 @@ class ModuleStructures(Structure):
             ModuleStructures: An instance of the ModuleStructures class created from the dictionary.
         """
         modules: ModuleStructures = cls()
-        modules.modules = [ModuleStructure.from_dict(module) for module in data["modules"]]
+        modules.modules = [
+            ModuleStructure.from_dict(module) for module in data["modules"]
+        ]
         return modules
 
     def to_dict(self) -> Dict[str, str]:
