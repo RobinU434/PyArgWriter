@@ -75,6 +75,19 @@ class Car:
         self._ignition_sequence()
         print("Engine started!")
 
+    def show_reach(self, in_miles: bool = False):
+        """show remaining reach
+
+        Args:
+            in_miles (bool, optional): if you want to show the remaining distance in miles. Defaults to False.
+        """
+        assert isinstance(in_miles, bool)
+
+        if in_miles:
+            print("500 miles are left")
+        else:
+            print("500 km are left")
+
     def _check_fuel_level(self):
         """Checks the fuel level before starting the engine."""
         print("Checking fuel level...")
