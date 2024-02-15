@@ -14,6 +14,9 @@ argparse = "^1.4.0"
 pyaml = "^23.12.0"
 black = "^23.12.1"
 
+[tool.poetry.group.dev.dependencies]
+coveralls = "^3.3.1"
+
 [tool.dev.poetry.dependencies]
 pytest = "^7.4.4"
 
