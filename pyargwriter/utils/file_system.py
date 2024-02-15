@@ -1,3 +1,4 @@
+import ast
 import json
 import logging
 import os
@@ -57,6 +58,21 @@ def load_json(path) -> dict:
     with open(path, "r") as file:
         data = json.load(file)
     return data
+
+
+def load_file_tree(file_path: str) -> ast.Module:
+    """load programm ast tree at a given file
+
+    Args:
+        file_path (str): path to program file
+
+    Returns:
+        ast.Module: model tree
+    """
+    with open(file_path, "r", encoding="utf-8") as file:
+        tree = ast.parse(file.read())
+    return tree
+
 
 
 def create_directory(path: str) -> None:

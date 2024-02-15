@@ -8,6 +8,7 @@ from pyargwriter.utils.decorator import overwrite_protection
 from pyargwriter.utils.file_system import (
     create_directory,
     create_file,
+    load_file_tree,
 )
 from pyargwriter.utils.formatter import BlackFormatter
 
@@ -24,8 +25,14 @@ class ArgParseWriter:
         self._arg_parse_structure: Dict[str, Any]
 
     def parse_code(self, files: List[str], output: str, **kwargs):
+        """parse given code classes 
+
+        Args:
+            files (List[str]): _description_
+            output (str): _description_
+        """
         for file in files:
-            tree = self._load_file_tree(file)
+            tree = load_file_tree(file)
             self._parser.parse_tree(tree, file)
 
         self._arg_parse_structure = self._parser.modules
@@ -45,7 +52,7 @@ class ArgParseWriter:
                 generator_method = self._generator.from_yaml
             case "yml":
                 generator_method = self._generator.from_yaml
-            case "yaml":
+            case "json":
                 generator_method = self._generator.from_json
 
         output = output.rstrip("/")
@@ -105,7 +112,8 @@ class ArgParseWriter:
         self,
         *files,
     ):
-        logging.info(f"Format code with {type(self._formatter).__name__}")
+        msg = f"Format code with {type(self._formatter).__name__}"
+        logging.info(msg)
         self._formatter.format(files)
 
     def _create_init(self, path):
@@ -118,9 +126,3 @@ class ArgParseWriter:
                 create_file(path)
 
             wrapper(path=path)
-
-    @staticmethod
-    def _load_file_tree(file_path: str) -> Module:
-        with open(file_path, "r") as file:
-            tree = ast.parse(file.read())
-        return tree
