@@ -5,13 +5,16 @@ description = ""
 authors = ["Robin Uhrich <robin.uhrich@gmail.com>"]
 readme = "README.md"
 
+[tool.poetry.scripts]
+pyargwriter = "pyargwriter.__main__:main"
+
 [tool.poetry.dependencies]
 python = "^3.11"
 argparse = "^1.4.0"
 pyaml = "^23.12.0"
+black = "^23.12.1"
 
 [tool.dev.poetry.dependencies]
-black = "^23.12.1"
 pytest = "^7.4.4"
 
 [build-system]
