@@ -1,8 +1,6 @@
-import glob
 import os
 import pytest
 from pyargwriter.process import ArgParseWriter
-from test.test_project.tester import ArgumentTester
 
 
 def run_pyargwriter():

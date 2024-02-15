@@ -4,11 +4,6 @@ from test import (
     FLOAT,
     BOOL_FALSE,
     BOOL_TRUE,
-    EMPTY_LIST,
-    INT_LIST,
-    FLOAT_LIST,
-    STR_LIST,
-    BOOL_LIST,
 )
 
 
