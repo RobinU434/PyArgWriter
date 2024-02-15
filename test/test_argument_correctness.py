@@ -1,16 +1,10 @@
 """In this function we will call the ArgumentTester from a simulated command-line and test if the typing test function will detect an error"""
 
 import subprocess
-from test.test_project.tester import ArgumentTester
 from test import (
     INT,
     STR,
     FLOAT,
-    EMPTY_LIST,
-    INT_LIST,
-    FLOAT_LIST,
-    STR_LIST,
-    BOOL_LIST,
 )
 
 
