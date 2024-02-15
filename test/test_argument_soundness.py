@@ -1,0 +1,55 @@
+"""In this function we will call the ArgumentTester from a simulated command-line and test if the typing test function will detect an error"""
+
+import subprocess
+from test.test_project.tester import ArgumentTester
+from test import (
+    INT,
+    STR,
+    FLOAT,
+    EMPTY_LIST,
+    INT_LIST,
+    FLOAT_LIST,
+    STR_LIST,
+    BOOL_LIST,
+)
+
+
+def test_int():
+    a = INT
+    b = INT
+    cmd = f"python -m test.test_project int-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project int-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def test_str():
+    a = STR
+    b = STR
+    cmd = f"python -m test.test_project str-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project str-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def test_float():
+    a = FLOAT
+    b = FLOAT
+    cmd = f"python -m test.test_project float-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project float-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def test_bool_false():
+    cmd = "python -m test.test_project bool-false-test"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = "python -m test.test_project bool-false-test --b"
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def test_bool_true():
+    cmd = "python -m test.test_project bool-true-test --a"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = "python -m test.test_project bool-true-test --a --b"
+    subprocess.run(cmd, shell=True, check=True)
