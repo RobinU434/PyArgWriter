@@ -32,9 +32,10 @@ def cleanup_tmp_dir(request: pytest.FixtureRequest) -> None:
     def cleanup():
         yaml_files = glob.glob("test/tmp/*.yaml")
         yml_files = glob.glob("test/tmp/*.yml")
+        json_files = glob.glob("test/tmp/*.json")
         python_files = glob.glob("test/tmp/*.py")
         
-        files = [*yaml_files, *yml_files, *python_files]
+        files = [*yaml_files, *yml_files, *json_files, *python_files]
         
         for file in files:
             os.remove(file)
