@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "pyargwriter"
+version = "0.1.0"
+description = ""
+authors = ["Robin Uhrich <robin.uhrich@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+pyargwriter = "pyargwriter.__main__:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+argparse = "^1.4.0"
+pyaml = "^23.12.0"
+black = "^23.12.1"
+
+[tool.dev.poetry.dependencies]
+pytest = "^7.4.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
