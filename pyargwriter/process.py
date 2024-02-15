@@ -1,7 +1,5 @@
 import logging
 from typing import Any, Dict, List
-from ast import Module
-import ast
 from pyargwriter.utils.code_generator import CodeGenerator
 from pyargwriter.utils.code_parser import CodeParser
 from pyargwriter.utils.decorator import overwrite_protection
@@ -25,7 +23,7 @@ class ArgParseWriter:
         self._arg_parse_structure: Dict[str, Any]
 
     def parse_code(self, files: List[str], output: str, **kwargs):
-        """parse given code classes 
+        """parse given code classes
 
         Args:
             files (List[str]): _description_

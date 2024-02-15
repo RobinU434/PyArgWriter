@@ -86,7 +86,7 @@ class CodeParser:
             case _:
                 msg = f"Not implemented write method for file type {file_type}"
                 logging.error(msg)
-                
+
         write_func(self.modules.to_dict(), path)
 
     def _get_class_signature(self, node) -> Tuple[str, List[ArgumentStructure], str]:

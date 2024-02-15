@@ -1,5 +1,3 @@
-import subprocess
-
 import pytest
 from pyargwriter.process import ArgParseWriter
 from pyargwriter.utils.code_generator import CodeGenerator
@@ -7,7 +5,7 @@ from pyargwriter.utils.code_parser import CodeParser
 from pyargwriter.utils.file_system import load_file_tree
 
 
-def test_code_parser():
+def test_code_parser(cleanup_tmp_dir):
     parser = CodeParser()
     file = "test/test_project/tester.py"
     tree = load_file_tree(file)
@@ -20,10 +18,10 @@ def test_code_parser():
     parser.modules.to_dict()
 
     repr(parser)
-    modules = parser.module_serialized
+    print(parser.module_serialized)
 
 
-def test_code_generator():
+def test_code_generator(cleanup_tmp_dir):
     parser = CodeParser()
     file = "test/test_project/tester.py"
     tree = load_file_tree(file)
@@ -85,6 +83,6 @@ def test_fail_class(cleanup_tmp_dir, caplog):
         pyargwriter.parse_code(files=files, output=None)
 
     with pytest.raises(UnboundLocalError):
-        pyargwriter.write_code(file="test/tmp/test.toml", output="test/tmp", pretty=True)
-    
-    
+        pyargwriter.write_code(
+            file="test/tmp/test.toml", output="test/tmp", pretty=True
+        )

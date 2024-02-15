@@ -74,7 +74,6 @@ def load_file_tree(file_path: str) -> ast.Module:
     return tree
 
 
-
 def create_directory(path: str) -> None:
     """Create a directory if it doesn't already exist.
 
