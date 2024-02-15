@@ -96,7 +96,7 @@ def create_file(file_path: str) -> None:
 
     """
 
-    f = open(file_path, "w")
+    f = open(file_path, "w", encoding="utf-8")
     f.close()
 
 
