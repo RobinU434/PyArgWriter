@@ -14,18 +14,19 @@ PyArgWriter is a Python module that simplifies the generation of ArgumentParser 
 
 You can install PyArgWriter using `pip`:
 
-TODO: does not work yet
-
 ```bash
 pip install pyargwriter
 ```
 
-Alternative:
+Alternative from source code:
 
-In root folder:
-
+In root folder with pip:  
 ```bash
 pip install .
+```
+or with poetry:  
+```bash
+poetry install
 ```
 
 
@@ -104,12 +105,16 @@ In the function of the process class you want to create the argument parser, fol
 - int
 - float
 - str
+- bool flags
+- list[int]
+- List[int]     # from typing
+- list[float]
+- List[float]   # from typing
+- list[str]
+- List[str]     # from typing
+- list[bool]
+- List[bool]    # from typing
 
-Plan to add in future versions:
-
-- list of int
-- list of float
-- list of str
 
 ## Example
 
