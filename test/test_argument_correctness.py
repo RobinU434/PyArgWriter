@@ -5,6 +5,10 @@ from test import (
     INT,
     STR,
     FLOAT,
+    INT_LIST,
+    STR_LIST,
+    BOOL_LIST,
+    FLOAT_LIST
 )
 
 
@@ -47,3 +51,74 @@ def test_bool_true(setup_files):
     subprocess.run(cmd, shell=True, check=True)
     cmd = "python -m test.test_project bool-true-test --a --b"
     subprocess.run(cmd, shell=True, check=True)
+
+def test_list_int(setup_files):
+    a = str(INT_LIST).strip("[]").replace(",", "")
+    b = str(INT_LIST).strip("[]").replace(",", "")
+    cmd = f"python -m test.test_project list-int-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project list-int-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def test_list_float(setup_files):
+    a = str(FLOAT_LIST).strip("[]").replace(",", "")
+    b = str(FLOAT_LIST).strip("[]").replace(",", "")
+    cmd = f"python -m test.test_project list-float-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project list-float-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def test_list_str(setup_files):
+    a = str(STR_LIST).strip("[]").replace(",", "")
+    b = str(STR_LIST).strip("[]").replace(",", "")
+    cmd = f"python -m test.test_project list-str-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project list-str-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+def test_list_bool(setup_files):
+    a = str(BOOL_LIST).strip("[]").replace(",", "")
+    b = str(BOOL_LIST).strip("[]").replace(",", "")
+    cmd = f"python -m test.test_project list-bool-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project list-bool-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def test_typing_list_int(setup_files):
+    a = str(INT_LIST).strip("[]").replace(",", "")
+    b = str(INT_LIST).strip("[]").replace(",", "")
+    cmd = f"python -m test.test_project typing-list-int-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project typing-list-int-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def test_typing_list_float(setup_files):
+    a = str(FLOAT_LIST).strip("[]").replace(",", "")
+    b = str(FLOAT_LIST).strip("[]").replace(",", "")
+    cmd = f"python -m test.test_project typing-list-float-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project typing-list-float-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def test_typing_list_str(setup_files):
+    a = str(STR_LIST).strip("[]").replace(",", "")
+    b = str(STR_LIST).strip("[]").replace(",", "")
+    cmd = f"python -m test.test_project typing-list-str-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project typing-list-str-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+def test_typing_list_bool(setup_files):
+    a = str(BOOL_LIST).strip("[]").replace(",", "")
+    b = str(BOOL_LIST).strip("[]").replace(",", "")
+    cmd = f"python -m test.test_project typing-list-bool-test --a {a}"
+    subprocess.run(cmd, shell=True, check=True)
+    cmd = f"python -m test.test_project typing-list-bool-test --a {a} --b {b}"
+    subprocess.run(cmd, shell=True, check=True)
+
+
