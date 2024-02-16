@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tab_5flevel_44',['tab_level',['../classcode__abstracts_1_1LineOfCode.html#ad6d192593f5fe7b932336eaec22f04d0',1,'code_abstracts::LineOfCode']]],
-  ['to_5fdict_45',['to_dict',['../classstructures_1_1Structure.html#ad4a3e90716ab884ea0e9962813705f83',1,'structures.Structure.to_dict()'],['../classstructures_1_1ArgumentStructure.html#a4a5b32295b9f20ecd7ed1d35c5413ef0',1,'structures.ArgumentStructure.to_dict()'],['../classstructures_1_1CommandStructure.html#a557172e14d726d63940339bc0ae9e659',1,'structures.CommandStructure.to_dict()'],['../classstructures_1_1ModuleStructure.html#ac7588bd8af80f1c20af16a9fe34f28e2',1,'structures.ModuleStructure.to_dict()'],['../classstructures_1_1ModuleStructures.html#ac1f708b394e90bb4670078ed8db124bb',1,'structures.ModuleStructures.to_dict()']]]
+  ['parse_5fcode_62',['parse_code',['../classpyargwriter_1_1process_1_1ArgParseWriter.html#aaca30d8d0344a0cd95fca24a3ba08ea4',1,'pyargwriter::process::ArgParseWriter']]],
+  ['parse_5ftree_63',['parse_tree',['../classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser.html#aac8fa247d811a7227f06ce694f800c4d',1,'pyargwriter::utils::code_parser::CodeParser']]]
 ];

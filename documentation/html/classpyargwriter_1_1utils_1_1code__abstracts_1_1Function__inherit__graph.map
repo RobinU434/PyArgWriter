@@ -1,0 +1,10 @@
+<map id="pyargwriter.utils.code_abstracts.Function" name="pyargwriter.utils.code_abstracts.Function">
+<area shape="rect" id="node1" title="Represents a Python function." alt="" coords="216,169,379,211"/>
+<area shape="rect" id="node3" href="$classpyargwriter_1_1utils_1_1code__generator_1_1AddArguments.html" title="Represents a class for adding arguments to a function." alt="" coords="451,5,641,47"/>
+<area shape="rect" id="node4" href="$classpyargwriter_1_1utils_1_1code__generator_1_1CreateParser.html" title=" " alt="" coords="457,71,635,112"/>
+<area shape="rect" id="node5" href="$classpyargwriter_1_1utils_1_1code__generator_1_1Execute.html" title="Creates execute function to execute program logic." alt="" coords="465,136,627,177"/>
+<area shape="rect" id="node6" href="$classpyargwriter_1_1utils_1_1code__generator_1_1MainFunc.html" title="Represents the main function of a Python script that uses argparse for command&#45;line arguments." alt="" coords="465,201,627,243"/>
+<area shape="rect" id="node7" href="$classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser.html" title="Represents a function generator for setting up an ArgumentParser with subcommands." alt="" coords="427,267,665,308"/>
+<area shape="rect" id="node8" href="$classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser.html" title="Represents a function generator for setting up an ArgumentParser with subcommands for multiple module..." alt="" coords="460,332,632,373"/>
+<area shape="rect" id="node2" href="$classpyargwriter_1_1utils_1_1code__abstracts_1_1Code.html" title="Represents a collection of code lines." alt="" coords="5,169,168,211"/>
+</map>

@@ -1,10 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,55,108"/>
-<area shape="rect" id="node2" href="$classformatter_1_1Formatter.html" title="Abstract base class for code formatters." alt="" coords="103,31,253,57"/>
-<area shape="rect" id="node4" href="$classstructures_1_1Structure.html" title="Abstract base class for defining structured objects." alt="" coords="103,107,253,133"/>
-<area shape="rect" id="node3" href="$classformatter_1_1BlackFormatter.html" title="Formatter for code using the &#39;black&#39; code formatter." alt="" coords="317,5,503,32"/>
-<area shape="rect" id="node5" href="$classstructures_1_1ArgumentStructure.html" title=" " alt="" coords="303,56,517,83"/>
-<area shape="rect" id="node6" href="$classstructures_1_1CommandStructure.html" title="Class representing a command structure." alt="" coords="301,107,519,133"/>
-<area shape="rect" id="node7" href="$classstructures_1_1ModuleStructure.html" title="Class representing a module structure." alt="" coords="311,157,509,184"/>
-<area shape="rect" id="node8" href="$classstructures_1_1ModuleStructures.html" title="Class representing a collection of module structures." alt="" coords="307,208,513,235"/>
+<area shape="rect" id="node1" href="$classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode.html" title="Represents a single line of code with indentation." alt="" coords="5,5,173,47"/>
 </map>

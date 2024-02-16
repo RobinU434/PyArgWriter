@@ -72,22 +72,225 @@ $(function() {
 <div class="title">pyargwriter.process.ArgParseWriter Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A utility class for parsing and generating code for argument parsing.  
+ <a href="classpyargwriter_1_1process_1_1ArgParseWriter.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acbcc38d0abd149dbaf07149b99e0ea08"><td class="memItemLeft" align="right" valign="top"><a id="acbcc38d0abd149dbaf07149b99e0ea08"></a>
-None&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self, bool force=False, **kwargs)</td></tr>
+<tr class="memitem:acbcc38d0abd149dbaf07149b99e0ea08"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpyargwriter_1_1process_1_1ArgParseWriter.html#acbcc38d0abd149dbaf07149b99e0ea08">__init__</a> (self, bool force=False, **kwargs)</td></tr>
+<tr class="memdesc:acbcc38d0abd149dbaf07149b99e0ea08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize <a class="el" href="classpyargwriter_1_1process_1_1ArgParseWriter.html" title="A utility class for parsing and generating code for argument parsing.">ArgParseWriter</a> instance.  <a href="classpyargwriter_1_1process_1_1ArgParseWriter.html#acbcc38d0abd149dbaf07149b99e0ea08">More...</a><br /></td></tr>
 <tr class="separator:acbcc38d0abd149dbaf07149b99e0ea08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaca30d8d0344a0cd95fca24a3ba08ea4"><td class="memItemLeft" align="right" valign="top"><a id="aaca30d8d0344a0cd95fca24a3ba08ea4"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>parse_code</b> (self, List[str] files, str output, **kwargs)</td></tr>
+<tr class="memitem:aaca30d8d0344a0cd95fca24a3ba08ea4"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpyargwriter_1_1process_1_1ArgParseWriter.html#aaca30d8d0344a0cd95fca24a3ba08ea4">parse_code</a> (self, List[str] files, str output, **kwargs)</td></tr>
+<tr class="memdesc:aaca30d8d0344a0cd95fca24a3ba08ea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse given code classes and store them eventually in a given output file.  <a href="classpyargwriter_1_1process_1_1ArgParseWriter.html#aaca30d8d0344a0cd95fca24a3ba08ea4">More...</a><br /></td></tr>
 <tr class="separator:aaca30d8d0344a0cd95fca24a3ba08ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af94d8af0d74e749b498b3cdbdaf48274"><td class="memItemLeft" align="right" valign="top"><a id="af94d8af0d74e749b498b3cdbdaf48274"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>write_code</b> (self, str file, str output, bool pretty=False, **kwargs)</td></tr>
+<tr class="memitem:af94d8af0d74e749b498b3cdbdaf48274"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpyargwriter_1_1process_1_1ArgParseWriter.html#af94d8af0d74e749b498b3cdbdaf48274">write_code</a> (self, str file, str output, bool pretty=False, **kwargs)</td></tr>
+<tr class="memdesc:af94d8af0d74e749b498b3cdbdaf48274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write parsed code to file.  <a href="classpyargwriter_1_1process_1_1ArgParseWriter.html#af94d8af0d74e749b498b3cdbdaf48274">More...</a><br /></td></tr>
 <tr class="separator:af94d8af0d74e749b498b3cdbdaf48274"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af04ba2a4648641fe1bbd207af218c3ec"><td class="memItemLeft" align="right" valign="top"><a id="af04ba2a4648641fe1bbd207af218c3ec"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>generate_parser</b> (self, List[str] files, str output, bool pretty=False, **kwargs)</td></tr>
+<tr class="memitem:af04ba2a4648641fe1bbd207af218c3ec"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpyargwriter_1_1process_1_1ArgParseWriter.html#af04ba2a4648641fe1bbd207af218c3ec">generate_parser</a> (self, List[str] files, str output, bool pretty=False, **kwargs)</td></tr>
+<tr class="memdesc:af04ba2a4648641fe1bbd207af218c3ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate parser from parsed code.  <a href="classpyargwriter_1_1process_1_1ArgParseWriter.html#af04ba2a4648641fe1bbd207af218c3ec">More...</a><br /></td></tr>
 <tr class="separator:af04ba2a4648641fe1bbd207af218c3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A utility class for parsing and generating code for argument parsing. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="acbcc38d0abd149dbaf07149b99e0ea08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbcc38d0abd149dbaf07149b99e0ea08">&#9670;&nbsp;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None pyargwriter.process.ArgParseWriter.__init__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &#160;</td>
+          <td class="paramname"><em>force</em> = <code>False</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">**&#160;</td>
+          <td class="paramname"><em>kwargs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize <a class="el" href="classpyargwriter_1_1process_1_1ArgParseWriter.html" title="A utility class for parsing and generating code for argument parsing.">ArgParseWriter</a> instance. </p>
+<pre class="fragment">        force (bool, optional): Whether to force overwriting existing files. Defaults to False.
+</pre> 
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af04ba2a4648641fe1bbd207af218c3ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af04ba2a4648641fe1bbd207af218c3ec">&#9670;&nbsp;</a></span>generate_parser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def pyargwriter.process.ArgParseWriter.generate_parser </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List[str]&#160;</td>
+          <td class="paramname"><em>files</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &#160;</td>
+          <td class="paramname"><em>pretty</em> = <code>False</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">**&#160;</td>
+          <td class="paramname"><em>kwargs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate parser from parsed code. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">files</td><td>List of file paths containing code classes. </td></tr>
+    <tr><td class="paramname">output</td><td>Output directory for generated code. pretty (bool, optional): Whether to format the generated code. Defaults to False. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaca30d8d0344a0cd95fca24a3ba08ea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaca30d8d0344a0cd95fca24a3ba08ea4">&#9670;&nbsp;</a></span>parse_code()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def pyargwriter.process.ArgParseWriter.parse_code </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List[str]&#160;</td>
+          <td class="paramname"><em>files</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">**&#160;</td>
+          <td class="paramname"><em>kwargs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parse given code classes and store them eventually in a given output file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">files</td><td>List of file paths containing code classes. </td></tr>
+    <tr><td class="paramname">output</td><td>Output directory for parsed code. If set to "." -&gt; print to terminal </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af94d8af0d74e749b498b3cdbdaf48274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af94d8af0d74e749b498b3cdbdaf48274">&#9670;&nbsp;</a></span>write_code()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def pyargwriter.process.ArgParseWriter.write_code </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &#160;</td>
+          <td class="paramname"><em>pretty</em> = <code>False</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">**&#160;</td>
+          <td class="paramname"><em>kwargs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write parsed code to file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>Path to the file containing parsed code. </td></tr>
+    <tr><td class="paramname">output</td><td>Output directory for generated code. pretty (bool, optional): Whether to format the generated code. Defaults to False. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>documentation/tmp/pyargwriter/process.py</li>
 </ul>

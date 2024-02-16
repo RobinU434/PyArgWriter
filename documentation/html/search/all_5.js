@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['generate_5fcode_24',['generate_code',['../classcode__generator_1_1SetupCommandParser.html#a54ce3b8305481bd66bd112f5552bfba1',1,'code_generator.SetupCommandParser.generate_code()'],['../classcode__generator_1_1SetupParser.html#a85c4a0a9ac36355d321935452b6944c9',1,'code_generator.SetupParser.generate_code()'],['../classcode__generator_1_1MainFunc.html#ac5822fe42e27567e347d2254e79b3798',1,'code_generator.MainFunc.generate_code()']]]
+  ['execute_27',['Execute',['../classpyargwriter_1_1utils_1_1code__generator_1_1Execute.html',1,'pyargwriter::utils::code_generator']]],
+  ['extra_5fsymbols_5fin_5fdocstring_28',['extra_symbols_in_docstring',['../classdummy__class_1_1DummyClass.html#a8722b50632cf2284e24f8ccdc61a75d4',1,'dummy_class::DummyClass']]]
 ];

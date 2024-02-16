@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['formatter_56',['Formatter',['../classformatter_1_1Formatter.html',1,'formatter']]],
-  ['function_57',['Function',['../classcode__abstracts_1_1Function.html',1,'code_abstracts']]]
+  ['defaultcase_96',['DefaultCase',['../classpyargwriter_1_1utils_1_1code__abstracts_1_1DefaultCase.html',1,'pyargwriter::utils::code_abstracts']]],
+  ['dummyclass_97',['DummyClass',['../classdummy__class_1_1DummyClass.html',1,'dummy_class']]]
 ];

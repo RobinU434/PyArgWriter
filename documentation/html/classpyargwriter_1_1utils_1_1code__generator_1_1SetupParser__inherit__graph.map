@@ -1,0 +1,5 @@
+<map id="pyargwriter.utils.code_generator.SetupParser" name="pyargwriter.utils.code_generator.SetupParser">
+<area shape="rect" id="node1" title="Represents a function generator for setting up an ArgumentParser with subcommands for multiple module..." alt="" coords="5,184,177,225"/>
+<area shape="rect" id="node2" href="$classpyargwriter_1_1utils_1_1code__abstracts_1_1Function.html" title="Represents a Python function." alt="" coords="10,95,173,136"/>
+<area shape="rect" id="node3" href="$classpyargwriter_1_1utils_1_1code__abstracts_1_1Code.html" title="Represents a collection of code lines." alt="" coords="10,5,173,47"/>
+</map>

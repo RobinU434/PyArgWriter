@@ -1,0 +1,4 @@
+<map id="pyargwriter.utils.code_generator.MainCaller" name="pyargwriter.utils.code_generator.MainCaller">
+<area shape="rect" id="node1" title="Represents a code block for calling the main() function if the script is executed as the main program..." alt="" coords="5,95,171,136"/>
+<area shape="rect" id="node2" href="$classpyargwriter_1_1utils_1_1code__abstracts_1_1Code.html" title="Represents a collection of code lines." alt="" coords="7,5,169,47"/>
+</map>

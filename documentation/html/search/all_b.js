@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['set_5ftab_5flevel_40',['set_tab_level',['../classcode__abstracts_1_1Code.html#ae2e38a3d3b7d07a15f740d4df9249841',1,'code_abstracts::Code']]],
-  ['setupcommandparser_41',['SetupCommandParser',['../classcode__generator_1_1SetupCommandParser.html',1,'code_generator']]],
-  ['setupparser_42',['SetupParser',['../classcode__generator_1_1SetupParser.html',1,'code_generator']]],
-  ['structure_43',['Structure',['../classstructures_1_1Structure.html',1,'structures']]]
+  ['name_60',['name',['../classpyargwriter_1_1utils_1_1formatter_1_1BlackFormatter.html#a7783189dd5e48c5f8468eff44746a97d',1,'pyargwriter.utils.formatter.BlackFormatter.name()'],['../classpyargwriter_1_1utils_1_1code__abstracts_1_1Function.html#a168ce80e47d5605fafaf713fa8518916',1,'pyargwriter.utils.code_abstracts.Function.name()']]],
+  ['names_61',['names',['../classpyargwriter_1_1utils_1_1structures_1_1ModuleStructures.html#a3219acf3175cafbe73f324074238dfc8',1,'pyargwriter::utils::structures::ModuleStructures']]]
 ];

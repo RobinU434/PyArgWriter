@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['name_96',['name',['../classformatter_1_1BlackFormatter.html#a5d29c5cce7399729b70dd5c12a389a0a',1,'formatter::BlackFormatter']]]
+  ['name_168',['name',['../classpyargwriter_1_1utils_1_1formatter_1_1BlackFormatter.html#a7783189dd5e48c5f8468eff44746a97d',1,'pyargwriter::utils::formatter::BlackFormatter']]]
 ];

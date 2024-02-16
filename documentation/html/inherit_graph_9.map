@@ -1,0 +1,10 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,111,55,138"/>
+<area shape="rect" id="node2" href="$classpyargwriter_1_1utils_1_1formatter_1_1Formatter.html" title="Abstract base class for code formatters." alt="" coords="105,39,302,80"/>
+<area shape="rect" id="node4" href="$classpyargwriter_1_1utils_1_1structures_1_1Structure.html" title="Abstract base class for defining structured objects." alt="" coords="103,136,304,177"/>
+<area shape="rect" id="node3" href="$classpyargwriter_1_1utils_1_1formatter_1_1BlackFormatter.html" title="Formatter for code using the &#39;black&#39; code formatter." alt="" coords="354,5,551,47"/>
+<area shape="rect" id="node5" href="$classpyargwriter_1_1utils_1_1structures_1_1ArgumentStructure.html" title=" " alt="" coords="352,71,553,112"/>
+<area shape="rect" id="node6" href="$classpyargwriter_1_1utils_1_1structures_1_1CommandStructure.html" title="Class representing a command structure." alt="" coords="352,136,553,177"/>
+<area shape="rect" id="node7" href="$classpyargwriter_1_1utils_1_1structures_1_1ModuleStructure.html" title="Class representing a module structure." alt="" coords="352,201,553,243"/>
+<area shape="rect" id="node8" href="$classpyargwriter_1_1utils_1_1structures_1_1ModuleStructures.html" title="Class representing a collection of module structures." alt="" coords="352,267,553,308"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="pyargwriter.utils.code_generator.AddArguments" name="pyargwriter.utils.code_generator.AddArguments">
+<area shape="rect" id="node1" title="Represents a class for adding arguments to a function." alt="" coords="5,184,196,225"/>
+<area shape="rect" id="node2" href="$classpyargwriter_1_1utils_1_1code__abstracts_1_1Function.html" title="Represents a Python function." alt="" coords="19,95,182,136"/>
+<area shape="rect" id="node3" href="$classpyargwriter_1_1utils_1_1code__abstracts_1_1Code.html" title="Represents a collection of code lines." alt="" coords="19,5,182,47"/>
+</map>

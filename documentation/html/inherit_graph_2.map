@@ -1,7 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,85,83,112"/>
-<area shape="rect" id="node2" href="$classcode__generator_1_1AddArguments.html" title="Represents a class for adding arguments to a function." alt="" coords="135,5,357,32"/>
-<area shape="rect" id="node3" href="$classcode__generator_1_1MainFunc.html" title="Represents the main function of a Python script that uses argparse for command&#45;line arguments." alt="" coords="152,56,340,83"/>
-<area shape="rect" id="node4" href="$classcode__generator_1_1SetupCommandParser.html" title="Represents a function generator for setting up an ArgumentParser with subcommands." alt="" coords="131,107,361,149"/>
-<area shape="rect" id="node5" href="$classcode__generator_1_1SetupParser.html" title="Represents a function generator for setting up an ArgumentParser with subcommands for multiple module..." alt="" coords="145,173,347,200"/>
+<area shape="rect" id="node1" href="$classfail__class_1_1FailClass.html" title="class to fail requirements" alt="" coords="5,5,149,32"/>
 </map>
