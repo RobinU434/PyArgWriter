@@ -7,6 +7,7 @@ from pyargwriter.process import ArgParseWriter
 def pytest_addoption(parser):
     parser.addoption("--keep-files", action="store_true")
 
+
 def run_pyargwriter():
     writer = ArgParseWriter(force=True)
     input_file = "test/test_project/tester.py"

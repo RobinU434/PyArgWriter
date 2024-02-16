@@ -1,15 +1,7 @@
 """In this function we will call the ArgumentTester from a simulated command-line and test if the typing test function will detect an error"""
 
 import subprocess
-from test import (
-    INT,
-    STR,
-    FLOAT,
-    INT_LIST,
-    STR_LIST,
-    BOOL_LIST,
-    FLOAT_LIST
-)
+from test import INT, STR, FLOAT, INT_LIST, STR_LIST, BOOL_LIST, FLOAT_LIST
 
 
 def test_int(setup_files):
@@ -52,6 +44,7 @@ def test_bool_true(setup_files):
     cmd = "python -m test.test_project bool-true-test --a --b"
     subprocess.run(cmd, shell=True, check=True)
 
+
 def test_list_int(setup_files):
     a = str(INT_LIST).strip("[]").replace(",", "")
     b = str(INT_LIST).strip("[]").replace(",", "")
@@ -77,6 +70,7 @@ def test_list_str(setup_files):
     subprocess.run(cmd, shell=True, check=True)
     cmd = f"python -m test.test_project list-str-test --a {a} --b {b}"
     subprocess.run(cmd, shell=True, check=True)
+
 
 def test_list_bool(setup_files):
     a = str(BOOL_LIST).strip("[]").replace(",", "")
@@ -113,6 +107,7 @@ def test_typing_list_str(setup_files):
     cmd = f"python -m test.test_project typing-list-str-test --a {a} --b {b}"
     subprocess.run(cmd, shell=True, check=True)
 
+
 def test_typing_list_bool(setup_files):
     a = str(BOOL_LIST).strip("[]").replace(",", "")
     b = str(BOOL_LIST).strip("[]").replace(",", "")
@@ -120,5 +115,3 @@ def test_typing_list_bool(setup_files):
     subprocess.run(cmd, shell=True, check=True)
     cmd = f"python -m test.test_project typing-list-bool-test --a {a} --b {b}"
     subprocess.run(cmd, shell=True, check=True)
-
-

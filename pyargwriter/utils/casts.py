@@ -32,7 +32,7 @@ def dict2args(d: Dict[str, Any]) -> str:
             flags += flag
             flags += ", "
             continue
-        
+
         elif key == "type":
             if value == "bool" and "nargs" not in d.keys():
                 # no action="store_true" for list arguments
