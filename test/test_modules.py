@@ -61,7 +61,7 @@ def test_code_generator(cleanup_tmp_dir):
 def test_argument_parser_module(cleanup_tmp_dir):
     pyargwriter = ArgParseWriter(True)
 
-    files = ["test/test_project/tester.py", "test/test_project/dummy_object.py"]
+    files = ["test/test_project/tester.py", "test/test_project/dummy_class.py"]
     pyargwriter.parse_code(files=files, output=None)
     pyargwriter.parse_code(files=files, output=".")
     pyargwriter.parse_code(files=files, output="test/tmp/test.yaml")

@@ -8,3 +8,7 @@ class DummyClass:
     def do_something(self):
         """do something"""
         return
+
+    def extra_symbols_in_docstring(self):
+        """docstring contains extra signs like: don't"""
+        return

@@ -1,12 +1,16 @@
 from typing import List
 from pyargwriter.utils.type_testing import type_of_all
-from test import (
-    INT,
-    STR,
-    FLOAT,
-    BOOL_FALSE,
-    BOOL_TRUE,
-)
+
+STR = "foo"
+INT = 42
+FLOAT = 3.141
+BOOL_FALSE = False
+BOOL_TRUE = True
+EMPTY_LIST = []
+INT_LIST = [1, 2, 3]
+FLOAT_LIST = [4.5, 5.6, 6.7]
+STR_LIST = ["a", "b", "cd", "efg"]
+BOOL_LIST = [False, True, False, True]
 
 
 class ArgumentTester:
