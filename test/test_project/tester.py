@@ -1,5 +1,4 @@
 from typing import List
-from pyargwriter.utils.type_testing import type_of_all
 
 STR = "foo"
 INT = 42
@@ -87,9 +86,9 @@ class ArgumentTester:
             a (int): value without default
             b (int, optional): value with default. Defaults to 0.
         """
-        assert type_of_all(a, int)
+        assert self._type_of_all(a, int)
         assert isinstance(a, list)
-        assert type_of_all(b, int)
+        assert self._type_of_all(b, int)
         assert isinstance(b, list)
 
     def list_str_test(self, a: list[str], b: list[str] = []):
@@ -99,9 +98,9 @@ class ArgumentTester:
             a (int): value without default
             b (int, optional): value with default. Defaults to 0.
         """
-        assert type_of_all(a, str)
+        assert self._type_of_all(a, str)
         assert isinstance(a, list)
-        assert type_of_all(b, str)
+        assert self._type_of_all(b, str)
         assert isinstance(b, list)
 
     def list_float_test(self, a: list[float], b: list[float] = []):
@@ -111,9 +110,9 @@ class ArgumentTester:
             a (int): value without default
             b (int, optional): value with default. Defaults to 0.
         """
-        assert type_of_all(a, float)
+        assert self._type_of_all(a, float)
         assert isinstance(a, list)
-        assert type_of_all(b, float)
+        assert self._type_of_all(b, float)
         assert isinstance(b, list)
 
     def list_bool_test(self, a: list[bool], b: list[bool] = []):
@@ -123,9 +122,9 @@ class ArgumentTester:
             a (int): value without default
             b (int, optional): value with default. Defaults to 0.
         """
-        assert type_of_all(a, bool)
+        assert self._type_of_all(a, bool)
         assert isinstance(a, list)
-        assert type_of_all(b, bool)
+        assert self._type_of_all(b, bool)
         assert isinstance(b, list)
 
     def typing_list_int_test(self, a: List[int], b: List[int] = []):
@@ -135,9 +134,9 @@ class ArgumentTester:
             a (int): value without default
             b (int, optional): value with default. Defaults to 0.
         """
-        assert type_of_all(a, int)
+        assert self._type_of_all(a, int)
         assert isinstance(a, list)
-        assert type_of_all(b, int)
+        assert self._type_of_all(b, int)
         assert isinstance(b, list)
 
     def typing_list_str_test(self, a: List[str], b: List[str] = []):
@@ -147,9 +146,9 @@ class ArgumentTester:
             a (int): value without default
             b (int, optional): value with default. Defaults to 0.
         """
-        assert type_of_all(a, str)
+        assert self._type_of_all(a, str)
         assert isinstance(a, list)
-        assert type_of_all(b, str)
+        assert self._type_of_all(b, str)
         assert isinstance(b, list)
 
     def typing_list_float_test(self, a: List[float], b: List[float] = []):
@@ -159,9 +158,9 @@ class ArgumentTester:
             a (int): value without default
             b (int, optional): value with default. Defaults to 0.
         """
-        assert type_of_all(a, float)
+        assert self._type_of_all(a, float)
         assert isinstance(a, list)
-        assert type_of_all(b, float)
+        assert self._type_of_all(b, float)
         assert isinstance(b, list)
 
     def typing_list_bool_test(self, a: List[bool], b: List[bool] = []):
@@ -171,7 +170,13 @@ class ArgumentTester:
             a (int): value without default
             b (int, optional): value with default. Defaults to 0.
         """
-        assert type_of_all(a, bool)
+        assert self._type_of_all(a, bool)
         assert isinstance(a, list)
-        assert type_of_all(b, bool)
+        assert self._type_of_all(b, bool)
         assert isinstance(b, list)
+
+    def _type_of_all(self, it, t):
+        for ele in it:
+            if not isinstance(ele, t):
+                return False
+        return True
