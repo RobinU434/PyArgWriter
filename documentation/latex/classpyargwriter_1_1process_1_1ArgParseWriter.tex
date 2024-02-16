@@ -1,20 +1,93 @@
 \hypertarget{classpyargwriter_1_1process_1_1ArgParseWriter}{}\doxysection{pyargwriter.\+process.\+Arg\+Parse\+Writer Class Reference}
 \label{classpyargwriter_1_1process_1_1ArgParseWriter}\index{pyargwriter.process.ArgParseWriter@{pyargwriter.process.ArgParseWriter}}
+
+
+A utility class for parsing and generating code for argument parsing.  
+
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+None \mbox{\hyperlink{classpyargwriter_1_1process_1_1ArgParseWriter_acbcc38d0abd149dbaf07149b99e0ea08}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, bool force=False, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Initialize \mbox{\hyperlink{classpyargwriter_1_1process_1_1ArgParseWriter}{Arg\+Parse\+Writer}} instance. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1process_1_1ArgParseWriter_aaca30d8d0344a0cd95fca24a3ba08ea4}{parse\+\_\+code}} (self, List\mbox{[}str\mbox{]} files, str output, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Parse given code classes and store them eventually in a given output file. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1process_1_1ArgParseWriter_af94d8af0d74e749b498b3cdbdaf48274}{write\+\_\+code}} (self, str file, str output, bool pretty=False, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Write parsed code to file. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1process_1_1ArgParseWriter_af04ba2a4648641fe1bbd207af218c3ec}{generate\+\_\+parser}} (self, List\mbox{[}str\mbox{]} files, str output, bool pretty=False, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Generate parser from parsed code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A utility class for parsing and generating code for argument parsing. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classpyargwriter_1_1process_1_1ArgParseWriter_acbcc38d0abd149dbaf07149b99e0ea08}\label{classpyargwriter_1_1process_1_1ArgParseWriter_acbcc38d0abd149dbaf07149b99e0ea08}} 
-None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, bool force=False, $\ast$$\ast$kwargs)
-\item 
-\mbox{\Hypertarget{classpyargwriter_1_1process_1_1ArgParseWriter_aaca30d8d0344a0cd95fca24a3ba08ea4}\label{classpyargwriter_1_1process_1_1ArgParseWriter_aaca30d8d0344a0cd95fca24a3ba08ea4}} 
-def {\bfseries parse\+\_\+code} (self, List\mbox{[}str\mbox{]} files, str output, $\ast$$\ast$kwargs)
-\item 
-\mbox{\Hypertarget{classpyargwriter_1_1process_1_1ArgParseWriter_af94d8af0d74e749b498b3cdbdaf48274}\label{classpyargwriter_1_1process_1_1ArgParseWriter_af94d8af0d74e749b498b3cdbdaf48274}} 
-def {\bfseries write\+\_\+code} (self, str file, str output, bool pretty=False, $\ast$$\ast$kwargs)
-\item 
+\index{pyargwriter.process.ArgParseWriter@{pyargwriter.process.ArgParseWriter}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!pyargwriter.process.ArgParseWriter@{pyargwriter.process.ArgParseWriter}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily  None pyargwriter.\+process.\+Arg\+Parse\+Writer.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{bool }]{force = {\ttfamily False},  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Initialize \mbox{\hyperlink{classpyargwriter_1_1process_1_1ArgParseWriter}{Arg\+Parse\+Writer}} instance. 
+
+\begin{DoxyVerb}        force (bool, optional): Whether to force overwriting existing files. Defaults to False.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classpyargwriter_1_1process_1_1ArgParseWriter_af04ba2a4648641fe1bbd207af218c3ec}\label{classpyargwriter_1_1process_1_1ArgParseWriter_af04ba2a4648641fe1bbd207af218c3ec}} 
-def {\bfseries generate\+\_\+parser} (self, List\mbox{[}str\mbox{]} files, str output, bool pretty=False, $\ast$$\ast$kwargs)
-\end{DoxyCompactItemize}
+\index{pyargwriter.process.ArgParseWriter@{pyargwriter.process.ArgParseWriter}!generate\_parser@{generate\_parser}}
+\index{generate\_parser@{generate\_parser}!pyargwriter.process.ArgParseWriter@{pyargwriter.process.ArgParseWriter}}
+\doxysubsubsection{\texorpdfstring{generate\_parser()}{generate\_parser()}}
+{\footnotesize\ttfamily def pyargwriter.\+process.\+Arg\+Parse\+Writer.\+generate\+\_\+parser (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{List\mbox{[}str\mbox{]}}]{files,  }\item[{str}]{output,  }\item[{bool }]{pretty = {\ttfamily False},  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Generate parser from parsed code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em files} & List of file paths containing code classes. \\
+\hline
+{\em output} & Output directory for generated code. pretty (bool, optional)\+: Whether to format the generated code. Defaults to False. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpyargwriter_1_1process_1_1ArgParseWriter_aaca30d8d0344a0cd95fca24a3ba08ea4}\label{classpyargwriter_1_1process_1_1ArgParseWriter_aaca30d8d0344a0cd95fca24a3ba08ea4}} 
+\index{pyargwriter.process.ArgParseWriter@{pyargwriter.process.ArgParseWriter}!parse\_code@{parse\_code}}
+\index{parse\_code@{parse\_code}!pyargwriter.process.ArgParseWriter@{pyargwriter.process.ArgParseWriter}}
+\doxysubsubsection{\texorpdfstring{parse\_code()}{parse\_code()}}
+{\footnotesize\ttfamily def pyargwriter.\+process.\+Arg\+Parse\+Writer.\+parse\+\_\+code (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{List\mbox{[}str\mbox{]}}]{files,  }\item[{str}]{output,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Parse given code classes and store them eventually in a given output file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em files} & List of file paths containing code classes. \\
+\hline
+{\em output} & Output directory for parsed code. If set to \char`\"{}.\char`\"{} -\/$>$ print to terminal \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpyargwriter_1_1process_1_1ArgParseWriter_af94d8af0d74e749b498b3cdbdaf48274}\label{classpyargwriter_1_1process_1_1ArgParseWriter_af94d8af0d74e749b498b3cdbdaf48274}} 
+\index{pyargwriter.process.ArgParseWriter@{pyargwriter.process.ArgParseWriter}!write\_code@{write\_code}}
+\index{write\_code@{write\_code}!pyargwriter.process.ArgParseWriter@{pyargwriter.process.ArgParseWriter}}
+\doxysubsubsection{\texorpdfstring{write\_code()}{write\_code()}}
+{\footnotesize\ttfamily def pyargwriter.\+process.\+Arg\+Parse\+Writer.\+write\+\_\+code (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{file,  }\item[{str}]{output,  }\item[{bool }]{pretty = {\ttfamily False},  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Write parsed code to file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Path to the file containing parsed code. \\
+\hline
+{\em output} & Output directory for generated code. pretty (bool, optional)\+: Whether to format the generated code. Defaults to False. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

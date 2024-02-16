@@ -1,0 +1,144 @@
+\hypertarget{classcar_1_1Car}{}\doxysection{car.\+Car Class Reference}
+\label{classcar_1_1Car}\index{car.Car@{car.Car}}
+
+
+shopping A Python module containing custom classes for a car and a bank account.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classcar_1_1Car_a556e1dd6a2885e0b70ed97cc808d3f84}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, make, model, year, fuel\+\_\+type=\char`\"{}Petrol\char`\"{}, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Initialize the car. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcar_1_1Car_a0629f36c7e76173c2bbd562f102a3a73}\label{classcar_1_1Car_a0629f36c7e76173c2bbd562f102a3a73}} 
+def \mbox{\hyperlink{classcar_1_1Car_a0629f36c7e76173c2bbd562f102a3a73}{start\+\_\+engine}} (self)
+\begin{DoxyCompactList}\small\item\em Starts the car\textquotesingle{}s engine. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcar_1_1Car_ad6142f9dfd7f524736e91fb551a20888}{show\+\_\+reach}} (self, bool in\+\_\+miles=False)
+\begin{DoxyCompactList}\small\item\em show remaining reach \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcar_1_1Car_af489f91d44bdd2a123d7d61ddf0f726e}\label{classcar_1_1Car_af489f91d44bdd2a123d7d61ddf0f726e}} 
+{\bfseries make}
+\item 
+\mbox{\Hypertarget{classcar_1_1Car_ae58d2a707a1f921fbc49f3390d741d3d}\label{classcar_1_1Car_ae58d2a707a1f921fbc49f3390d741d3d}} 
+{\bfseries model}
+\item 
+\mbox{\Hypertarget{classcar_1_1Car_a7c46afedee734c42d788d269ffe4c037}\label{classcar_1_1Car_a7c46afedee734c42d788d269ffe4c037}} 
+{\bfseries year}
+\item 
+\mbox{\Hypertarget{classcar_1_1Car_aee595cf3a3126af16c538dff8fce384e}\label{classcar_1_1Car_aee595cf3a3126af16c538dff8fce384e}} 
+{\bfseries fuel\+\_\+type}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+shopping A Python module containing custom classes for a car and a bank account. 
+
+This module defines two classes\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classcar_1_1Car}{Car}}\+: A class representing a car with methods to start the engine.
+\item Bank\+Account\+: A class representing a bank account with methods to deposit and withdraw money.
+\end{DoxyItemize}
+
+\begin{DoxyParagraph}{Usage}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{   \textcolor{comment}{\# Import the classes from the shopping module}}
+\DoxyCodeLine{   \textcolor{keyword}{from} shopping \textcolor{keyword}{import} Car, BankAccount}
+\DoxyCodeLine{\textcolor{preprocessor}{@par}}
+\DoxyCodeLine{   \textcolor{comment}{\# Create instances of the classes}}
+\DoxyCodeLine{   car = Car(\textcolor{stringliteral}{"{}Toyota"{}}, \textcolor{stringliteral}{"{}Camry"{}}, 2022, fuel\_type=\textcolor{stringliteral}{"{}Petrol"{}})}
+\DoxyCodeLine{   account = BankAccount(initial\_balance=1000, account\_type=\textcolor{stringliteral}{"{}Savings"{}})}
+\DoxyCodeLine{\textcolor{preprocessor}{@par}}
+\DoxyCodeLine{   \textcolor{comment}{\# Use the Car class}}
+\DoxyCodeLine{   car.start\_engine()  \textcolor{comment}{\# Output: Checking fuel level... \(\backslash\)n Performing ignition sequence... \(\backslash\)n Engine started!}}
+\DoxyCodeLine{\textcolor{preprocessor}{@par}}
+\DoxyCodeLine{   \textcolor{comment}{\# Use the BankAccount class}}
+\DoxyCodeLine{   account.deposit(500)  \textcolor{comment}{\# Output: Checking account balance... \(\backslash\)n \$500.00 deposited. New balance: \$1500.00}}
+\DoxyCodeLine{   account.withdraw(200) \textcolor{comment}{\# Output: Checking account balance... \(\backslash\)n \$200.00 withdrawn. New balance: \$1300.00}}
+
+\end{DoxyCode}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Classes}
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classcar_1_1Car}{Car}}\+: A class representing a car with methods to start the engine.
+\item Bank\+Account\+: A class representing a bank account with methods to deposit and withdraw money.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+Public Methods (\mbox{\hyperlink{classcar_1_1Car}{Car}})\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classcar_1_1Car_a0629f36c7e76173c2bbd562f102a3a73}{start\+\_\+engine()}}\+: Starts the car\textquotesingle{}s engine.
+\end{DoxyItemize}
+
+Public Methods (Bank\+Account)\+:
+\begin{DoxyItemize}
+\item deposit(amount)\+: Deposits money into the account.
+\item withdraw(amount)\+: Withdraws money from the account.
+\end{DoxyItemize}
+
+Optional Arguments for \mbox{\hyperlink{classcar_1_1Car}{Car}}\+:
+\begin{DoxyItemize}
+\item fuel\+\_\+type (str, optional)\+: The fuel type of the car. Default is \char`\"{}\+Petrol\char`\"{}.
+\end{DoxyItemize}
+
+Optional Arguments for Bank\+Account\+:
+\begin{DoxyItemize}
+\item initial\+\_\+balance (float, optional)\+: The initial balance of the account. Default is 0.
+\item account\+\_\+type (str, optional)\+: The type of the bank account (e.\+g., Savings, Checking). Default is \char`\"{}\+Savings\char`\"{}.
+\end{DoxyItemize}
+
+This module provides convenient classes for simulating a car and managing a bank account, offering simple and reusable functionality for various Python projects.
+
+A class representing a car.
+
+\begin{DoxyParagraph}{Public Methods}
+start\+\_\+engine Starts the car\textquotesingle{}s engine.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Private Methods}
+\+\_\+check\+\_\+fuel\+\_\+level Checks the fuel level before starting the engine. \+\_\+ignition\+\_\+sequence Performs the ignition sequence. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcar_1_1Car_a556e1dd6a2885e0b70ed97cc808d3f84}\label{classcar_1_1Car_a556e1dd6a2885e0b70ed97cc808d3f84}} 
+\index{car.Car@{car.Car}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!car.Car@{car.Car}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def car.\+Car.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{make,  }\item[{}]{model,  }\item[{}]{year,  }\item[{}]{fuel\+\_\+type = {\ttfamily \char`\"{}Petrol\char`\"{}},  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Initialize the car. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em make} & The make of the car (e.\+g., Toyota, Honda, etc.). \\
+\hline
+{\em model} & The model of the car (e.\+g., Camry, Civic, etc.). \\
+\hline
+{\em year} & The manufacturing year of the car. fuel\+\_\+type (str, optional)\+: The fuel type of the car. Default is \char`\"{}\+Petrol\char`\"{}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcar_1_1Car_ad6142f9dfd7f524736e91fb551a20888}\label{classcar_1_1Car_ad6142f9dfd7f524736e91fb551a20888}} 
+\index{car.Car@{car.Car}!show\_reach@{show\_reach}}
+\index{show\_reach@{show\_reach}!car.Car@{car.Car}}
+\doxysubsubsection{\texorpdfstring{show\_reach()}{show\_reach()}}
+{\footnotesize\ttfamily def car.\+Car.\+show\+\_\+reach (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{bool }]{in\+\_\+miles = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+show remaining reach 
+
+\begin{DoxyVerb}        in_miles (bool, optional): if you want to show the remaining distance in miles. Defaults to False.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/examples/car.\+py\end{DoxyCompactItemize}

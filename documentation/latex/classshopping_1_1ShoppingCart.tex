@@ -1,0 +1,208 @@
+\hypertarget{classshopping_1_1ShoppingCart}{}\doxysection{shopping.\+Shopping\+Cart Class Reference}
+\label{classshopping_1_1ShoppingCart}\index{shopping.ShoppingCart@{shopping.ShoppingCart}}
+
+
+A shopping cart class to manage items and calculate the total cost.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classshopping_1_1ShoppingCart_a7c0acb5042fdd18be8d4c9b4e85fb9f5}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, float tax\+\_\+rate=0.\+2, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Initialize the shopping cart. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classshopping_1_1ShoppingCart_add807660c758fa55d8d708488c9111f1}{add\+\_\+item}} (self, str item, float price)
+\begin{DoxyCompactList}\small\item\em Adds an item to the cart with its price. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classshopping_1_1ShoppingCart_af8e5a5bd6ab548f5803cf5fc9de13c8b}{remove\+\_\+item}} (self, item)
+\begin{DoxyCompactList}\small\item\em Removes an item from the cart. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classshopping_1_1ShoppingCart_a97813d0f82004050a44105c4d6283de8}{remove\+\_\+items}} (self, List\mbox{[}str\mbox{]} items)
+\begin{DoxyCompactList}\small\item\em Removes multiple items from the cart. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classshopping_1_1ShoppingCart_af6c47b9b6943ab838edbf755131bdfe2}{calculate\+\_\+total}} (self)
+\begin{DoxyCompactList}\small\item\em Calculates the total cost of all items in the cart. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classshopping_1_1ShoppingCart_a02e36d864b1cb8ccc3f30be4eb5e7d35}\label{classshopping_1_1ShoppingCart_a02e36d864b1cb8ccc3f30be4eb5e7d35}} 
+{\bfseries items}
+\item 
+\mbox{\Hypertarget{classshopping_1_1ShoppingCart_a41f87f7b1ce76ec9d055b2e50a9a72d1}\label{classshopping_1_1ShoppingCart_a41f87f7b1ce76ec9d055b2e50a9a72d1}} 
+{\bfseries tax\+\_\+rate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A shopping cart class to manage items and calculate the total cost. 
+
+\begin{DoxyParagraph}{Public Methods}
+add\+\_\+item(item, price)\+: Adds an item to the cart with its price. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The name of the item. \\
+\hline
+{\em price} & The price of the item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em remove\+\_\+item} & Removes an item from the cart. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The name of the item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em calculate\+\_\+total} & Calculates the total cost of all items in the cart.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Private Methods}
+\+\_\+get\+\_\+discounted\+\_\+price(price, discount)\+: Applies a discount to the item price. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em price} & The original price of the item. \\
+\hline
+{\em discount} & The discount percentage as a decimal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+apply\+\_\+tax} & Applies tax to the item price. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em price} & The original price of the item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+
+
+float The final price after applying tax. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classshopping_1_1ShoppingCart_a7c0acb5042fdd18be8d4c9b4e85fb9f5}\label{classshopping_1_1ShoppingCart_a7c0acb5042fdd18be8d4c9b4e85fb9f5}} 
+\index{shopping.ShoppingCart@{shopping.ShoppingCart}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!shopping.ShoppingCart@{shopping.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def shopping.\+Shopping\+Cart.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{float }]{tax\+\_\+rate = {\ttfamily 0.2},  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Initialize the shopping cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tax\+\_\+rate} & rate for taxes \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classshopping_1_1ShoppingCart_add807660c758fa55d8d708488c9111f1}\label{classshopping_1_1ShoppingCart_add807660c758fa55d8d708488c9111f1}} 
+\index{shopping.ShoppingCart@{shopping.ShoppingCart}!add\_item@{add\_item}}
+\index{add\_item@{add\_item}!shopping.ShoppingCart@{shopping.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{add\_item()}{add\_item()}}
+{\footnotesize\ttfamily def shopping.\+Shopping\+Cart.\+add\+\_\+item (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{item,  }\item[{float}]{price }\end{DoxyParamCaption})}
+
+
+
+Adds an item to the cart with its price. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The name of the item. \\
+\hline
+{\em price} & The price of the item. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classshopping_1_1ShoppingCart_af6c47b9b6943ab838edbf755131bdfe2}\label{classshopping_1_1ShoppingCart_af6c47b9b6943ab838edbf755131bdfe2}} 
+\index{shopping.ShoppingCart@{shopping.ShoppingCart}!calculate\_total@{calculate\_total}}
+\index{calculate\_total@{calculate\_total}!shopping.ShoppingCart@{shopping.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{calculate\_total()}{calculate\_total()}}
+{\footnotesize\ttfamily def shopping.\+Shopping\+Cart.\+calculate\+\_\+total (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Calculates the total cost of all items in the cart. 
+
+\begin{DoxyReturn}{Returns}
+
+
+float The total cost including tax. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classshopping_1_1ShoppingCart_af8e5a5bd6ab548f5803cf5fc9de13c8b}\label{classshopping_1_1ShoppingCart_af8e5a5bd6ab548f5803cf5fc9de13c8b}} 
+\index{shopping.ShoppingCart@{shopping.ShoppingCart}!remove\_item@{remove\_item}}
+\index{remove\_item@{remove\_item}!shopping.ShoppingCart@{shopping.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{remove\_item()}{remove\_item()}}
+{\footnotesize\ttfamily def shopping.\+Shopping\+Cart.\+remove\+\_\+item (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{item }\end{DoxyParamCaption})}
+
+
+
+Removes an item from the cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The name of the item. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classshopping_1_1ShoppingCart_a97813d0f82004050a44105c4d6283de8}\label{classshopping_1_1ShoppingCart_a97813d0f82004050a44105c4d6283de8}} 
+\index{shopping.ShoppingCart@{shopping.ShoppingCart}!remove\_items@{remove\_items}}
+\index{remove\_items@{remove\_items}!shopping.ShoppingCart@{shopping.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{remove\_items()}{remove\_items()}}
+{\footnotesize\ttfamily def shopping.\+Shopping\+Cart.\+remove\+\_\+items (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{List\mbox{[}str\mbox{]}}]{items }\end{DoxyParamCaption})}
+
+
+
+Removes multiple items from the cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & A List of names of items \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/examples/shopping.\+py\end{DoxyCompactItemize}

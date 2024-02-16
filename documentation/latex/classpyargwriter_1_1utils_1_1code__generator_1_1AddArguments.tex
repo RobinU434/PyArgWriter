@@ -1,0 +1,68 @@
+\hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1AddArguments}{}\doxysection{pyargwriter.\+utils.\+code\+\_\+generator.\+Add\+Arguments Class Reference}
+\label{classpyargwriter_1_1utils_1_1code__generator_1_1AddArguments}\index{pyargwriter.utils.code\_generator.AddArguments@{pyargwriter.utils.code\_generator.AddArguments}}
+
+
+Represents a class for adding arguments to a function.  
+
+
+
+
+Inheritance diagram for pyargwriter.\+utils.\+code\+\_\+generator.\+Add\+Arguments\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classpyargwriter_1_1utils_1_1code__generator_1_1AddArguments__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for pyargwriter.\+utils.\+code\+\_\+generator.\+Add\+Arguments\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classpyargwriter_1_1utils_1_1code__generator_1_1AddArguments__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1AddArguments_acbee7ff79fe97ff92e298422d836e3b1}\label{classpyargwriter_1_1utils_1_1code__generator_1_1AddArguments_acbee7ff79fe97ff92e298422d836e3b1}} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str infix, List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1ArgumentStructure}{Argument\+Structure}}\mbox{]} arguments=\{\})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a class for adding arguments to a function. 
+
+This class extends the Function class and is designed for generating functions that add arguments to an Argument\+Parser instance. It automatically creates and appends the necessary code to add arguments to the parser function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em infix} & The infix string used to construct the function name and as a part of the argument names. arguments (List\mbox{[}Argument\+Structure\mbox{]}, optional)\+: A list of Argument\+Structure objects representing the arguments to be added.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyVerb}    (inherited attributes from Function...)
+\end{DoxyVerb}
+ \begin{DoxyParagraph}{Methods}
+{\bfseries{init}}(self, infix\+: str, arguments\+: List\mbox{[}Argument\+Structure\mbox{]} = \{\}) -\/$>$ None\+: Initializes a new \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__generator_1_1AddArguments}{Add\+Arguments}} instance with the specified infix and arguments. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+check\+\_\+infix(self, infix\+: str) -\/$>$ None\+: Checks the validity of the provided infix string and raises an error if it contains spaces, dashes, or is not in lowercase. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+add\+\_\+function(self, arguments\+: List\mbox{[}\+Argument\+Structure\mbox{]}) -\/$>$ None\+: Adds the code to add arguments to the Argument\+Parser instance in the function.
+\end{DoxyParagraph}
+{\bfseries{Examples}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{>>> arguments = [ArgumentStructure(dest=\textcolor{stringliteral}{'input\_file'}), ArgumentStructure(dest=\textcolor{stringliteral}{'output\_file'})]}
+\DoxyCodeLine{>>> add\_args\_function = AddArguments(\textcolor{stringliteral}{"{}input"{}}, arguments)}
+\DoxyCodeLine{>>> print(add\_args\_function)}
+
+\end{DoxyCode}
+ def add\+\_\+input\+\_\+args(parser\+: Argument\+Parser) -\/$>$ Argument\+Parser\+: parser.\+add\+\_\+argument(\textquotesingle{}--input-\/file\textquotesingle{}, type = $<$class \textquotesingle{}str\textquotesingle{}$>$, help = \textquotesingle{}Path to input file\textquotesingle{}) parser.\+add\+\_\+argument(\textquotesingle{}--output-\/file\textquotesingle{}, type = $<$class \textquotesingle{}str\textquotesingle{}$>$, help = \textquotesingle{}Path to output file\textquotesingle{}) return parser 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/code\+\_\+generator.\+py\end{DoxyCompactItemize}

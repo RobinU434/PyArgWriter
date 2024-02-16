@@ -1,0 +1,227 @@
+\hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{}\doxysection{pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code Class Reference}
+\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}\index{pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}}
+
+
+Represents a collection of code lines.  
+
+
+
+
+Inheritance diagram for pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a8ea1be1b2eecb1b955b6a947537091df}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a8ea1be1b2eecb1b955b6a947537091df}} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a0a422bb6affea96df3f07798713ebc2d}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a0a422bb6affea96df3f07798713ebc2d}} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a58fa22f34baf5a87b6914eb9bf9b6b66}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a58fa22f34baf5a87b6914eb9bf9b6b66}} 
+int {\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\item 
+\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_ab9dbd4a204a7bc8d62bde313fef1ca73}{from\+\_\+lines\+\_\+of\+\_\+code}} (\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} cls, List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} code)
+\begin{DoxyCompactList}\small\item\em Create a \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} instance from a list of \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}} objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a1cd263da29f69e04bfadcdf84078a346}{from\+\_\+str}} (\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} cls, str code)
+\begin{DoxyCompactList}\small\item\em Create a \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} instance from a single string representing a line of code. \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_ad4b44f0542e4628de0793d0f38a16378}{insert}} (self, List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}$\vert$\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}$\vert$\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} content, int index)
+\begin{DoxyCompactList}\small\item\em insert given lines of code into self.\+\_\+file of class at given index \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a448c25b3c3188b1fcdbe962e03610e40}{append}} (self, str$\vert$\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}$\vert$\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}$\vert$List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} content)
+\begin{DoxyCompactList}\small\item\em Append content to the end of the code block. \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a168c04bbb103d7c6ff0bdba3cbdd1e8e}{write}} (self, str path)
+\begin{DoxyCompactList}\small\item\em Write the code block to a file. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_aca689e5c042c615b5db21d3a9f7ae839}{write\+\_\+force}} (self, str path)
+\begin{DoxyCompactList}\small\item\em Write the code block to a file without asking if you to overwrite existing files. \end{DoxyCompactList}\item 
+List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a1fe72a2bca5bb675ac5cd13014fa3100}{file}} (self)
+\begin{DoxyCompactList}\small\item\em Get the list of code lines in the code block. \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a20219243697d60c62400547edcd7926a}{set\+\_\+tab\+\_\+level}} (self, int tab\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Set the tab level for all lines of code in the code block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a collection of code lines. 
+
+This class represents a collection of code lines with indentation. It is used to build and manipulate code blocks.
+
+\begin{DoxyParagraph}{Methods}
+insert(self, content\+: List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} $\vert$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}} $\vert$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}, index\+: int) -\/$>$ None\+: Insert code lines at a specified index. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+append(self, content\+: str $\vert$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} $\vert$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}} $\vert$ List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}) -\/$>$ None\+: Append code lines to the end of the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+from\+\_\+lines\+\_\+of\+\_\+code \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}, code\+: List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}) -\/$>$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}\+: Create a \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} instance from a list of \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}} objects. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+from\+\_\+str \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}, code\+: str) -\/$>$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}\+: Create a \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} instance from a single string representing a line of code. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+split\+\_\+file(self, index\+: int) -\/$>$ Tuple\mbox{[}List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\mbox{]}\+: Split the code block into two parts at the specified index. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+insert\+\_\+line\+\_\+of\+\_\+code( first List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, line\+\_\+of\+\_\+code\+: \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}, second\+: List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} ) -\/$>$ List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\+: Insert a single line of code into the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+insert\+\_\+lines\+\_\+of\+\_\+code( first List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, lines\+\_\+of\+\_\+code List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, second List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, ) -\/$>$ List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\+: Insert multiple lines of code into the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+insert\+\_\+code( self, first\+: List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}, code\+: \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}, second\+: List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} ) -\/$>$ List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\+: Insert another \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} instance into the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\+\_\+write(self, path\+: str) -\/$>$ None\+: Write the code block to a specified file path. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+file(self) -\/$>$ List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}\+: Get the list of code lines in the code block. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+set\+\_\+tab\+\_\+level(self, tab\+\_\+level\+: int) -\/$>$ None\+: Set the tab level for all lines of code in the code block. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a448c25b3c3188b1fcdbe962e03610e40}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a448c25b3c3188b1fcdbe962e03610e40}} 
+\index{pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}!append@{append}}
+\index{append@{append}!pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}}
+{\footnotesize\ttfamily  None pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code.\+append (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str $\vert$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} $\vert$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}} $\vert$ List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}}]{content }\end{DoxyParamCaption})}
+
+
+
+Append content to the end of the code block. 
+
+\begin{DoxyVerb}        content (str | Code | LineOfCode | List[LineOfCode]): Content to append.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a1fe72a2bca5bb675ac5cd13014fa3100}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a1fe72a2bca5bb675ac5cd13014fa3100}} 
+\index{pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}!file@{file}}
+\index{file@{file}!pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{file()}{file()}}
+{\footnotesize\ttfamily  List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code.\+file (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Get the list of code lines in the code block. 
+
+\begin{DoxyReturn}{Returns}
+
+
+List The list of code lines. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_ab9dbd4a204a7bc8d62bde313fef1ca73}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_ab9dbd4a204a7bc8d62bde313fef1ca73}} 
+\index{pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}!from\_lines\_of\_code@{from\_lines\_of\_code}}
+\index{from\_lines\_of\_code@{from\_lines\_of\_code}!pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{from\_lines\_of\_code()}{from\_lines\_of\_code()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code.\+from\+\_\+lines\+\_\+of\+\_\+code (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}}]{cls,  }\item[{List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]}}]{code }\end{DoxyParamCaption})}
+
+
+
+Create a \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} instance from a list of \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & List of \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}} objects.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} A \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} instance containing the specified code lines. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a1cd263da29f69e04bfadcdf84078a346}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a1cd263da29f69e04bfadcdf84078a346}} 
+\index{pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}!from\_str@{from\_str}}
+\index{from\_str@{from\_str}!pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{from\_str()}{from\_str()}}
+{\footnotesize\ttfamily  \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code.\+from\+\_\+str (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}}]{cls,  }\item[{str}]{code }\end{DoxyParamCaption})}
+
+
+
+Create a \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} instance from a single string representing a line of code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & A single string representing a line of code.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} A \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}} instance containing the specified code line. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_ad4b44f0542e4628de0793d0f38a16378}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_ad4b44f0542e4628de0793d0f38a16378}} 
+\index{pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}!insert@{insert}}
+\index{insert@{insert}!pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily  None pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code.\+insert (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}}\mbox{]} $\vert$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1LineOfCode}{Line\+Of\+Code}} $\vert$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code}{Code}}}]{content,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+insert given lines of code into self.\+\_\+file of class at given index 
+
+\begin{DoxyVerb}        content (List[LineOfCode] | LineOfCode): Lines of code to insert
+\end{DoxyVerb}
+ 
+\begin{DoxyParams}{Parameters}
+{\em index} & Where to insert the given content \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a20219243697d60c62400547edcd7926a}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a20219243697d60c62400547edcd7926a}} 
+\index{pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}!set\_tab\_level@{set\_tab\_level}}
+\index{set\_tab\_level@{set\_tab\_level}!pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{set\_tab\_level()}{set\_tab\_level()}}
+{\footnotesize\ttfamily  None pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code.\+set\+\_\+tab\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{tab\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Set the tab level for all lines of code in the code block. 
+
+\begin{DoxyVerb}   This method sets the tab level for all lines of code in the code block.
+   It adjusts the indentation of each line based on the specified tab level.
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab\+\_\+level} & The tab level to set. Must be a non-\/negative integer. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a168c04bbb103d7c6ff0bdba3cbdd1e8e}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_a168c04bbb103d7c6ff0bdba3cbdd1e8e}} 
+\index{pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}!write@{write}}
+\index{write@{write}!pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily  None pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code.\+write (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{path }\end{DoxyParamCaption})}
+
+
+
+Write the code block to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The file path where the code block should be written. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_aca689e5c042c615b5db21d3a9f7ae839}\label{classpyargwriter_1_1utils_1_1code__abstracts_1_1Code_aca689e5c042c615b5db21d3a9f7ae839}} 
+\index{pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}!write\_force@{write\_force}}
+\index{write\_force@{write\_force}!pyargwriter.utils.code\_abstracts.Code@{pyargwriter.utils.code\_abstracts.Code}}
+\doxysubsubsection{\texorpdfstring{write\_force()}{write\_force()}}
+{\footnotesize\ttfamily def pyargwriter.\+utils.\+code\+\_\+abstracts.\+Code.\+write\+\_\+force (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{path }\end{DoxyParamCaption})}
+
+
+
+Write the code block to a file without asking if you to overwrite existing files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The file path where the code block should be written. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/code\+\_\+abstracts.\+py\end{DoxyCompactItemize}

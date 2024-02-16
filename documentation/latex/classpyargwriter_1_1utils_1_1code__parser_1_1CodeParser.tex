@@ -1,0 +1,113 @@
+\hypertarget{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser}{}\doxysection{pyargwriter.\+utils.\+code\+\_\+parser.\+Code\+Parser Class Reference}
+\label{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser}\index{pyargwriter.utils.code\_parser.CodeParser@{pyargwriter.utils.code\_parser.CodeParser}}
+
+
+A parser for analyzing Python code and extracting structured information.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_abbb9e08ed8fcdc5b8effd8f59852566e}\label{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_abbb9e08ed8fcdc5b8effd8f59852566e}} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+str \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a3ecbcbd31ce60169da0ef84539fa74a0}{\+\_\+\+\_\+repr\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Return a string representation of the parsed modules. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a805c3394c8f209d2fd4f3eaca06c4e51}{module\+\_\+serialized}} (self)
+\begin{DoxyCompactList}\small\item\em Serialize the module information as a list of dictionaries. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a40ae3b9aad1fce8d56df8807a6de88a0}{write}} (self, str path)
+\begin{DoxyCompactList}\small\item\em Write the extracted structured information to a file in YAML or JSON format. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_aac8fa247d811a7227f06ce694f800c4d}{parse\+\_\+tree}} (self, Module tree, str file)
+\begin{DoxyCompactList}\small\item\em Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a3189cb2dafd2b5f69c13a96646c08875}\label{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a3189cb2dafd2b5f69c13a96646c08875}} 
+\mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a3189cb2dafd2b5f69c13a96646c08875}{modules}}
+\begin{DoxyCompactList}\small\item\em A collection of Module\+Structure objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A parser for analyzing Python code and extracting structured information. 
+
+This class is designed to parse Python code and extract structured information about classes, methods, and their associated arguments and documentation.
+
+\begin{DoxyParagraph}{Methods}
+parse\+\_\+tree(self, tree\+: Module, file\+: str) -\/$>$ None\+: Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+write(self, path\+: str) -\/$>$ None\+: Write the extracted structured information to a file in YAML or JSON format.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Properties}
+module\+\_\+serialized A list of dictionaries representing serialized module information. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a3ecbcbd31ce60169da0ef84539fa74a0}\label{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a3ecbcbd31ce60169da0ef84539fa74a0}} 
+\index{pyargwriter.utils.code\_parser.CodeParser@{pyargwriter.utils.code\_parser.CodeParser}!\_\_repr\_\_@{\_\_repr\_\_}}
+\index{\_\_repr\_\_@{\_\_repr\_\_}!pyargwriter.utils.code\_parser.CodeParser@{pyargwriter.utils.code\_parser.CodeParser}}
+\doxysubsubsection{\texorpdfstring{\_\_repr\_\_()}{\_\_repr\_\_()}}
+{\footnotesize\ttfamily  str pyargwriter.\+utils.\+code\+\_\+parser.\+Code\+Parser.\+\_\+\+\_\+repr\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Return a string representation of the parsed modules. 
+
+\begin{DoxyReturn}{Returns}
+
+
+str A string representation of the parsed modules. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a805c3394c8f209d2fd4f3eaca06c4e51}\label{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a805c3394c8f209d2fd4f3eaca06c4e51}} 
+\index{pyargwriter.utils.code\_parser.CodeParser@{pyargwriter.utils.code\_parser.CodeParser}!module\_serialized@{module\_serialized}}
+\index{module\_serialized@{module\_serialized}!pyargwriter.utils.code\_parser.CodeParser@{pyargwriter.utils.code\_parser.CodeParser}}
+\doxysubsubsection{\texorpdfstring{module\_serialized()}{module\_serialized()}}
+{\footnotesize\ttfamily def pyargwriter.\+utils.\+code\+\_\+parser.\+Code\+Parser.\+module\+\_\+serialized (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Serialize the module information as a list of dictionaries. 
+
+\begin{DoxyReturn}{Returns}
+
+
+List A list of dictionaries representing serialized module information. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_aac8fa247d811a7227f06ce694f800c4d}\label{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_aac8fa247d811a7227f06ce694f800c4d}} 
+\index{pyargwriter.utils.code\_parser.CodeParser@{pyargwriter.utils.code\_parser.CodeParser}!parse\_tree@{parse\_tree}}
+\index{parse\_tree@{parse\_tree}!pyargwriter.utils.code\_parser.CodeParser@{pyargwriter.utils.code\_parser.CodeParser}}
+\doxysubsubsection{\texorpdfstring{parse\_tree()}{parse\_tree()}}
+{\footnotesize\ttfamily def pyargwriter.\+utils.\+code\+\_\+parser.\+Code\+Parser.\+parse\+\_\+tree (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Module}]{tree,  }\item[{str}]{file }\end{DoxyParamCaption})}
+
+
+
+Parse the Abstract Syntax Tree (AST) of a Python module and extract structured information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & The AST of the Python module. \\
+\hline
+{\em file} & The path to the Python module file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a40ae3b9aad1fce8d56df8807a6de88a0}\label{classpyargwriter_1_1utils_1_1code__parser_1_1CodeParser_a40ae3b9aad1fce8d56df8807a6de88a0}} 
+\index{pyargwriter.utils.code\_parser.CodeParser@{pyargwriter.utils.code\_parser.CodeParser}!write@{write}}
+\index{write@{write}!pyargwriter.utils.code\_parser.CodeParser@{pyargwriter.utils.code\_parser.CodeParser}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily def pyargwriter.\+utils.\+code\+\_\+parser.\+Code\+Parser.\+write (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{path }\end{DoxyParamCaption})}
+
+
+
+Write the extracted structured information to a file in YAML or JSON format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the output file. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/code\+\_\+parser.\+py\end{DoxyCompactItemize}

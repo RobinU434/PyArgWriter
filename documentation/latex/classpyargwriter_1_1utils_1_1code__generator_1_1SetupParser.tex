@@ -1,0 +1,129 @@
+\hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser}{}\doxysection{pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Parser Class Reference}
+\label{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser}\index{pyargwriter.utils.code\_generator.SetupParser@{pyargwriter.utils.code\_generator.SetupParser}}
+
+
+Represents a function generator for setting up an Argument\+Parser with subcommands for multiple modules.  
+
+
+
+
+Inheritance diagram for pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a5cec307df4e4bfbb6dee0a273896dce0}\label{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a5cec307df4e4bfbb6dee0a273896dce0}} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+None \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a31f2eb83525604e0575a328fb4f5442e}{generate\+\_\+code}} (self, \mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1ModuleStructures}{Module\+Structures}} modules)
+\begin{DoxyCompactList}\small\item\em Generates the code to set up the Argument\+Parser with subcommands for multiple modules. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a0a2b0aa5e92467e224952d468bc4058a}{from\+\_\+yaml}} (self, str yaml\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Generates the code based on a YAML configuration file. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a991a2429ef4892db4e405ebe377c2e17}{from\+\_\+json}} (self, str json\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Generates the code based on a JSON configuration file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a function generator for setting up an Argument\+Parser with subcommands for multiple modules. 
+
+This class extends the Function class and is designed for generating functions that set up an Argument\+Parser with subcommands for multiple modules based on Module\+Structures. It can handle the case of a single module or multiple modules with individual subparsers. Imports for Argument\+Parser are included based on the number of modules.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \begin{DoxyVerb}    (inherited attributes from Function...)
+\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Methods}
+generate\+\_\+code(self, modules\+: Module\+Structures) -\/$>$ None\+: Generates the code to set up the Argument\+Parser with subcommands for multiple modules. from\+\_\+yaml(self, yaml\+\_\+file\+: str) -\/$>$ None\+: Generates the code based on a YAML configuration file. from\+\_\+json(self, json\+\_\+file\+: str) -\/$>$ None\+: Generates the code based on a JSON configuration file.
+\end{DoxyParagraph}
+{\bfseries{Examples}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{>>> modules = ModuleStructures(modules=[ModuleStructure(name=\textcolor{stringliteral}{'module1'}), ModuleStructure(name=\textcolor{stringliteral}{'module2'})])}
+\DoxyCodeLine{>>> setup\_parser\_function = SetupParser()}
+\DoxyCodeLine{>>> setup\_parser\_function.generate\_code(modules)}
+\DoxyCodeLine{>>> print(setup\_parser\_function)}
+
+\end{DoxyCode}
+ def setup\+\_\+parser(parser\+: Argument\+Parser) -\/$>$ Argument\+Parser\+: module\+\_\+subparser = parser.\+add\+\_\+subparsers(dest=\textquotesingle{}module\textquotesingle{}, title=\textquotesingle{}module\textquotesingle{}) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module1\_parser = module\_subparser.add\_parser(name=\textcolor{stringliteral}{'module1'}, help=\textcolor{stringliteral}{'help of module1'})}
+\DoxyCodeLine{setup\_module1\_parser = SetupCommandParser(\textcolor{stringliteral}{'module1'}, no\_imports=\textcolor{keyword}{False})}
+\DoxyCodeLine{setup\_module1\_parser.generate\_code([])}
+\DoxyCodeLine{module1\_parser = setup\_module1\_parser(module1\_parser)}
+\DoxyCodeLine{module2\_parser = module\_subparser.add\_parser(name=\textcolor{stringliteral}{'module2'}, help=\textcolor{stringliteral}{'help of module2'})}
+\DoxyCodeLine{setup\_module2\_parser = SetupCommandParser(\textcolor{stringliteral}{'module2'}, no\_imports=\textcolor{keyword}{True})}
+\DoxyCodeLine{setup\_module2\_parser.generate\_code([])}
+\DoxyCodeLine{module2\_parser = setup\_module2\_parser(module2\_parser)}
+
+\end{DoxyCode}
+ return parser 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a991a2429ef4892db4e405ebe377c2e17}\label{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a991a2429ef4892db4e405ebe377c2e17}} 
+\index{pyargwriter.utils.code\_generator.SetupParser@{pyargwriter.utils.code\_generator.SetupParser}!from\_json@{from\_json}}
+\index{from\_json@{from\_json}!pyargwriter.utils.code\_generator.SetupParser@{pyargwriter.utils.code\_generator.SetupParser}}
+\doxysubsubsection{\texorpdfstring{from\_json()}{from\_json()}}
+{\footnotesize\ttfamily def pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Parser.\+from\+\_\+json (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{json\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Generates the code based on a JSON configuration file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+\_\+file} & The path to the JSON configuration file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a0a2b0aa5e92467e224952d468bc4058a}\label{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a0a2b0aa5e92467e224952d468bc4058a}} 
+\index{pyargwriter.utils.code\_generator.SetupParser@{pyargwriter.utils.code\_generator.SetupParser}!from\_yaml@{from\_yaml}}
+\index{from\_yaml@{from\_yaml}!pyargwriter.utils.code\_generator.SetupParser@{pyargwriter.utils.code\_generator.SetupParser}}
+\doxysubsubsection{\texorpdfstring{from\_yaml()}{from\_yaml()}}
+{\footnotesize\ttfamily def pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Parser.\+from\+\_\+yaml (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{yaml\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Generates the code based on a YAML configuration file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em yaml\+\_\+file} & The path to the YAML configuration file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a31f2eb83525604e0575a328fb4f5442e}\label{classpyargwriter_1_1utils_1_1code__generator_1_1SetupParser_a31f2eb83525604e0575a328fb4f5442e}} 
+\index{pyargwriter.utils.code\_generator.SetupParser@{pyargwriter.utils.code\_generator.SetupParser}!generate\_code@{generate\_code}}
+\index{generate\_code@{generate\_code}!pyargwriter.utils.code\_generator.SetupParser@{pyargwriter.utils.code\_generator.SetupParser}}
+\doxysubsubsection{\texorpdfstring{generate\_code()}{generate\_code()}}
+{\footnotesize\ttfamily  None pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Parser.\+generate\+\_\+code (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1ModuleStructures}{Module\+Structures}}}]{modules }\end{DoxyParamCaption})}
+
+
+
+Generates the code to set up the Argument\+Parser with subcommands for multiple modules. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em modules} & A Module\+Structures object containing information about the modules and their subcommands. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/code\+\_\+generator.\+py\end{DoxyCompactItemize}

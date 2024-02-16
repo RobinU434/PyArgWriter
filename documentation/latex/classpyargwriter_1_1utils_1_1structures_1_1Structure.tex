@@ -1,0 +1,109 @@
+\hypertarget{classpyargwriter_1_1utils_1_1structures_1_1Structure}{}\doxysection{pyargwriter.\+utils.\+structures.\+Structure Class Reference}
+\label{classpyargwriter_1_1utils_1_1structures_1_1Structure}\index{pyargwriter.utils.structures.Structure@{pyargwriter.utils.structures.Structure}}
+
+
+Abstract base class for defining structured objects.  
+
+
+
+
+Inheritance diagram for pyargwriter.\+utils.\+structures.\+Structure\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classpyargwriter_1_1utils_1_1structures_1_1Structure__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for pyargwriter.\+utils.\+structures.\+Structure\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{classpyargwriter_1_1utils_1_1structures_1_1Structure__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1structures_1_1Structure_a30a652872d0fc3f60233492faa42fe3d}\label{classpyargwriter_1_1utils_1_1structures_1_1Structure_a30a652872d0fc3f60233492faa42fe3d}} 
+def \mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1Structure_a30a652872d0fc3f60233492faa42fe3d}{\+\_\+\+\_\+repr\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Return a JSON representation of the structured object. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1Structure_a0f47540b2d7a8ec204277ae15850895e}{from\+\_\+dict}} (\mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1Structure}{Structure}} cls, dict data)
+\begin{DoxyCompactList}\small\item\em Create an instance of the class from a dictionary. \end{DoxyCompactList}\item 
+dict \mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1Structure_a1f9e1c20b6bb22ab5e3cb7fe061106cd}{to\+\_\+dict}} (self)
+\begin{DoxyCompactList}\small\item\em Convert the object to a dictionary representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for defining structured objects. 
+
+This class defines methods for converting structured objects to and from dictionaries, as well as providing a JSON representation of the object.
+
+\begin{DoxyParagraph}{Methods}
+from\+\_\+dict(cls, data\+: dict) -\/$>$ \mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1Structure}{Structure}}\+: Abstract method for creating an instance of the class from a dictionary. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+to\+\_\+dict(self) -\/$>$ dict\+: Abstract method for converting the object to a dictionary representation. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1structures_1_1Structure_a0f47540b2d7a8ec204277ae15850895e}\label{classpyargwriter_1_1utils_1_1structures_1_1Structure_a0f47540b2d7a8ec204277ae15850895e}} 
+\index{pyargwriter.utils.structures.Structure@{pyargwriter.utils.structures.Structure}!from\_dict@{from\_dict}}
+\index{from\_dict@{from\_dict}!pyargwriter.utils.structures.Structure@{pyargwriter.utils.structures.Structure}}
+\doxysubsubsection{\texorpdfstring{from\_dict()}{from\_dict()}}
+{\footnotesize\ttfamily def pyargwriter.\+utils.\+structures.\+Structure.\+from\+\_\+dict (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1Structure}{Structure}}}]{cls,  }\item[{dict}]{data }\end{DoxyParamCaption})}
+
+
+
+Create an instance of the class from a dictionary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cls} & The class itself. \\
+\hline
+{\em data} & The dictionary containing data to create the instance from.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Error} & This method should be implemented in subclasses.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+
+
+\mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1Structure}{Structure}} An instance of the class created from the dictionary. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1structures_1_1Structure_a1f9e1c20b6bb22ab5e3cb7fe061106cd}\label{classpyargwriter_1_1utils_1_1structures_1_1Structure_a1f9e1c20b6bb22ab5e3cb7fe061106cd}} 
+\index{pyargwriter.utils.structures.Structure@{pyargwriter.utils.structures.Structure}!to\_dict@{to\_dict}}
+\index{to\_dict@{to\_dict}!pyargwriter.utils.structures.Structure@{pyargwriter.utils.structures.Structure}}
+\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
+{\footnotesize\ttfamily  dict pyargwriter.\+utils.\+structures.\+Structure.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Convert the object to a dictionary representation. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Error} & This method should be implemented in subclasses.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+
+
+dict A dictionary representation of the object. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1ModuleStructures_adc22be3268d0302a9e08116a88f30da5}{pyargwriter.\+utils.\+structures.\+Module\+Structures}}, \mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1ModuleStructure_a88d7aab29d090153f53e0f4016d3ceff}{pyargwriter.\+utils.\+structures.\+Module\+Structure}}, \mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1CommandStructure_a619dc001e971ca3beb96be1cf5ac29df}{pyargwriter.\+utils.\+structures.\+Command\+Structure}}, and \mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1ArgumentStructure_a9becc8897c3d5253339faa43bb6e9a6b}{pyargwriter.\+utils.\+structures.\+Argument\+Structure}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/structures.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,89 @@
+\hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser}{}\doxysection{pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Command\+Parser Class Reference}
+\label{classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser}\index{pyargwriter.utils.code\_generator.SetupCommandParser@{pyargwriter.utils.code\_generator.SetupCommandParser}}
+
+
+Represents a function generator for setting up an Argument\+Parser with subcommands.  
+
+
+
+
+Inheritance diagram for pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Command\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Command\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser_ab33c25599f8c409904dbafad4334ad54}\label{classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser_ab33c25599f8c409904dbafad4334ad54}} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str module\+\_\+name, bool no\+\_\+imports=False)
+\item 
+None \mbox{\hyperlink{classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser_af90a44f5c8e3c50396b13667db4d4d01}{generate\+\_\+code}} (self, List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1CommandStructure}{Command\+Structure}}\mbox{]} commands)
+\begin{DoxyCompactList}\small\item\em Generates the code to set up the Argument\+Parser with subcommands, including imports (if enabled). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a function generator for setting up an Argument\+Parser with subcommands. 
+
+This class extends the Function class and is designed for generating functions that set up an Argument\+Parser with subcommands based on a list of Command\+Structure objects. It can optionally include imports for Argument\+Parser.
+
+
+\begin{DoxyParams}{Parameters}
+{\em module\+\_\+name} & The name of the module or command group. no\+\_\+imports (bool, optional)\+: If True, omit importing Argument\+Parser; otherwise, include the import.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyVerb}    (inherited attributes from Function...)
+\end{DoxyVerb}
+ \begin{DoxyParagraph}{Methods}
+generate\+\_\+code(self, commands\+: List\mbox{[}\+Command\+Structure\mbox{]}) -\/$>$ Any\+: Generates the code to set up the Argument\+Parser with subcommands, including imports (if enabled).
+\end{DoxyParagraph}
+{\bfseries{Examples}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{>>> commands = [CommandStructure(name=\textcolor{stringliteral}{'create'}, help=\textcolor{stringliteral}{'Create a new item'}), CommandStructure(name=\textcolor{stringliteral}{'delete'}, help=\textcolor{stringliteral}{'Delete an existing item'})]}
+\DoxyCodeLine{>>> setup\_parser\_function = SetupCommandParser(\textcolor{stringliteral}{'my\_module'}, no\_imports=\textcolor{keyword}{True})}
+\DoxyCodeLine{>>> setup\_parser\_function.generate\_code(commands)}
+\DoxyCodeLine{>>> print(setup\_parser\_function)}
+
+\end{DoxyCode}
+ def setup\+\_\+my\+\_\+module\+\_\+parser(parser\+: Argument\+Parser) -\/$>$ Argument\+Parser\+: command\+\_\+subparser = parser.\+add\+\_\+subparsers(dest=\textquotesingle{}command\textquotesingle{}, title=\textquotesingle{}command\textquotesingle{}) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{create = command\_subparser.add\_parser(\textcolor{stringliteral}{'create'}, help=\textcolor{stringliteral}{'Create a new item'})}
+\DoxyCodeLine{delete = command\_subparser.add\_parser(\textcolor{stringliteral}{'delete'}, help=\textcolor{stringliteral}{'Delete an existing item'})}
+
+\end{DoxyCode}
+ return parser 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser_af90a44f5c8e3c50396b13667db4d4d01}\label{classpyargwriter_1_1utils_1_1code__generator_1_1SetupCommandParser_af90a44f5c8e3c50396b13667db4d4d01}} 
+\index{pyargwriter.utils.code\_generator.SetupCommandParser@{pyargwriter.utils.code\_generator.SetupCommandParser}!generate\_code@{generate\_code}}
+\index{generate\_code@{generate\_code}!pyargwriter.utils.code\_generator.SetupCommandParser@{pyargwriter.utils.code\_generator.SetupCommandParser}}
+\doxysubsubsection{\texorpdfstring{generate\_code()}{generate\_code()}}
+{\footnotesize\ttfamily  None pyargwriter.\+utils.\+code\+\_\+generator.\+Setup\+Command\+Parser.\+generate\+\_\+code (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{List\mbox{[}\mbox{\hyperlink{classpyargwriter_1_1utils_1_1structures_1_1CommandStructure}{Command\+Structure}}\mbox{]}}]{commands }\end{DoxyParamCaption})}
+
+
+
+Generates the code to set up the Argument\+Parser with subcommands, including imports (if enabled). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commands} & A list of Command\+Structure objects representing the subcommands to be added. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+documentation/tmp/pyargwriter/utils/code\+\_\+generator.\+py\end{DoxyCompactItemize}
