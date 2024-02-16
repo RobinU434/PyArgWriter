@@ -32,14 +32,23 @@ def dict2args(d: Dict[str, Any]) -> str:
             flags += flag
             flags += ", "
             continue
+        
         elif key == "type":
-            if value == "bool":
+            if value == "bool" and "nargs" not in d.keys():
+                # no action="store_true" for list arguments
                 result += "action = 'store_true', "
                 continue
-
             value = f"{value}"
-        elif key == "default" and isinstance(value, bool):
-            continue
+
+        elif key == "default":
+            if isinstance(value, bool):
+                # no default value for action="store_true"
+                continue
+            elif isinstance(value, list):
+                # no '' around a default list element
+                value = str(value)
+            elif isinstance(value, str):
+                value = f"'{value}'"
         else:
             value = f"'{value}'"
 

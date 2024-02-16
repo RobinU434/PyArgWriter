@@ -139,10 +139,11 @@ class CodeParser:
                 if isinstance(arg.annotation, ast.Name):
                     argument.type = eval(arg.annotation.id)
                 elif isinstance(arg.annotation, ast.Subscript):
-                    logging.warning(
-                        "List annotation automatically set to List[str]. Please adapt in generated code if this is not equal to your application."
-                    )
-                    argument.type = str
+                    # argument type is a list of some values
+                    # logging.warning(
+                    #     "List annotation automatically set to List[str]. Please adapt in generated code if this is not equal to your application."
+                    # )
+                    argument.type = eval(arg.annotation.slice.id)
                     argument.nargs = "+"
             if default is not None:
                 if isinstance(default, ast.List):
