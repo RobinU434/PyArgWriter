@@ -6,6 +6,7 @@ from pyargwriter.utils.decorator import overwrite_protection
 from pyargwriter.utils.file_system import (
     create_directory,
     create_file,
+    get_project_root_name,
     load_file_tree,
 )
 from pyargwriter.utils.formatter import BlackFormatter
@@ -84,8 +85,9 @@ class ArgParseWriter:
         self.parse_code(files, None)
 
         output = output.rstrip("/")
+        project_root_name = get_project_root_name(output)
         self._generator.from_dict(
-            self._arg_parse_structure.to_dict(), output + "/utils/parser.py"
+            self._arg_parse_structure.to_dict(), project_root_name + "/utils/parser.py"
         )
 
         create_directory(output + "/utils")

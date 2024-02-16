@@ -360,13 +360,16 @@ class Execute(Function):
         super().__init__(name, signature, return_type)
 
     def generate_code(
-        self, modules: ModuleStructures, setup_parser_file: str = "parser.py"
+        self,
+        modules: ModuleStructures,
+        project_root: str,
+        setup_parser_file: str = "parser.py",
     ) -> None:
         self._insert_command_calling(modules)
 
         modules_to_import = modules.locations
         modules_to_import["setup_parser"] = setup_parser_file
-        self._insert_imports(modules_to_import)
+        self._insert_imports(modules_to_import, project_root)
 
         self._tab_level = 0
 
@@ -446,12 +449,12 @@ class Execute(Function):
         match_cases = MatchCase(match_name="args['module']", matches=matches)
         return match_cases
 
-    def _insert_imports(self, files: Dict[str, str]) -> None:
+    def _insert_imports(self, files: Dict[str, str], project_root: str) -> None:
         """Generates import statements for modules.
 
         Args:
             files (Dict[str, str]): A dictionary mapping module names to their file paths.
-
+            project_root (str): what is the folder of the project main
         Returns:
             Code: A Code object containing import statements.
         """
@@ -459,6 +462,11 @@ class Execute(Function):
         imports.append(content="from argparse import ArgumentParser")
 
         for module_name, path in files.items():
+            path = (
+                project_root.rstrip("/")
+                + "/"
+                + path.split(project_root)[-1].lstrip("/")
+            )
             path = path.rstrip(".py")
             path = path.replace("/", ".")
             path = path.lstrip(".")
@@ -606,7 +614,12 @@ class CodeGenerator:
 
         self._setup_parser.generate_code(deepcopy(modules))
 
-        self._execute.generate_code(deepcopy(modules), parser_file)
+        project_root = parser_file.split("/")[0]
+        self._execute.generate_code(
+            modules=deepcopy(modules),
+            project_root=project_root,
+            setup_parser_file=parser_file,
+        )
 
         self._create_parser.generate_code(deepcopy(modules))
         self._execute.append(self._create_parser)

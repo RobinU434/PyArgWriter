@@ -74,6 +74,25 @@ def load_file_tree(file_path: str) -> ast.Module:
     return tree
 
 
+def get_project_root_name(path: str) -> str:
+    """looks for the project root directory
+
+    Args:
+        path (str): if there is a full relative or absolute path. Take the last directory name
+
+    Returns:
+        str: project root name
+    """
+    if path == ".":
+        abs_path = os.getcwd()
+        project_root_name = abs_path.split("/")[-1]
+        return project_root_name
+    else:
+        path = path.rstrip("/")
+        project_root_name = path.split("/")[-1]
+        return project_root_name
+
+
 def create_directory(path: str) -> None:
     """Create a directory if it doesn't already exist.
 
