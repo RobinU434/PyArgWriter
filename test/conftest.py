@@ -4,6 +4,9 @@ import pytest
 from pyargwriter.process import ArgParseWriter
 
 
+def pytest_addoption(parser):
+    parser.addoption("--keep-files", action="store_true")
+
 def run_pyargwriter():
     writer = ArgParseWriter(force=True)
     input_file = "test/test_project/tester.py"
@@ -23,7 +26,8 @@ def cleanup_generated_files():
 @pytest.fixture(scope="session")
 def setup_files(request: pytest.FixtureRequest) -> None:
     run_pyargwriter()
-    request.addfinalizer(cleanup_generated_files)
+    if not request.config.getoption("--keep-files"):
+        request.addfinalizer(cleanup_generated_files)
 
 
 @pytest.fixture(scope="session")
@@ -40,4 +44,5 @@ def cleanup_tmp_dir(request: pytest.FixtureRequest) -> None:
         for file in files:
             os.remove(file)
 
-    request.addfinalizer(cleanup)
+    if not request.config.getoption("--keep-files"):
+        request.addfinalizer(cleanup)
