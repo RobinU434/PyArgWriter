@@ -13,7 +13,13 @@ from pyargwriter.utils.formatter import BlackFormatter
 
 
 class ArgParseWriter:
+    """A utility class for parsing and generating code for argument parsing."""
     def __init__(self, force: bool = False, **kwargs) -> None:
+        """Initialize ArgParseWriter instance.
+
+        Args:
+            force (bool, optional): Whether to force overwriting existing files. Defaults to False.
+        """
         self._force = force
 
         self._parser = CodeParser()
@@ -24,11 +30,11 @@ class ArgParseWriter:
         self._arg_parse_structure: Dict[str, Any]
 
     def parse_code(self, files: List[str], output: str, **kwargs):
-        """parse given code classes
+        """Parse given code classes and store them eventually in a given output file. 
 
         Args:
-            files (List[str]): _description_
-            output (str): _description_
+            files (List[str]): List of file paths containing code classes.
+            output (str): Output directory for parsed code. If set to "." -> print to terminal
         """
         for file in files:
             tree = load_file_tree(file)
@@ -45,6 +51,13 @@ class ArgParseWriter:
             self._parser.write(output)
 
     def write_code(self, file: str, output: str, pretty: bool = False, **kwargs):
+        """Write parsed code to file.
+
+        Args:
+            file (str): Path to the file containing parsed code.
+            output (str): Output directory for generated code.
+            pretty (bool, optional): Whether to format the generated code. Defaults to False.
+        """
         file_type = file.split(".")[-1]
         match file_type:
             case "yaml":
@@ -67,11 +80,7 @@ class ArgParseWriter:
         # create __init__.py ?
         init_path = output + "/__init__.py"
         self._create_init(path=init_path)
-        # if not check_file_exists(output + "/__init__.py"):
-        #     create_init = input(f"No __init__.py in {output} found. Create one? [Y, n]:")
-        #     if create_init.lower() in ["", "y"]:
-        #         create_file(output  + "/__init__.py")
-
+       
         if pretty:
             self._format_code(output)
 
@@ -82,6 +91,13 @@ class ArgParseWriter:
         pretty: bool = False,
         **kwargs,
     ):
+        """Generate parser from parsed code.
+
+        Args:
+            files (List[str]): List of file paths containing code classes.
+            output (str): Output directory for generated code.
+            pretty (bool, optional): Whether to format the generated code. Defaults to False.
+        """
         self.parse_code(files, None)
 
         output = output.rstrip("/")
@@ -100,11 +116,7 @@ class ArgParseWriter:
         # create __init__.py ?
         init_path = output + "/__init__.py"
         self._create_init(path=init_path)
-        # if not check_file_exists(output + "/__init__.py"):
-        #     create_init = input(f"No __init__.py in {output} found. Create one? [Y, n]:")
-        #     if create_init.lower() in ["", "y"]:
-        #         create_file(output  + "/__init__.py")
-
+        
         if pretty:
             self._format_code(output)
 
@@ -112,11 +124,13 @@ class ArgParseWriter:
         self,
         *files,
     ):
+        """Format code using BlackFormatter."""
         msg = f"Format code with {type(self._formatter).__name__}"
         logging.info(msg)
         self._formatter.format(files)
 
     def _create_init(self, path):
+        """Create '__init__.py' file in the specified path."""
         if self._force:
             create_file(path)
         else:
