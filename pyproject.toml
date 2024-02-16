@@ -16,9 +16,7 @@ black = "^23.12.1"
 
 [tool.poetry.group.dev.dependencies]
 coveralls = "^3.3.1"
-
-[tool.dev.poetry.dependencies]
-pytest = "^7.4.4"
+pytest = "^8.0.0"
 
 [build-system]
 requires = ["poetry-core"]
