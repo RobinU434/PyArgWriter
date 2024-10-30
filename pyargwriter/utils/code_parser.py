@@ -104,7 +104,12 @@ class CodeParser:
             if isinstance(item, ast.FunctionDef) and item.name == "__init__":
                 args = self._get_arguments(item)
 
-        help_message = ast.get_docstring(node).split("\n")[0]
+        docstring = ast.get_docstring(node)
+        if docstring is None:
+            logging.info("No docstring in class declaration found.")
+            help_message = ""
+        else:
+            help_message = docstring.split("\n")[0]
         return class_name, args, help_message
 
     def _get_arguments(self, func: FunctionDef) -> List[ArgumentStructure]:
