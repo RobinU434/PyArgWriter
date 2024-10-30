@@ -1,5 +1,3 @@
-<img src="images/pyargwriter_with_font.png" alt="drawing" width="400"/>
-
 # PyArgWriter
 
 [![Coverage Status](https://coveralls.io/repos/github/RobinU434/PyArgWriter/badge.svg?branch=main)](https://coveralls.io/github/RobinU434/PyArgWriter?branch=main)
