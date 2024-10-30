@@ -2,9 +2,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/RobinU434/PyArgWriter/badge.svg?branch=main)](https://coveralls.io/github/RobinU434/PyArgWriter?branch=main)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyargwriter)
-
-
-
+![PyPI - Downloads](https://img.shields.io/pypi/dm/pyargwriter)
+![PyPI - Version](https://img.shields.io/pypi/v/pyargwriter)
 
 PyArgWriter is a Python module that simplifies the generation of ArgumentParser setups for Python classes and their methods. It provides a convenient way to define and manage command-line arguments for your Python applications.
 
@@ -18,15 +17,17 @@ pip install pyargwriter
 
 Alternative from source code:
 
-In root folder with pip:  
+In root folder with pip:
+
 ```bash
 pip install .
 ```
-or with poetry:  
+
+or with poetry:
+
 ```bash
 poetry install
 ```
-
 
 ## Command-Line Interface
 
@@ -40,7 +41,7 @@ For more detailed information on available command-line arguments and usage exam
 
 ## Requirements
 
-PyArgWriter depends strongly on information stated in the docstring. Your docstring should have ha minimal structure like:
+PyArgWriter depends strongly on information stated in the docstring. Your docstring should have a minimal structure like:
 
 ```python
 def add(a: int, b: int) -> int:
@@ -56,8 +57,6 @@ def add(a: int, b: int) -> int:
     return a + b
 ```
 
-
-
 ## Usage
 
 Usage
@@ -66,7 +65,7 @@ Below are the available commands and their usage:
 
 ### parse-code
 
-``` bash
+```bash
 python -m pyargwriter parse-code --input file1.py file2.py --output output.yaml [--log-level LOG_LEVEL]
 ```
 
@@ -74,7 +73,7 @@ Parse given Python files and create a YAML structure with structural parser info
 
 ### write-code
 
-``` bash
+```bash
 python -m pyargwriter write-code --input input.yaml [--output OUTPUT_DIR] [--pretty] [--log-level LOG_LEVEL]
 ```
 
@@ -82,7 +81,7 @@ Read a given parser YAML structure and generate argument parser Python code.
 
 ### generate-argparser
 
-``` bash
+```bash
 python -m pyargwriter generate-argparser --input file1.py file2.py [--output OUTPUT_DIR] [--pretty] [--log-level LOG_LEVEL]
 ```
 
@@ -92,7 +91,7 @@ Common Options
 --pretty (-p): If set, the generated code will be formatted with Black.
 For more detailed information on each command and additional options, run:
 
-``` bash
+```bash
 python -m pyargwriter <command> --help
 ```
 
@@ -112,7 +111,6 @@ In the function of the process class you want to create the argument parser, fol
 - List[str]     # from typing
 - list[bool]
 - List[bool]    # from typing
-
 
 ## Example
 
