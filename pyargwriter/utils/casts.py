@@ -54,6 +54,12 @@ def dict2args(d: Dict[str, Any]) -> str:
 
         result += f"{key} = {value}, "
 
+    # make required argument if there is no default given in the argument dictionary
+    if "default" not in d.keys():
+        result += "required = True, "
+    else:
+        result += "required = False, "
+
     result = flags + result
     return result
 
