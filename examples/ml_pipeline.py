@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class Entrypoint:
     """Entrypoint for a machine learning pipeline.
 
@@ -11,21 +14,24 @@ class Entrypoint:
         Args:
             config_file (str): A path to a dictionary containing configuration parameters
                 for the pipeline, such as model hyperparameters, paths to
-                datasets, or training options.
+                datasets, or    training options.
         """
         self.config_file = config_file
 
-    def train(self):
+    def train(self, train_config: dict[str, Any]):
         """Executes the training process.
 
         This method is responsible for training the machine learning model
         using the parameters provided in the configuration.
 
+        Args:
+            train_config (str): A path to a dictionary containing configuration parameters
+        
         Note:
             This is a mockup method and does not implement actual training logic.
         """
-        print("Training the model with the following configuration file:")
-        print(self.config_file)
+        print("Training the model with the following configuration:")
+        print(train_config)
 
     def evaluate(self):
         """Evaluates the model performance.
