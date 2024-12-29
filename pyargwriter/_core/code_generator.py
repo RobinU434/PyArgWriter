@@ -3,7 +3,7 @@ from copy import deepcopy
 import logging
 from typing import Any, Dict, List
 from pyargwriter.utils.casts import create_call_args, dict2args, format_help
-from pyargwriter.utils.code_abstracts import (
+from pyargwriter._core.code_abstracts import (
     Code,
     DefaultCase,
     Function,
@@ -12,7 +12,7 @@ from pyargwriter.utils.code_abstracts import (
     MatchCase,
 )
 from pyargwriter.utils.file_system import load_json, load_yaml
-from pyargwriter.utils.structures import (
+from pyargwriter._core.structures import (
     ArgumentStructure,
     CommandStructure,
     ModuleStructure,
@@ -290,7 +290,7 @@ class SetupParser(Function):
             no_imports = len(modules) - 1
             for module in modules.modules:
                 self.append(
-                    content=f"{module.name.lower()}_parser = module_subparser.add_parser(name='{module.name}', help='{module.help}')"
+                    content=f"{module.name.lower()}_parser = module_subparser.add_parser(name='{module.name}', help='{module.help_msg}')"
                 )
                 setup_command_parser = SetupCommandParser(
                     module.name, no_imports=bool(no_imports)

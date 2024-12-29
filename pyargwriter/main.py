@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from typing import Any, Dict
 
-from pyargwriter.process import ArgParseWriter
+from pyargwriter.entrypoint import ArgParseWriter
 from pyargwriter.utils.log_level import set_log_level
 from pyargwriter.utils.parser import setup_parser
 

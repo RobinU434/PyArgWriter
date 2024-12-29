@@ -4,7 +4,7 @@ import logging
 from typing import List, Tuple
 
 from pyargwriter.utils.file_system import write_json, write_yaml
-from pyargwriter.utils.structures import (
+from pyargwriter._core.structures import (
     ArgumentStructure,
     CommandStructure,
     ModuleStructure,
@@ -89,7 +89,7 @@ class CodeParser:
 
         write_func(self.modules.to_dict(), path)
 
-    def _get_class_signature(self, node) -> Tuple[str, List[ArgumentStructure], str]:
+    def _get_class_signature(self, node: ClassDef) -> Tuple[str, List[ArgumentStructure], str]:
         """Get the signature (name and arguments) of a class.
 
         Args:
@@ -138,7 +138,7 @@ class CodeParser:
             argument = ArgumentStructure()
             argument.dest = arg.arg
             argument.name_or_flags = arg.arg
-            argument.help = help_message
+            argument.help_msg = help_message
 
             if arg.annotation:
                 if isinstance(arg.annotation, ast.Name):
@@ -208,7 +208,7 @@ class CodeParser:
             if isinstance(func, FunctionDef) and func.name[0] != "_":
                 command = CommandStructure()
                 command.name = func.name
-                command.help = self._get_command_help(func)
+                command.help_msg = self._get_command_help(func)
                 command.args.extend(self._get_arguments(func))
                 commands.append(command)
         return commands
@@ -227,7 +227,7 @@ class CodeParser:
         doc_str = ast.get_docstring(func)
         # if dox string is None
         if not doc_str:
-            doc_str = "---no-documentation-exists--"
+            doc_str = "--no-documentation-exists--"
         else:
             doc_str = doc_str.split("\n")[0]
 
@@ -246,7 +246,7 @@ class CodeParser:
                 module = ModuleStructure()
                 class_name, module_args, help = self._get_class_signature(node)
                 module.name = class_name
-                module.help = help
+                module.help_msg = help
                 class_commands = self._get_command_structure(node)
                 module.commands.extend(class_commands)
                 module.location = file

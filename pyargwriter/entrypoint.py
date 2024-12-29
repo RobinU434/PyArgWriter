@@ -1,8 +1,9 @@
 import logging
 from typing import Any, Dict, List
-from pyargwriter.utils.code_generator import CodeGenerator
-from pyargwriter.utils.code_parser import CodeParser
-from pyargwriter.utils.decorator import overwrite_protection
+from pyargwriter._core.code_generator import CodeGenerator
+from pyargwriter._core.code_parser import CodeParser
+from pyargwriter._core.code_inspector import ModuleInspector
+from pyargwriter.decorator import overwrite_protection
 from pyargwriter.utils.file_system import (
     create_directory,
     create_file,
@@ -22,7 +23,7 @@ class ArgParseWriter:
         """
         self._force = force
 
-        self._parser = CodeParser()
+        self._inspector = ModuleInspector()
         self._generator = CodeGenerator()
 
         self._formatter = BlackFormatter()
@@ -38,9 +39,9 @@ class ArgParseWriter:
         """
         for file in files:
             tree = load_file_tree(file)
-            self._parser.parse_tree(tree, file)
-
-        self._arg_parse_structure = self._parser.modules
+            self._inspector.visit(tree, file)
+            
+        self._arg_parse_structure = self._inspector.modules
 
         # how to return values
         if output == ".":
@@ -48,7 +49,7 @@ class ArgParseWriter:
         elif output is None:
             return
         else:
-            self._parser.write(output)
+            self._inspector.write(output)
 
     def write_code(self, file: str, output: str, pretty: bool = False, **kwargs):
         """Write parsed code to file.

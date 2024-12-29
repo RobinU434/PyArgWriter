@@ -31,3 +31,7 @@ def overwrite_protection(func: Callable) -> Callable:
         func(*args, path, **kwargs)
 
     return wrapper
+
+
+def add_hydra():
+    

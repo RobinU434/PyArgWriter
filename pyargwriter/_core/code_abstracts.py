@@ -4,7 +4,7 @@ import logging
 from typing import Any, Dict, List, Tuple, Type
 
 from pyargwriter import TAB_SIZE
-from pyargwriter.utils.decorator import overwrite_protection
+from pyargwriter.decorator import overwrite_protection
 from pyargwriter.utils.type_testing import type_of_all
 
 
@@ -363,12 +363,13 @@ class Function(Code):
     """
 
     def __init__(
-        self, name: str, signature: Dict[str, Type] = {}, return_type: Type = None
+        self, name: str, signature: Dict[str, Type] = {}, return_type: Type = None,
     ) -> None:
         super().__init__()
 
         self._name: str = name
         self._signature: Dict[str, str] = self._serialize_signature(signature)
+        """key: name, value: str(type)"""
         self._return_type_name: str = self._serialize_type(return_type)
         self._generate_header()
 

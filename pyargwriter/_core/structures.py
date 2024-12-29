@@ -168,7 +168,7 @@ class CommandStructure(Structure):
         Returns:
             CommandStructure: An instance of the CommandStructure class created from the dictionary.
         """
-        cmd = cls()
+        cmd: CommandStructure = cls()
         cmd.name = data["name"]
         cmd.help = data["help"]
         cmd.args = [ArgumentStructure.from_dict(arg) for arg in data["args"]]

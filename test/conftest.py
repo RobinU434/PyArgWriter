@@ -1,7 +1,7 @@
 import glob
 import os
 import pytest
-from pyargwriter.process import ArgParseWriter
+from pyargwriter.entrypoint import ArgParseWriter
 
 
 def pytest_addoption(parser):

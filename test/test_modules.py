@@ -1,5 +1,5 @@
 import pytest
-from pyargwriter.process import ArgParseWriter
+from pyargwriter.entrypoint import ArgParseWriter
 from pyargwriter.utils.code_generator import CodeGenerator
 from pyargwriter.utils.code_parser import CodeParser
 from pyargwriter.utils.file_system import load_file_tree
