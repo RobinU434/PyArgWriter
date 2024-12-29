@@ -227,20 +227,3 @@ class ModuleInspector(NodeVisitor):
     @property
     def modules(self) -> ModuleStructures:
         return self._modules
-    
-    
-        
-"""
-inspector = ModuleInspector()
-
-filename = "examples/shopping.py"
-with open(filename, "r") as file:
-    tree = ast.parse(file.read())
-inspector.visit(tree, filename)
-filename = "examples/car.py"
-with open(filename, "r") as file:
-    tree = ast.parse(file.read())
-inspector.visit(tree, filename)
-
-len(inspector.modules.modules)
-print(inspector.modules)"""
