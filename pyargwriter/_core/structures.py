@@ -134,7 +134,7 @@ class CommandStructure(Structure):
         name (str): The name of the command.
         help (str): The help text for the command.
         args (List[ArgumentStructure]): A list of ArgumentStructure objects representing command arguments.
-
+        
     Methods:
         from_dict(cls, data: dict) -> CommandStructure:
             Create an instance of the class from a dictionary.
@@ -172,6 +172,7 @@ class CommandStructure(Structure):
         cmd.name = data["name"]
         cmd.help = data["help"]
         cmd.args = [ArgumentStructure.from_dict(arg) for arg in data["args"]]
+        cmd.decorators = []
         return cmd
 
     def to_dict(self) -> Dict[str, str]:
