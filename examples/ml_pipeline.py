@@ -9,17 +9,10 @@ class Entrypoint:
     a machine learning pipeline, including training, evaluation, and prediction.
     """
 
-    def __init__(self, config_file: str):
-        """Initializes the Entrypoint with a given configuration.
+    def __init__(self):
+        """Initializes the Entrypoint."""
 
-        Args:
-            config_file (str): A path to a dictionary containing configuration parameters
-                for the pipeline, such as model hyperparameters, paths to
-                datasets, or    training options.
-        """
-        self.config_file = config_file
-
-    @add_hydra("train_config", version_base=None)
+    @add_hydra("train_config", version_base=None, config_name="train_config.yaml")
     def train(self, train_config: dict[str, Any], device: str = "cpu"):
         """Executes the training process.
 
@@ -34,7 +27,7 @@ class Entrypoint:
             This is a mockup method and does not implement actual training logic.
         """
         print("Training the model with the following configuration:")
-        # print(train_config)
+        print(train_config)
         print("Start training on: ", device)
 
     def evaluate(self):
