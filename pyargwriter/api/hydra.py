@@ -5,10 +5,11 @@ from argparse import (
     _StoreAction,
     _StoreTrueAction,
     _VersionAction,
-    Namespace
+    Namespace,
+    ArgumentError
 )
 from textwrap import dedent
-from typing import Any, Callable
+from typing import Any, Callable, Dict
 
 from hydra import version
 from hydra._internal.deprecation_warning import deprecation_warning
@@ -18,7 +19,7 @@ from hydra.core.utils import _flush_loggers
 
 
 
-def setup_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
+def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
     if new_parser is None:
         new_parser = ArgumentParser(add_help=False)
 
@@ -44,12 +45,17 @@ def setup_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
                 help=action.help,
                 choices=action.choices,
             )
+                
         elif isinstance(action, _StoreTrueAction):
-            new_parser.add_argument(
-                *option_strings,
-                action="store_true",
-                help=action.help,
-            )
+            if action.dest == "help":
+                try:            
+                    new_parser.add_argument(
+                        *option_strings,
+                        action="store_true",
+                        help=action.help,
+                    )
+                except ArgumentError:
+                        continue
         elif isinstance(action, _VersionAction):
             new_parser.add_argument(
                 "--hydra-version",
@@ -64,7 +70,7 @@ def setup_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
 
 def hydra_wrapper(
     task_func: Callable[[Any], Any],
-    cli_args: Namespace,
+    cli_args: Dict[str, Any],
     arg_parser: ArgumentParser,
     config_var_name: str = "cfg",
     version_base: str = _UNSPECIFIED_,
@@ -89,6 +95,8 @@ def hydra_wrapper(
             config_path = "."
         else:
             config_path = "."
+    
+    cli_args = Namespace(**cli_args)  # convert to Namespace
 
     signature = inspect.signature(task_func, follow_wrapped=True)
     parameters = dict(signature.parameters)
