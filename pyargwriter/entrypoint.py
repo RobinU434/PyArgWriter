@@ -15,6 +15,7 @@ from pyargwriter.utils.formatter import BlackFormatter
 
 class ArgParseWriter:
     """A utility class for parsing and generating code for argument parsing."""
+
     def __init__(self, force: bool = False, **kwargs) -> None:
         """Initialize ArgParseWriter instance.
 
@@ -31,7 +32,7 @@ class ArgParseWriter:
         self._arg_parse_structure: Dict[str, Any]
 
     def parse_code(self, files: List[str], output: str, **kwargs):
-        """Parse given code classes and store them eventually in a given output file. 
+        """Parse given code classes and store them eventually in a given output file.
 
         Args:
             files (List[str]): List of file paths containing code classes.
@@ -40,7 +41,7 @@ class ArgParseWriter:
         for file in files:
             tree = load_file_tree(file)
             self._inspector.visit(tree, file)
-            
+
         self._arg_parse_structure = self._inspector.modules
 
         # how to return values
@@ -81,7 +82,7 @@ class ArgParseWriter:
         # create __init__.py ?
         init_path = output + "/__init__.py"
         self._create_init(path=init_path)
-       
+
         if pretty:
             self._format_code(output)
 
@@ -116,7 +117,7 @@ class ArgParseWriter:
         # create __init__.py ?
         init_path = output + "/__init__.py"
         self._create_init(path=init_path)
-        
+
         if pretty:
             self._format_code(output)
 
