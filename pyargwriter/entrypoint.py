@@ -100,7 +100,6 @@ class ArgParseWriter:
             pretty (bool, optional): Whether to format the generated code. Defaults to False.
         """
         self.parse_code(files, None)
-
         output = output.rstrip("/")
         project_root_name = get_project_root_name(output)
         self._generator.from_dict(
