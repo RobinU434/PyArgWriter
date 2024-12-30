@@ -1,4 +1,6 @@
 from typing import Any
+
+from omegaconf import DictConfig
 from pyargwriter.decorator import add_hydra
 
 
@@ -13,21 +15,21 @@ class Entrypoint:
         """Initializes the Entrypoint."""
 
     @add_hydra("train_config", version_base=None, config_name="train_config.yaml")
-    def train(self, train_config: dict[str, Any], device: str = "cpu"):
+    def train(self, train_config: DictConfig, device: str = "cpu"):
         """Executes the training process.
 
         This method is responsible for training the machine learning model
         using the parameters provided in the configuration.
 
         Args:
-            train_config (str): A path to a     dictionary containing configuration parameters
+            train_config (DictConfig): A path to a     dictionary containing configuration parameters
             device (str): either cpu or cuda
 
         Note:
             This is a mockup method and does not implement actual training logic.
         """
         print("Training the model with the following configuration:")
-        print(train_config)
+        print(train_config, type(train_config))
         print("Start training on: ", device)
 
     def evaluate(self):
