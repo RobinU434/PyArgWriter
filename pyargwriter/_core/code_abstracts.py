@@ -104,7 +104,7 @@ class Code:
             Set the tab level for all lines of code in the code block.
 
     """
-
+    
     def __init__(self) -> None:
         self._file: List[LineOfCode] = []
         self._tab_level: int = 0
