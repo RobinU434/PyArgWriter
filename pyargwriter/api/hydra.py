@@ -28,7 +28,7 @@ def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
     for action in hydra_parser._actions:
         action: Action
         option_strings = action.option_strings
-
+            
         if len(option_strings) == 0:
             new_parser.add_argument(
                 action.dest,
@@ -47,15 +47,17 @@ def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
             )
                 
         elif isinstance(action, _StoreTrueAction):
-            if action.dest == "help":
-                try:            
-                    new_parser.add_argument(
-                        *option_strings,
-                        action="store_true",
-                        help=action.help,
-                    )
-                except ArgumentError:
-                        continue
+            try:            
+                new_parser.add_argument(
+                    *option_strings,
+                    action="store_true",
+                    help=action.help,
+                )
+            except ArgumentError as err:
+                if action.dest == "help":
+                    continue
+                else:
+                    raise err
         elif isinstance(action, _VersionAction):
             new_parser.add_argument(
                 "--hydra-version",
@@ -96,6 +98,8 @@ def hydra_wrapper(
         else:
             config_path = "."
     
+    # TODO: hacky solution: help is being ignored while adding the hydra parser so help is always False
+    cli_args["help"] = False
     cli_args = Namespace(**cli_args)  # convert to Namespace
 
     signature = inspect.signature(task_func, follow_wrapped=True)
