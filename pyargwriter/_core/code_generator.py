@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from copy import deepcopy
 import logging
-from typing import Any, Dict, List
+from typing import Any, Callable, Dict, List, Tuple, Type
 from pyargwriter.utils.casts import create_call_args, dict2args, format_help
 from pyargwriter._core.code_abstracts import (
     Code,
@@ -11,10 +11,12 @@ from pyargwriter._core.code_abstracts import (
     Match,
     MatchCase,
 )
+from abc import ABC, abstractmethod
 from pyargwriter.utils.file_system import load_json, load_yaml
 from pyargwriter._core.structures import (
     ArgumentStructure,
     CommandStructure,
+    DecoratorFlagStructure,
     ModuleStructure,
     ModuleStructures,
 )
@@ -136,7 +138,7 @@ class SetupCommandParser(Function):
     def __init__(self, module_name: str, no_imports: bool = False) -> None:
         name = f"setup_{module_name.lower()}_parser"
         signature = {"parser": ArgumentParser}
-        return_type = ArgumentParser
+        return_type = Tuple[ArgumentParser, Dict[str, ArgumentParser]]   
         super().__init__(name, signature, return_type)
 
         self._commands: List[CommandStructure]
@@ -158,25 +160,35 @@ class SetupCommandParser(Function):
     def _add_imports(self):
         """Add an import statement for ArgumentParser."""
         self.insert(
+            LineOfCode(content="from typing import Tuple, Dict, List", tab_level=0), 0
+        )
+        self.insert(
             LineOfCode(content="from argparse import ArgumentParser", tab_level=0), 0
         )
 
     def _add_command_parser(self) -> None:
         """Add code to set up the subcommand parser and add subcommands."""
 
+        self.append(content="subparser = {}")
+        
         subparser_name = "command_subparser"
         self.append(
             content=f"{subparser_name} = parser.add_subparsers(dest='command', title='command')",
         )
 
         for command in self._commands:
-            parser_var_name = self._add_parser(
-                subparser_name=subparser_name, **vars(command)
-            )
+            args = vars(command)
+            decorator_flags = args.pop("decorator_flags")
+            parser_var_name = self._add_parser(subparser_name=subparser_name, **args)
             self.append(
                 content=f"{parser_var_name} = add_{parser_var_name}_args({parser_var_name})",
             )
 
+            for flag in decorator_flags:
+                cls = DecoratorWrapGenerator.get_class(flag.name)
+                self = cls.add_on_parser_level(self, flag.values)
+            self.append(f"subparser['{parser_var_name}'] = {parser_var_name}")
+            
     def _add_parser(
         self,
         subparser_name,
@@ -216,7 +228,7 @@ class SetupCommandParser(Function):
 
     def _add_return(self):
         """Add a return statement for the ArgumentParser."""
-        self.append(content="return parser")
+        self.append(content="return parser, subparser")
 
 
 class SetupParser(Function):
@@ -279,7 +291,7 @@ class SetupParser(Function):
             module.add_args(module.args)
             setup_command_parser.generate_code(module.commands)
             self.insert(setup_command_parser, 0)
-            self.append(content=f"parser = {setup_command_parser.name}(parser)")
+            self.append(content=f"parser, _ = {setup_command_parser.name}(parser)")
             self.append(content="return parser")
 
         elif len(modules) > 1:
@@ -367,8 +379,10 @@ class Execute(Function):
     ) -> None:
         self._insert_command_calling(modules)
 
-        modules_to_import = modules.locations
+        modules_to_import = {f"setup_{module_name.lower()}_parser": setup_parser_file for module_name in modules.locations.keys()}
+        modules_to_import = {**modules_to_import, **modules.locations}      
         modules_to_import["setup_parser"] = setup_parser_file
+
         self._insert_imports(modules_to_import, project_root)
 
         self._tab_level = 0
@@ -384,6 +398,7 @@ class Execute(Function):
             self.append(
                 content=f"module = {module.name}({create_call_args(module.args)})"
             )
+            self.append(content=f"_, command_parser = setup_{module.name.lower()}_parser(ArgumentParser())")
 
             # generate matches from commands
             match_case = self._generate_command_match_case(module.commands)
@@ -412,10 +427,19 @@ class Execute(Function):
         for command in commands:
             command: CommandStructure
             match_name = command.name.replace("_", "-")
+
+            
             body = Code.from_str(
                 code=f"module.{command.name}({create_call_args(command.args)})"
             )
-            matches.append(Match(match_value=match_name, body=body))
+            # add wrapper funcs
+            for flag in command.decorator_flags:
+                flag: DecoratorFlagStructure
+                cls = DecoratorWrapGenerator.get_class(flag.name)
+                body = cls.add_on_execute_level(body, flag.values)
+
+            match_code = Match(match_value=match_name, body=body)
+            matches.append(match_code)
 
         # add default case
         matches.append(DefaultCase(body="return False"))
@@ -441,6 +465,7 @@ class Execute(Function):
                 f"module = {module.name}({create_call_args(module.args)})"
             )
             body.append(self._generate_command_match_case(module.commands))
+            body.append(content=f"_, command_parser = setup_{module.name.lower()}_parser(ArgumentParser())")
             matches.append(Match(match_value=match_name, body=body))
 
         # add default case
@@ -460,6 +485,7 @@ class Execute(Function):
         """
         imports = Code()
         imports.append(content="from argparse import ArgumentParser")
+        imports.append(content="from pyargwriter import decorator")
 
         for module_name, path in files.items():
             path = (
@@ -567,6 +593,98 @@ class MainCaller(Code):
         self.append(content="if __name__ == '__main__':")
         self._tab_level += 1
         self.append(content="main()")
+
+
+class DecoratorWrapGenerator(Code, ABC):
+    wrapper_func: Callable
+    
+    def __init__(self):
+        super().__init__()
+
+    @classmethod
+    def get_class(cls, decorator_name: str) -> Type["DecoratorWrapGenerator"]:
+        """get the DecoratorWrapGenerator class name specific to a decorator
+
+        Example:
+            >>> DecoratorWrapGenerator.get_class("add_hydra")
+            >>> "HydraDecoratorWrapGenerator"
+
+        Args:
+            decorator_name (str): naming scheme: `add_<func-name>`
+
+        Returns:
+            class object: the class but not an instance of it
+        """
+        cls_name = decorator_name.split("_")[1]
+        cls_name = cls_name[0].upper() + cls_name[1:]
+        cls_name += DecoratorWrapGenerator.__name__
+        return globals()[cls_name]
+    
+    @classmethod
+    def get_wrapper(cls) -> Callable:
+        return cls.wrapper_func 
+                
+
+    @classmethod
+    @abstractmethod
+    def add_on_parser_level(
+        cls, existing_code: Code, flag_values: dict[str, Any]
+    ) -> Code:
+        raise NotImplementedError
+
+    @classmethod
+    @abstractmethod
+    def add_on_execute_level(
+        cls, existing_code: Code, flag_values: dict[str, Any]
+    ) -> Code:
+        raise NotImplementedError
+
+
+class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
+    from pyargwriter.api.hydra import hydra_wrapper, add_hydra_parser
+    wrapper_func = hydra_wrapper
+    parser_func = add_hydra_parser
+    
+    def __init__(self):
+        super().__init__()
+
+    @classmethod
+    def add_on_parser_level(
+        cls, existing_code: Code, flag_values: dict[str, Any]
+    ) -> Code:
+        # check for existing import
+        insert_line = f"from pyargwriter.api.hydra import {cls.parser_func.__name__}"
+        if insert_line not in existing_code:
+            insert_line = LineOfCode(insert_line, 0)
+            # insert imports
+            existing_code.insert(insert_line, 0)
+
+        # assuming last line: <command-name> = add_<command-name>_args(<command-name>)
+        last_line = existing_code.get_line(-1).content
+        last_line = last_line.lstrip(" ").rstrip("\n")
+        cmd_name = last_line.split(" = ")[0]
+        existing_code.append(f"{cmd_name} = {cls.parser_func.__name__}({cmd_name})")
+        return existing_code
+
+    @classmethod
+    def add_on_execute_level(
+        cls, existing_code: Code, flag_values: dict[str, Any]
+    ) -> Code:
+        execute_line = existing_code.get_line(-1).content.lstrip(" ").rstrip("\n")
+        func = execute_line.split("(")[0]
+        cmd = func.split(".")[-1]
+        args = "args"
+        parser = f"command_parser['{cmd}']"
+
+        kwargs = []
+        for key, value in flag_values.items():
+            if isinstance(value, str):
+                value = f"'{value}'"
+            kwargs.append(f"{key}={value}")
+        kwargs = ", ".join(kwargs)
+        replace_line = "decorator." + cls.wrapper_func.__name__ + f"({func}, {args}, {parser}, {kwargs})"
+        existing_code.replace(LineOfCode(replace_line, 0), -1)
+        return existing_code
 
 
 class CodeGenerator:
