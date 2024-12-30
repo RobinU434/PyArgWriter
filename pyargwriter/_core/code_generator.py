@@ -641,7 +641,7 @@ class DecoratorWrapGenerator(Code, ABC):
 
 
 class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
-    from pyargwriter.api.hydra import hydra_wrapper, add_hydra_parser
+    from pyargwriter.api.hydra_plugin import hydra_wrapper, add_hydra_parser
     wrapper_func = hydra_wrapper
     parser_func = add_hydra_parser
     
@@ -679,11 +679,11 @@ class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
         kwargs = []
         for key, value in flag_values.items():
             if isinstance(value, str):
-                value = f"'{value}'"
+                value = f"'{value}'"    
             kwargs.append(f"{key}={value}")
         kwargs.append("config_path='/'.join(__file__.split('/')[:-1])")
         kwargs = ", ".join(kwargs)
-        replace_line = "api.hydra." + cls.wrapper_func.__name__ + f"({func}, {args}, {parser}, {kwargs})"
+        replace_line = "api.hydra_plugin." + cls.wrapper_func.__name__ + f"({func}, {args}, {parser}, {kwargs})"
         existing_code.replace(LineOfCode(replace_line, 0), -1)
         return existing_code
 
