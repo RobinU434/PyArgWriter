@@ -43,7 +43,7 @@ For more detailed information on available command-line arguments and usage exam
 
 PyArgWriter depends strongly on information stated in the docstring. Your docstring should have a minimal structure like:
 
-```python
+```python       
 def add(a: int, b: int) -> int:
     """_summary_
 
@@ -117,6 +117,31 @@ In the function of the process class you want to create the argument parser, fol
 ```bash
 python -m pyargwriter generate-argparser --input examples/shopping.py examples/car.py --output examples --pretty
 ```
+
+## Hydra Integration
+
+As an additional feature we support to combine your existing `ArgumentParser` with the [Hydra](https://hydra.cc/docs/intro/) framework. All you need to do is to use a decorator we provide with our framework. A short example can be viewed below. 
+
+```python
+from omegaconf import DictConfig
+from pyargwriter.decorator import add_hydra
+
+class Entrypoint:
+    """ML training pipeline"""
+    def __init__(self):
+        """initiate pipeline"""
+        pass
+    @add_hydra("config", version_base=None)
+    def train(config: DictConfig, device: str):
+        """start training process
+        
+        Args:
+            config (DictConfig): container which contains
+            device (str): where to train on
+        """
+```
+The decorator is indeed callable. Additionally to the usual hydra-arguments you have to pass in the `config_var_name` which specifies which argument in the `train` signature is the config object. After calling the pyargwriter tool you are now ready to go with a CLI which can now handle also almost all Hydra commands. Except the normal `help` message you get from Hydra. For further interest in this message please refer to their [website](https://hydra.cc/docs/intro/)
+
 
 ## Documentation
 
