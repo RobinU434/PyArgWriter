@@ -1,4 +1,6 @@
 from typing import Callable
+from functools import wraps
+from hydra.main import _UNSPECIFIED_
 
 from pyargwriter.utils.file_system import check_file_exists
 
@@ -33,5 +35,16 @@ def overwrite_protection(func: Callable) -> Callable:
     return wrapper
 
 
-def add_hydra():
-    
+def add_hydra(
+    config_var_name: str = "cfg",
+    version_base: str = _UNSPECIFIED_,
+    config_path: str = _UNSPECIFIED_,
+    config_name: str = None,
+):
+    def decorator(func: Callable):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            func(*args, **kwargs)
+        return wrapper
+    return decorator
+
