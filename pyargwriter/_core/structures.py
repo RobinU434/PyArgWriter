@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from ast import List
 import json
 import logging
-from typing import Dict, Type
+from typing import Any, Dict, Type
 
 
 class Structure(ABC):
@@ -27,7 +27,7 @@ class Structure(ABC):
     def __repr__(self):
         """Return a JSON representation of the structured object."""
         structure = self.to_dict()
-        return json.dumps(structure, indent=4)
+        return json.dumps(structure, indent=2)
 
     @classmethod
     @abstractmethod
@@ -123,6 +123,39 @@ class ArgumentStructure(Structure):
             logging.warning("There are keys in the generated structure missing")
 
         return structure
+    
+
+class DecoratorFlagStructure(Structure):
+    def __init__(self):
+        self.name: str
+        self.values: Dict[str, Any]  # values from signature
+    
+    @classmethod
+    def from_dict(cls: DecoratorFlagStructure, data: dict) -> DecoratorFlagStructure:
+        """Create an instance of the DecoratorFlagStructure class from a dictionary.
+
+        Args:
+            cls (Type[DecoratorFlagStructure]): The class itself.
+            data (dict): The dictionary containing data to create the instance from.
+
+        Returns:
+            DecoratorFlagStructure: An instance of the DecoratorFlagStructure class created from the dictionary.
+        """
+        cmd: DecoratorFlagStructure = cls()
+        cmd.name = data["name"]
+        cmd.values = data["values"]
+        return cmd
+
+    def to_dict(self) -> Dict[str, str]:
+        """Convert the command structure to a dictionary representation.
+
+        Returns:
+            dict: A dictionary representation of the command structure.
+        """
+        return {
+            "name": self.name,
+            "values": self.values,
+        }
 
 
 class CommandStructure(Structure):
@@ -148,6 +181,7 @@ class CommandStructure(Structure):
         self.name: str
         self.help: str = ""
         self.args: List[ArgumentStructure] = []
+        self.decorator_flags: List[DecoratorFlagStructure] = []
 
     def __len__(self) -> int:
         """Return the number of arguments for this command.
@@ -172,7 +206,7 @@ class CommandStructure(Structure):
         cmd.name = data["name"]
         cmd.help = data["help"]
         cmd.args = [ArgumentStructure.from_dict(arg) for arg in data["args"]]
-        cmd.decorators = []
+        cmd.decorator_flags = [DecoratorFlagStructure.from_dict(ele) for ele in data["decorator_flags"]]
         return cmd
 
     def to_dict(self) -> Dict[str, str]:
@@ -185,6 +219,7 @@ class CommandStructure(Structure):
             "name": self.name,
             "help": self.help,
             "args": [arg.to_dict() for arg in self.args],
+            "decorator_flags": [ele.to_dict() for ele in self.decorator_flags]
         }
 
 
