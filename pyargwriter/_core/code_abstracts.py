@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict, List, Tuple, Type
+from typing import Any, Dict, List, Tuple, Type, get_origin
+import typing
 
 from pyargwriter import TAB_SIZE
 from pyargwriter.decorator import overwrite_protection
@@ -118,6 +119,16 @@ class Code:
     def __len__(self) -> int:
         return len(self._file)
 
+    def __contains__(self, key: str | LineOfCode) -> bool:
+        if isinstance(key, LineOfCode):
+            key = key.content.lstrip(" ").rstrip("\n")
+
+        for line in self._file:
+            content = line.content.lstrip(" ").rstrip("\n")
+            if key == content:
+                return True
+        return False
+
     @classmethod
     def from_lines_of_code(cls: Code, code: List[LineOfCode]) -> Code:
         """Create a Code instance from a list of LineOfCode objects.
@@ -174,6 +185,15 @@ class Code:
             return
 
         self._file = method(first, content, second)
+
+    def replace(self, content: LineOfCode, index: int) -> None:
+        """replaces the line of code at the given index with the given content
+
+        Args:
+            content (LineOfCode): content to put at given index
+            index (int): where to put the replacing content
+        """
+        self._file[index] = content
 
     def _split_file(self, index: int) -> Tuple[List[LineOfCode], List[LineOfCode]]:
         """Split the code block into two parts at the specified index.
@@ -332,6 +352,9 @@ class Code:
             )
         self._file = renewed_files
 
+    def get_line(self, index: int) -> LineOfCode:
+        return self._file[index]
+
 
 class Function(Code):
     """Represents a Python function.
@@ -363,7 +386,10 @@ class Function(Code):
     """
 
     def __init__(
-        self, name: str, signature: Dict[str, Type] = {}, return_type: Type = None,
+        self,
+        name: str,
+        signature: Dict[str, Type] = {},
+        return_type: Type = None,
     ) -> None:
         super().__init__()
 
@@ -387,10 +413,19 @@ class Function(Code):
             result[key] = self._serialize_type(value)
         return result
 
-    @staticmethod
-    def _serialize_type(var_type: Type) -> str:
+    def _serialize_type(self, var_type: Type) -> str:
         if var_type is None:
             return "None"
+        elif get_origin(var_type) is tuple:
+            res = "Tuple["
+            for arg in var_type.__args__:
+                res += self._serialize_type(arg)
+                res += ", "
+            res = res.rstrip(", ")
+            res += "]"
+            return res
+        elif get_origin(var_type) is dict:
+            return f"Dict[{self._serialize_type(var_type.__args__[0])}, {self._serialize_type(var_type.__args__[1])}]"
         return var_type.__name__
 
     def _generate_header(self):
