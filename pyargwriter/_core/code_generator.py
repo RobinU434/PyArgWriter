@@ -678,9 +678,13 @@ class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
 
         kwargs = []
         for key, value in flag_values.items():
-            if isinstance(value, str):
-                value = f"'{value}'"    
+            if key == "config_path":
+                value = "'/'.join(__file__.split('/')[:-1])" + " + '/" + value.lstrip("/") +  "'"
+            elif isinstance(value, str):
+                value = f"'{value}'"
+                
             kwargs.append(f"{key}={value}")
+
 
         # insert config_path if not already apparent 
         if "config_path" not in flag_values:
