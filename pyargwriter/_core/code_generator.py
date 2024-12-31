@@ -653,7 +653,7 @@ class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
         cls, existing_code: Code, flag_values: dict[str, Any]
     ) -> Code:
         # check for existing import
-        insert_line = f"from pyargwriter.api.hydra import {cls.parser_func.__name__}"
+        insert_line = f"from pyargwriter.api.hydra_plugin import {cls.parser_func.__name__}"
         if insert_line not in existing_code:
             insert_line = LineOfCode(insert_line, 0)
             # insert imports
