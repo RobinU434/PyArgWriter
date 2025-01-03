@@ -30,7 +30,7 @@ class ArgParseWriter:
         self._formatter = BlackFormatter()
 
         self._arg_parse_structure: Dict[str, Any]
-
+    
     def parse_code(self, files: List[str], output: str, **kwargs):
         """Parse given code classes and store them eventually in a given output file.
 
