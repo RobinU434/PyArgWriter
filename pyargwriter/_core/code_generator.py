@@ -485,6 +485,7 @@ class Execute(Function):
         """
         imports = Code()
         imports.append(content="from argparse import ArgumentParser")
+        imports.append(content="from pathlib import Path")
         imports.append(content="from pyargwriter import api")
 
         for module_name, path in files.items():
@@ -679,7 +680,7 @@ class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
         kwargs = []
         for key, value in flag_values.items():
             if key == "config_path":
-                value = "'/'.join(__file__.split('/')[:-1])" + " + '/" + value.lstrip("/") +  "'"
+                value = "str(Path.cwd().joinpath('" + value.lstrip("/") + "'))"
             elif isinstance(value, str):
                 value = f"'{value}'"
                 
@@ -688,7 +689,7 @@ class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
 
         # insert config_path if not already apparent 
         if "config_path" not in flag_values:
-            kwargs.append("config_path='/'.join(__file__.split('/')[:-1])")
+            kwargs.append("config_path=str(Path.cwd())")
         
         kwargs = ", ".join(kwargs)
         replace_line = "api.hydra_plugin." + cls.wrapper_func.__name__ + f"({func}, {args}, {parser}, {kwargs})"
