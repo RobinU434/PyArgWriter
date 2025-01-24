@@ -4,7 +4,7 @@ import logging
 from ast import ClassDef, FunctionDef, NodeVisitor
 from typing import Dict, List, Tuple
 
-from pyargwriter._core.docstring_parser import DocstringParser, GoogleParser
+from pyargwriter._core.docstring_parser import DocstringParser
 from pyargwriter._core.structures import (
     ArgumentStructure,
     CommandStructure,
