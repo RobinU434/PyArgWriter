@@ -1,7 +1,6 @@
 import logging
 from typing import Any, Dict, List
 from pyargwriter._core.code_generator import CodeGenerator
-from pyargwriter._core.code_parser import CodeParser
 from pyargwriter._core.code_inspector import ModuleInspector
 from pyargwriter.decorator import overwrite_protection
 from pyargwriter.utils.file_system import (
