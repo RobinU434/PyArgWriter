@@ -138,7 +138,7 @@ class SetupCommandParser(Function):
     def __init__(self, module_name: str, no_imports: bool = False) -> None:
         name = f"setup_{module_name.lower()}_parser"
         signature = {"parser": ArgumentParser}
-        return_type = Tuple[ArgumentParser, Dict[str, ArgumentParser]]   
+        return_type = Tuple[ArgumentParser, Dict[str, ArgumentParser]]
         super().__init__(name, signature, return_type)
 
         self._commands: List[CommandStructure]
@@ -170,7 +170,7 @@ class SetupCommandParser(Function):
         """Add code to set up the subcommand parser and add subcommands."""
 
         self.append(content="subparser = {}")
-        
+
         subparser_name = "command_subparser"
         self.append(
             content=f"{subparser_name} = parser.add_subparsers(dest='command', title='command')",
@@ -188,7 +188,7 @@ class SetupCommandParser(Function):
                 cls = DecoratorWrapGenerator.get_class(flag.name)
                 self = cls.add_on_parser_level(self, flag.values)
             self.append(f"subparser['{parser_var_name}'] = {parser_var_name}")
-            
+
     def _add_parser(
         self,
         subparser_name,
@@ -302,7 +302,7 @@ class SetupParser(Function):
             no_imports = len(modules) - 1
             for module in modules.modules:
                 self.append(
-                    content=f"{module.name.lower()}_parser = module_subparser.add_parser(name='{module.name}', help='{module.help_msg}')"
+                    content=f"{module.name.lower()}_parser = module_subparser.add_parser(name='{module.name}', help='{module.help}')"
                 )
                 setup_command_parser = SetupCommandParser(
                     module.name, no_imports=bool(no_imports)
@@ -379,8 +379,11 @@ class Execute(Function):
     ) -> None:
         self._insert_command_calling(modules)
 
-        modules_to_import = {f"setup_{module_name.lower()}_parser": setup_parser_file for module_name in modules.locations.keys()}
-        modules_to_import = {**modules_to_import, **modules.locations}      
+        modules_to_import = {
+            f"setup_{module_name.lower()}_parser": setup_parser_file
+            for module_name in modules.locations.keys()
+        }
+        modules_to_import = {**modules_to_import, **modules.locations}
         modules_to_import["setup_parser"] = setup_parser_file
 
         self._insert_imports(modules_to_import, project_root)
@@ -398,7 +401,9 @@ class Execute(Function):
             self.append(
                 content=f"module = {module.name}({create_call_args(module.args)})"
             )
-            self.append(content=f"_, command_parser = setup_{module.name.lower()}_parser(ArgumentParser())")
+            self.append(
+                content=f"_, command_parser = setup_{module.name.lower()}_parser(ArgumentParser())"
+            )
 
             # generate matches from commands
             match_case = self._generate_command_match_case(module.commands)
@@ -428,7 +433,6 @@ class Execute(Function):
             command: CommandStructure
             match_name = command.name.replace("_", "-")
 
-            
             body = Code.from_str(
                 code=f"module.{command.name}({create_call_args(command.args)})"
             )
@@ -465,7 +469,9 @@ class Execute(Function):
                 f"module = {module.name}({create_call_args(module.args)})"
             )
             body.append(self._generate_command_match_case(module.commands))
-            body.append(content=f"_, command_parser = setup_{module.name.lower()}_parser(ArgumentParser())")
+            body.append(
+                content=f"_, command_parser = setup_{module.name.lower()}_parser(ArgumentParser())"
+            )
             matches.append(Match(match_value=match_name, body=body))
 
         # add default case
@@ -598,7 +604,7 @@ class MainCaller(Code):
 
 class DecoratorWrapGenerator(Code, ABC):
     wrapper_func: Callable
-    
+
     def __init__(self):
         super().__init__()
 
@@ -620,11 +626,10 @@ class DecoratorWrapGenerator(Code, ABC):
         cls_name = cls_name[0].upper() + cls_name[1:]
         cls_name += DecoratorWrapGenerator.__name__
         return globals()[cls_name]
-    
+
     @classmethod
     def get_wrapper(cls) -> Callable:
-        return cls.wrapper_func 
-                
+        return cls.wrapper_func
 
     @classmethod
     @abstractmethod
@@ -643,9 +648,10 @@ class DecoratorWrapGenerator(Code, ABC):
 
 class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
     from pyargwriter.api.hydra_plugin import hydra_wrapper, add_hydra_parser
+
     wrapper_func = hydra_wrapper
     parser_func = add_hydra_parser
-    
+
     def __init__(self):
         super().__init__()
 
@@ -654,7 +660,9 @@ class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
         cls, existing_code: Code, flag_values: dict[str, Any]
     ) -> Code:
         # check for existing import
-        insert_line = f"from pyargwriter.api.hydra_plugin import {cls.parser_func.__name__}"
+        insert_line = (
+            f"from pyargwriter.api.hydra_plugin import {cls.parser_func.__name__}"
+        )
         if insert_line not in existing_code:
             insert_line = LineOfCode(insert_line, 0)
             # insert imports
@@ -683,16 +691,19 @@ class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
                 value = "str(Path.cwd().joinpath('" + value.lstrip("/") + "'))"
             elif isinstance(value, str):
                 value = f"'{value}'"
-                
+
             kwargs.append(f"{key}={value}")
 
-
-        # insert config_path if not already apparent 
+        # insert config_path if not already apparent
         if "config_path" not in flag_values:
             kwargs.append("config_path=str(Path.cwd())")
-        
+
         kwargs = ", ".join(kwargs)
-        replace_line = "api.hydra_plugin." + cls.wrapper_func.__name__ + f"({func}, {args}, {parser}, {kwargs})"
+        replace_line = (
+            "api.hydra_plugin."
+            + cls.wrapper_func.__name__
+            + f"({func}, {args}, {parser}, {kwargs})"
+        )
         existing_code.replace(LineOfCode(replace_line, 0), -1)
         return existing_code
 
