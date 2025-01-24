@@ -20,6 +20,18 @@ from hydra.core.utils import _flush_loggers
 
 
 def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
+    """_summary_
+
+    Args:
+        new_parser (ArgumentParser, optional): _description_. Defaults to None.
+
+    Raises:
+        err: _description_
+        NotImplementedError: _description_
+
+    Returns:
+        ArgumentParser: _description_
+    """
     if new_parser is None:
         new_parser = ArgumentParser(add_help=False)
 
@@ -56,8 +68,7 @@ def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
             except ArgumentError as err:
                 if action.dest == "help":
                     continue
-                else:
-                    raise err
+                raise err
         elif isinstance(action, _VersionAction):
             new_parser.add_argument(
                 "--hydra-version",
@@ -79,6 +90,17 @@ def hydra_wrapper(
     config_path: str = _UNSPECIFIED_,
     config_name: str = None,
 ):
+    """_summary_
+
+    Args:
+        task_func (Callable[[Any], Any]): _description_
+        cli_args (Dict[str, Any]): _description_
+        arg_parser (ArgumentParser): _description_
+        config_var_name (str, optional): _description_. Defaults to "cfg".
+        version_base (str, optional): _description_. Defaults to _UNSPECIFIED_.
+        config_path (str, optional): _description_. Defaults to _UNSPECIFIED_.
+        config_name (str, optional): _description_. Defaults to None.
+    """
     version.setbase(version_base)
 
     if config_path is _UNSPECIFIED_:

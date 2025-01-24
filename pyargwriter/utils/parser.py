@@ -29,7 +29,8 @@ def add_formatter_args(parser: ArgumentParser) -> ArgumentParser:
     """Add formatter-related arguments to the given ArgumentParser.
 
     Args:
-        parser (ArgumentParser): The ArgumentParser to which formatter-related arguments will be added.
+        parser (ArgumentParser): The ArgumentParser to which formatter-related
+            arguments will be added.
 
     Returns:
         ArgumentParser: The modified ArgumentParser.
@@ -47,7 +48,8 @@ def add_parser_args(parser: ArgumentParser) -> ArgumentParser:
     """Add arguments for parsing code to the given ArgumentParser.
 
     Args:
-        parser (ArgumentParser): The ArgumentParser to which parsing-related arguments will be added.
+        parser (ArgumentParser): The ArgumentParser to which parsing-related
+            arguments will be added.
 
     Returns:
         ArgumentParser: The modified ArgumentParser.
@@ -74,7 +76,8 @@ def add_writer_args(parser: ArgumentParser) -> ArgumentParser:
     """Add arguments for writing code to the given ArgumentParser.
 
     Args:
-        parser (ArgumentParser): The ArgumentParser to which writing-related arguments will be added.
+        parser (ArgumentParser): The ArgumentParser to which writing-related
+            arguments will be added.
 
     Returns:
         ArgumentParser: The modified ArgumentParser.
@@ -83,7 +86,8 @@ def add_writer_args(parser: ArgumentParser) -> ArgumentParser:
         "--input",
         dest="file",
         type=str,
-        help="Collection of paths to files with structural information to generate the parser from. ",
+        help="Collection of paths to files with structural information"
+            " to generate the parser from. ",
         required=True,
     )
     parser.add_argument(
@@ -108,7 +112,8 @@ def add_generate_parser_args(parser: ArgumentParser) -> ArgumentParser:
     """Add arguments for generating an argument parser to the given ArgumentParser.
 
     Args:
-        parser (ArgumentParser): The ArgumentParser to which generation-related arguments will be added.
+        parser (ArgumentParser): The ArgumentParser to which generation-related 
+            arguments will be added.
 
     Returns:
         ArgumentParser: The modified ArgumentParser.
@@ -164,7 +169,8 @@ def setup_parser(parser: ArgumentParser) -> ArgumentParser:
 
     gen_arg_pars_parser = subparser.add_parser(
         "generate-argparser",
-        help="Generate parser.py which contains a setup_parser function to setup an appropriate parser.",
+        help="Generate parser.py which contains a setup_parser function" 
+            "to setup an appropriate parser.",
     )
     gen_arg_pars_parser = add_generate_parser_args(gen_arg_pars_parser)
 
