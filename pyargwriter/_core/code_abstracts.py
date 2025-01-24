@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import logging
 from typing import Any, Dict, List, Tuple, Type, get_origin
-import typing
 
 from pyargwriter import TAB_SIZE
 from pyargwriter.decorator import overwrite_protection

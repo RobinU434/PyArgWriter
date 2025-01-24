@@ -16,15 +16,20 @@ from pyargwriter.utils.formatter import BlackFormatter
 class ArgParseWriter:
     """A utility class for parsing and generating code for argument parsing."""
 
-    def __init__(self, force: bool = False, **kwargs) -> None:
+    def __init__(self, force: bool = False, docstring_format: str = "google", **kwargs) -> None:
         """Initialize ArgParseWriter instance.
 
         Args:
             force (bool, optional): Whether to force overwriting existing files. Defaults to False.
+            docstring_format (str, optional): format of docstring. Available are: 
+                - Epytext
+                - reST
+                - Google
+                - Numpydoc
         """
         self._force = force
 
-        self._inspector = ModuleInspector()
+        self._inspector = ModuleInspector(docstring_format)
         self._generator = CodeGenerator()
 
         self._formatter = BlackFormatter()

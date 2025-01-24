@@ -1,8 +1,10 @@
 from abc import ABC, abstractmethod
-from ast import ClassDef, Dict, FunctionDef
+from ast import ClassDef, FunctionDef
 import ast
+import inspect
 import logging
-
+import re
+from typing import Dict
 
 
 class DocstringParser(ABC):
@@ -21,18 +23,52 @@ class DocstringParser(ABC):
 
     @abstractmethod
     def get_help_msg(self, node: FunctionDef | ClassDef) -> str:
+        """get first line of docstring
+
+        Args:
+            node (FunctionDef | ClassDef): ast object to extract docstring from
+
+        Returns:
+            str: first line of docstring
+        """
         raise NotImplementedError
-    
+
     @abstractmethod
     def get_arg_help_msg(self, node: FunctionDef) -> Dict[str, str]:
+        """get key value pairs of arg_name and its help message
+
+        Args:
+            node (FunctionDef): where to extract the docstring from
+
+        Returns:
+            Dict[str, str]: arg_name: help message
+        """
         raise NotImplementedError
 
     @abstractmethod
     def get_return_msg(self, node: FunctionDef) -> str:
-        raise NotADirectoryError
-    
+        """get help message of return type
 
-class GoogleDocstringParser(DocstringParser):
+        Args:
+            node (FunctionDef): where to extract docstring from
+
+        Returns:
+            str: help message of return type
+        """
+        raise NotImplementedError
+
+    @classmethod
+    def build_parser(cls, docstring_format: str) -> "DocstringParser":
+        class_dict = {
+            "epytext": EpyTextParser,
+            "rest": ReSTParser,
+            "google": GoogleParser,
+            "numpydoc": NumpyDocParser,
+        }
+        return class_dict[docstring_format.lower()]()
+
+
+class GoogleParser(DocstringParser):
     def __init__(self):
         super().__init__()
 
@@ -43,13 +79,80 @@ class GoogleDocstringParser(DocstringParser):
             msg = self.default_help_msg
         else:
             msg = docstring.split("\n")[0]
-        
+
         return msg
-    
+
     def get_arg_help_msg(self, node):
-        pass
+        docstring = ast.get_docstring(node)
+        num_args = len(node.args.args)
+        if num_args == 0:
+            return dict()
+        elif num_args == 1 and node.args.args[0].arg == "self":
+            return dict()
 
-        
+        # if there is no documentation
+        if docstring is None:
+            keys = [arg.arg for arg in node.args.args]
+            if "self" in keys:
+                keys.remove("self")
+            values = [self.default_help_msg] * len(keys)
+            res = dict(zip(keys, values))
+            return res
 
-        
-    
+        # if there is a sufficient docstring -> extract message
+        docstring: list[str] = docstring.split("\n")
+        args_start = docstring.index("Args:")
+        res = {}
+        for idx in range(args_start + 1, args_start + num_args):
+            splits = docstring[idx].strip(" ").split(":")
+            arg = splits[0]
+            # delete bracket with type information
+            arg = re.sub(r"\(.*?\)", "", arg).strip(" ")
+            msg = ":".join(splits[1:]).strip(" ")
+            res[arg] = msg
+        return res
+
+    def get_return_msg(self, node):
+        return super().get_return_msg(node)
+
+
+class EpyTextParser(DocstringParser):
+    def __init__(self):
+        super().__init__()
+
+    def get_help_msg(self, node):
+        return super().get_help_msg(node)
+
+    def get_arg_help_msg(self, node):
+        return super().get_arg_help_msg(node)
+
+    def get_return_msg(self, node):
+        return super().get_return_msg(node)
+
+
+class ReSTParser(DocstringParser):
+    def __init__(self):
+        super().__init__()
+
+    def get_help_msg(self, node):
+        return super().get_help_msg(node)
+
+    def get_arg_help_msg(self, node):
+        return super().get_arg_help_msg(node)
+
+    def get_return_msg(self, node):
+        return super().get_return_msg(node)
+
+
+class NumpyDocParser(DocstringParser):
+    def __init__(self):
+        super().__init__()
+
+    def get_help_msg(self, node):
+        return super().get_help_msg(node)
+
+    def get_arg_help_msg(self, node):
+        return super().get_arg_help_msg(node)
+
+    def get_return_msg(self, node):
+        return super().get_return_msg(node)

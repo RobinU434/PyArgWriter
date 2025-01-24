@@ -16,6 +16,12 @@ def add_general_args(parser: ArgumentParser) -> ArgumentParser:
         default="WARN",
         help="Sets log level for command execution.",
     )
+    parser.add_argument(
+        "--docstring-format",
+        choices=["Epytext", "reST", "Google", "Numpydoc"],
+        default="Google",
+        help="Format of docstring in given file."
+    )
     return parser
 
 

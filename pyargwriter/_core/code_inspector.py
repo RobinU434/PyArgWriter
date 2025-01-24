@@ -4,6 +4,7 @@ import logging
 from ast import ClassDef, FunctionDef, NodeVisitor
 from typing import Dict, List, Tuple
 
+from pyargwriter._core.docstring_parser import DocstringParser, GoogleParser
 from pyargwriter._core.structures import (
     ArgumentStructure,
     CommandStructure,
@@ -126,13 +127,14 @@ class DecoratorInspector(NodeVisitor):
 class ClassInspector(NodeVisitor):
     """inspect class internals like the functions, ..."""
 
-    def __init__(self):
+    def __init__(self, docstring_format: str = "google"):
         super().__init__()
 
         self._func_signatures: Dict[str, Tuple[List[ArgumentStructure], str, List[DecoratorFlagStructure]]] = {}
         """dict[str, Tuple[List[ArgumentStructure], str]: key: func_name, value:"""
 
         self.decorator_inspector = DecoratorInspector()
+        self.docstring_parser = DocstringParser.build_parser(docstring_format)
 
     def visit_FunctionDef(self, node: FunctionDef):
         if node.name == "__init__":
@@ -146,7 +148,8 @@ class ClassInspector(NodeVisitor):
             self.decorator_inspector.visit_FunctionDef(node)
             decorator_flag_structs = self.decorator_inspector.get_decorator_flag_structs()
             arguments = self._get_arguments(node, exceptions=self._get_argument_exceptions(decorator_flag_structs))
-            help_message, _ = self._get_help_msgs(node, 0)
+            help_message = self.docstring_parser.get_help_msg(node)
+            # help_message, _ = self._get_help_msgs(node)
             
             self._func_signatures[node.name] = (arguments, help_message, decorator_flag_structs)
 
@@ -166,7 +169,7 @@ class ClassInspector(NodeVisitor):
         name_decorator = list(filter(lambda x: isinstance(x, ast.Name), func.decorator_list))
         if "staticmethod" not in [decorator.id for decorator in name_decorator]:
             num_args -= 1
-        _, helps = self._get_help_msgs(func, num_args)
+        _, helps = self._get_help_msgs(func)
 
         # add defaults
         defaults = [None] * num_args
@@ -223,13 +226,11 @@ class ClassInspector(NodeVisitor):
         return res
 
 
-    @staticmethod
-    def _get_help_msgs(func: FunctionDef, num_args: int = 0) -> Tuple[str, List[str]]:
+    def _get_help_msgs(self, func: FunctionDef) -> Tuple[str, List[str]]:
         """extract help messages from docstring
 
         Args:
             func (FunctionDef): function to extract docstring from
-            num_args (int): how many arguments are in the function
 
         Raises:
             ValueError: if there is a docstring missing
@@ -237,25 +238,9 @@ class ClassInspector(NodeVisitor):
         Returns:
             Tuple[str, List[str]]: first line in docstring, list of doc-strings for each argument
         """
-        doc_str = ast.get_docstring(func)
-        if doc_str is None:
-            msg = f"No docstring for method {func.name} available"
-            logging.fatal(msg)
-            error_msg = f"Process was aborted because of missing doc-string in function: {func.name}"
-            raise ValueError(error_msg)
-        doc_str = doc_str.split("\n")
-        first_line = doc_str[0] if len(doc_str[0]) > 0 else doc_str[1]
-        # get argument docstring
-        if num_args:
-            args_index = doc_str.index("Args:") + 1
-            arg_doc_strs = doc_str[args_index : args_index + num_args]  # noqa: E203
-            helps = [
-                ":".join(arg_doc_str.split(":")[1:]).strip(" ")
-                for arg_doc_str in arg_doc_strs
-            ]
-        else:
-            helps = []
-
+        first_line = self.docstring_parser.get_help_msg(func)
+        helps = self.docstring_parser.get_arg_help_msg(func).values()
+        helps = list(helps)
         return first_line, helps
 
     @property
@@ -282,10 +267,11 @@ class ClassInspector(NodeVisitor):
 
 
 class ModuleInspector(NodeVisitor):
-    def __init__(self):
+    def __init__(self, docstring_format: str = "google"):
         super().__init__()
 
-        self.func_inspector = ClassInspector()
+        self.func_inspector = ClassInspector(docstring_format)
+        self.docstring_parser = DocstringParser.build_parser(docstring_format)
         self._modules = ModuleStructures()
         self.imports = {}
 
@@ -369,12 +355,7 @@ class ModuleInspector(NodeVisitor):
         Returns:
             str: a short explanation what the class represents.
         """
-        docstring = ast.get_docstring(node)
-        if docstring is None:
-            logging.info("No docstring in class declaration found.")
-            help_message = ""
-        else:
-            help_message = docstring.split("\n")[0]
+        help_message = self.docstring_parser.get_help_msg(node)
         return help_message
 
     @property
