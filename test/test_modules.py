@@ -1,15 +1,15 @@
 import pytest
 from pyargwriter.entrypoint import ArgParseWriter
-from pyargwriter.utils.code_generator import CodeGenerator
-from pyargwriter.utils.code_parser import CodeParser
+from pyargwriter._core.code_generator import CodeGenerator
+from pyargwriter._core.code_inspector import ModuleInspector
 from pyargwriter.utils.file_system import load_file_tree
 
 
 def test_code_parser(cleanup_tmp_dir):
-    parser = CodeParser()
+    parser = ModuleInspector()
     file = "test/test_project/tester.py"
     tree = load_file_tree(file)
-    parser.parse_tree(tree, file)
+    parser.visit(tree, file)
     parser.write("test/tmp/out.yaml")
     parser.write("test/tmp/out.yml")
     parser.write("test/tmp/out.json")
@@ -18,14 +18,14 @@ def test_code_parser(cleanup_tmp_dir):
     parser.modules.to_dict()
 
     repr(parser)
-    print(parser.module_serialized)
+    print(parser.modules)
 
 
 def test_code_generator(cleanup_tmp_dir):
-    parser = CodeParser()
+    parser = ModuleInspector()
     file = "test/test_project/tester.py"
     tree = load_file_tree(file)
-    parser.parse_tree(tree, file)
+    parser.visit(tree, file)
     parser.write("test/tmp/out.yaml")
     parser.write("test/tmp/out.yml")
     parser.write("test/tmp/out.json")
@@ -79,8 +79,8 @@ def test_fail_class(cleanup_tmp_dir, caplog):
     pyargwriter = ArgParseWriter(True)
 
     files = ["test/test_project/fail_class.py"]
-    with pytest.raises(ValueError):
-        pyargwriter.parse_code(files=files, output=None)
+    # Does not fail anymore... made it more robust
+    pyargwriter.parse_code(files=files, output=".")
 
     with pytest.raises(UnboundLocalError):
         pyargwriter.write_code(
