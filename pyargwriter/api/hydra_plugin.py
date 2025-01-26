@@ -61,12 +61,12 @@ def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
         elif isinstance(action, _StoreTrueAction):
             try:            
                 new_parser.add_argument(
-                    *option_strings,
+                    *option_strings,            
                     action="store_true",
                     help=action.help,
                 )
             except ArgumentError as err:
-                if action.dest == "help":
+                if action.dest == "help":   
                     continue
                 raise err
         elif isinstance(action, _VersionAction):
@@ -129,6 +129,17 @@ def hydra_wrapper(
     parameters.pop(config_var_name)
     task_func_args = {k: getattr(cli_args, k) for k in parameters}
 
+    # add default job name as task function name if not provided otherwise
+    overrides = {}
+    for ele in cli_args.overrides:
+        k, v = ele.split("=")
+        overrides[k] = v
+    job_name_key = "hydra.job.name"
+    if job_name_key not in overrides:
+        overrides[job_name_key] = task_func.__name__
+    cli_args.overrides = [f"{k}={v}" for k, v in overrides.items()]
+
+    
     if cli_args.experimental_rerun is not None:
         cfg = _get_rerun_conf(
             cli_args.experimental_run, cli_args.overrides
