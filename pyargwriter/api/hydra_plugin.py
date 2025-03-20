@@ -59,13 +59,14 @@ def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
             )
                 
         elif isinstance(action, _StoreTrueAction):
+            action_help = action.help
             if action.dest == "shell_completion":
-                continue
+                action_help = repr(action.help)
             try:            
                 new_parser.add_argument(
                     *option_strings,            
                     action="store_true",
-                    help=action.help,
+                    help=action_help,
                 )
             except ArgumentError as err:
                 if action.dest == "help":   
