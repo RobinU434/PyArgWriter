@@ -40,7 +40,7 @@ def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
     for action in hydra_parser._actions:
         action: Action
         option_strings = action.option_strings
-            
+
         if len(option_strings) == 0:
             new_parser.add_argument(
                 action.dest,
@@ -59,6 +59,8 @@ def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
             )
                 
         elif isinstance(action, _StoreTrueAction):
+            if action.dest == "shell_completion":
+                continue
             try:            
                 new_parser.add_argument(
                     *option_strings,            
