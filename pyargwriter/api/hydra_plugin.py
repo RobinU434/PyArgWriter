@@ -6,7 +6,7 @@ from argparse import (
     _StoreTrueAction,
     _VersionAction,
     Namespace,
-    ArgumentError
+    ArgumentError,
 )
 from textwrap import dedent
 from typing import Any, Callable, Dict
@@ -16,7 +16,6 @@ from hydra._internal.deprecation_warning import deprecation_warning
 from hydra._internal.utils import _run_hydra, get_args_parser
 from hydra.main import _UNSPECIFIED_, _get_rerun_conf
 from hydra.core.utils import _flush_loggers
-
 
 
 def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
@@ -57,19 +56,21 @@ def add_hydra_parser(new_parser: ArgumentParser = None) -> ArgumentParser:
                 help=action.help,
                 choices=action.choices,
             )
-                
+
         elif isinstance(action, _StoreTrueAction):
-            action_help = action.help
-            if action.dest == "shell_completion":
-                action_help = repr(action.help)
-            try:            
+            try:
                 new_parser.add_argument(
-                    *option_strings,            
+                    *option_strings,
                     action="store_true",
-                    help=action_help,
+                    # for LazyCompletionHelp
+                    help=(
+                        repr(action.help)
+                        if action.dest == "shell_completion"
+                        else action.help
+                    ),      
                 )
             except ArgumentError as err:
-                if action.dest == "help":   
+                if action.dest == "help":
                     continue
                 raise err
         elif isinstance(action, _VersionAction):
@@ -122,7 +123,7 @@ def hydra_wrapper(
             config_path = "."
         else:
             config_path = "."
-    
+
     # TODO: hacky solution: help is being ignored while adding the hydra parser so help is always False
     cli_args["help"] = False
     cli_args = Namespace(**cli_args)  # convert to Namespace
@@ -142,11 +143,8 @@ def hydra_wrapper(
         overrides[job_name_key] = task_func.__name__
     cli_args.overrides = [f"{k}={v}" for k, v in overrides.items()]
 
-    
     if cli_args.experimental_rerun is not None:
-        cfg = _get_rerun_conf(
-            cli_args.experimental_run, cli_args.overrides
-        )
+        cfg = _get_rerun_conf(cli_args.experimental_run, cli_args.overrides)
         task_func(**{config_var_name: cfg, **task_func_args})
         _flush_loggers()
     else:
