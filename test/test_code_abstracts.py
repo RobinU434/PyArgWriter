@@ -5,7 +5,7 @@ LineOfCode, Code, Function, Match, MatchCase, and DefaultCase.
 """
 
 import pytest
-from clify._core.code_abstracts import (
+from pyargwriter._core.code_abstracts import (
     LineOfCode,
     Code,
     Function,
@@ -13,7 +13,7 @@ from clify._core.code_abstracts import (
     MatchCase,
     DefaultCase,
 )
-from clify import TAB_SIZE
+from pyargwriter import TAB_SIZE
 
 
 class TestLineOfCode:

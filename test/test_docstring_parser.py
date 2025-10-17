@@ -6,7 +6,7 @@ GoogleParser, EpyTextParser, ReSTParser, and NumpyDocParser.
 
 import ast
 import pytest
-from clify._core.docstring_parser import (
+from pyargwriter._core.docstring_parser import (
     DocstringParser,
     GoogleParser,
     EpyTextParser,

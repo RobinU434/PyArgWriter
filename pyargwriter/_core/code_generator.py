@@ -2,8 +2,8 @@ from argparse import ArgumentParser
 from copy import deepcopy
 import logging
 from typing import Any, Callable, Dict, List, Tuple, Type
-from clify.utils.casts import create_call_args, dict2args, format_help
-from clify._core.code_abstracts import (
+from pyargwriter.utils.casts import create_call_args, dict2args, format_help
+from pyargwriter._core.code_abstracts import (
     Code,
     DefaultCase,
     Function,
@@ -12,8 +12,8 @@ from clify._core.code_abstracts import (
     MatchCase,
 )
 from abc import ABC, abstractmethod
-from clify.utils.file_system import load_json, load_yaml
-from clify._core.structures import (
+from pyargwriter.utils.file_system import load_json, load_yaml
+from pyargwriter._core.structures import (
     ArgumentStructure,
     CommandStructure,
     DecoratorFlagStructure,
@@ -648,7 +648,7 @@ class DecoratorWrapGenerator(Code, ABC):
 
 
 class HydraDecoratorWrapGenerator(DecoratorWrapGenerator):
-    from clify.api.hydra_plugin import hydra_wrapper, add_hydra_parser
+    from pyargwriter.api.hydra_plugin import hydra_wrapper, add_hydra_parser
 
     wrapper_func = hydra_wrapper
     parser_func = add_hydra_parser

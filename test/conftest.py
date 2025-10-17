@@ -1,7 +1,7 @@
 import glob
 import os
 import pytest
-from clify.entrypoint import ArgParseWriter
+from pyargwriter.entrypoint import ArgParseWriter
 
 
 def pytest_addoption(parser):
