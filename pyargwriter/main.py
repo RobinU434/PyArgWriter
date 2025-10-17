@@ -40,7 +40,8 @@ def main():
     """
     parser = create_parser()
     args = vars(parser.parse_args())
-    set_log_level(args["log_level"])
+    log_level = args.pop("log_level", "WARNING")
+    set_log_level(log_level)
 
     if not execute(args):
         parser.print_usage()
