@@ -258,6 +258,37 @@ class EmptyDoc:
 class TestEpyTextParser:
     """Test cases for EpyTextParser class."""
 
+    EPYTEXT_CODE = '''
+class Calculator:
+    """A simple calculator class."""
+    
+    def add(self, a, b):
+        """
+        Add two numbers together.
+        
+        @param a: The first number to add.
+        @type a: int
+        @param b: The second number to add.
+        @type b: int
+        @return: The sum of a and b.
+        @rtype: int
+        """
+        return a + b
+    
+    def multiply(self, x, y):
+        """
+        Multiply two numbers.
+        
+        @param x: First factor
+        @param y: Second factor
+        @returns: Product of x and y
+        """
+        return x * y
+    
+    def no_doc(self, arg):
+        pass
+'''
+
     @pytest.fixture
     def parser(self):
         """Provide an EpyTextParser instance."""
@@ -268,48 +299,107 @@ class TestEpyTextParser:
         assert isinstance(parser, EpyTextParser)
         assert isinstance(parser, DocstringParser)
 
-    def test_get_help_msg_not_implemented(self, parser):
-        """Test that get_help_msg raises NotImplementedError."""
-        code = '''
-def test_func():
-    """Test function."""
-    pass
-'''
-        tree = ast.parse(code)
-        func_node = tree.body[0]
+    def test_get_help_msg(self, parser):
+        """Test that get_help_msg extracts first line."""
+        tree = ast.parse(self.EPYTEXT_CODE)
+        class_node = tree.body[0]
         
-        with pytest.raises(NotImplementedError):
-            parser.get_help_msg(func_node)
+        help_msg = parser.get_help_msg(class_node)
+        assert help_msg == "A simple calculator class."
 
-    def test_get_arg_help_msg_not_implemented(self, parser):
-        """Test that get_arg_help_msg raises NotImplementedError."""
-        code = '''
-def test_func(a, b):
-    """Test function."""
-    pass
-'''
-        tree = ast.parse(code)
-        func_node = tree.body[0]
+    def test_get_help_msg_function(self, parser):
+        """Test get_help_msg for function."""
+        tree = ast.parse(self.EPYTEXT_CODE)
+        class_node = tree.body[0]
+        add_method = class_node.body[1]  # Index 0 is docstring, 1 is first method
         
-        with pytest.raises(NotImplementedError):
-            parser.get_arg_help_msg(func_node)
+        help_msg = parser.get_help_msg(add_method)
+        assert help_msg == "Add two numbers together."
 
-    def test_get_return_msg_not_implemented(self, parser):
-        """Test that get_return_msg raises NotImplementedError."""
-        code = '''
-def test_func():
-    """Test function."""
-    return 42
-'''
-        tree = ast.parse(code)
-        func_node = tree.body[0]
+    def test_get_help_msg_no_docstring(self, parser):
+        """Test get_help_msg returns default for no docstring."""
+        tree = ast.parse(self.EPYTEXT_CODE)
+        class_node = tree.body[0]
+        no_doc_method = class_node.body[3]  # Index 3 is the method without docstring
         
-        with pytest.raises(NotImplementedError):
-            parser.get_return_msg(func_node)
+        help_msg = parser.get_help_msg(no_doc_method)
+        assert help_msg == parser.default_help_msg
+
+    def test_get_arg_help_msg(self, parser):
+        """Test get_arg_help_msg parses @param tags."""
+        tree = ast.parse(self.EPYTEXT_CODE)
+        class_node = tree.body[0]
+        add_method = class_node.body[1]  # Index 0 is docstring, 1 is first method
+        
+        arg_help = parser.get_arg_help_msg(add_method)
+        assert "a" in arg_help
+        assert "b" in arg_help
+        assert arg_help["a"] == "The first number to add."
+        assert arg_help["b"] == "The second number to add."
+        assert "self" not in arg_help
+
+    def test_get_arg_help_msg_no_docstring(self, parser):
+        """Test get_arg_help_msg returns defaults for no docstring."""
+        tree = ast.parse(self.EPYTEXT_CODE)
+        class_node = tree.body[0]
+        no_doc_method = class_node.body[3]  # Index 3 is the method without docstring
+        
+        arg_help = parser.get_arg_help_msg(no_doc_method)
+        assert "arg" in arg_help
+        assert arg_help["arg"] == parser.default_help_msg
+
+    def test_get_return_msg(self, parser):
+        """Test get_return_msg parses @return tag."""
+        tree = ast.parse(self.EPYTEXT_CODE)
+        class_node = tree.body[0]
+        add_method = class_node.body[1]  # Index 0 is docstring, 1 is first method
+        
+        return_msg = parser.get_return_msg(add_method)
+        assert return_msg == "The sum of a and b."
+
+    def test_get_return_msg_returns_variant(self, parser):
+        """Test get_return_msg parses @returns tag."""
+        tree = ast.parse(self.EPYTEXT_CODE)
+        class_node = tree.body[0]
+        multiply_method = class_node.body[2]  # Index 2 is second method
+        
+        return_msg = parser.get_return_msg(multiply_method)
+        assert return_msg == "Product of x and y"
 
 
 class TestReSTParser:
     """Test cases for ReSTParser class."""
+
+    REST_CODE = '''
+class DataProcessor:
+    """Process and transform data."""
+    
+    def process(self, data, validate):
+        """
+        Process the input data.
+        
+        :param data: Input data to process
+        :type data: list
+        :param validate: Whether to validate data
+        :type validate: bool
+        :return: Processed data result
+        :rtype: dict
+        """
+        return {"data": data}
+    
+    def transform(self, input_val, output_format):
+        """
+        Transform data to specified format.
+        
+        :param input_val: Input value to transform
+        :param output_format: Desired output format
+        :returns: Transformed result
+        """
+        return str(input_val)
+    
+    def no_doc(self, arg):
+        pass
+'''
 
     @pytest.fixture
     def parser(self):
@@ -321,35 +411,122 @@ class TestReSTParser:
         assert isinstance(parser, ReSTParser)
         assert isinstance(parser, DocstringParser)
 
-    def test_get_help_msg_not_implemented(self, parser):
-        """Test that get_help_msg raises NotImplementedError."""
-        code = '''
-def test_func():
-    """Test function."""
-    pass
-'''
-        tree = ast.parse(code)
-        func_node = tree.body[0]
+    def test_get_help_msg(self, parser):
+        """Test that get_help_msg extracts first line."""
+        tree = ast.parse(self.REST_CODE)
+        class_node = tree.body[0]
         
-        with pytest.raises(NotImplementedError):
-            parser.get_help_msg(func_node)
+        help_msg = parser.get_help_msg(class_node)
+        assert help_msg == "Process and transform data."
 
-    def test_get_arg_help_msg_not_implemented(self, parser):
-        """Test that get_arg_help_msg raises NotImplementedError."""
-        code = '''
-def test_func(a, b):
-    """Test function."""
-    pass
-'''
-        tree = ast.parse(code)
-        func_node = tree.body[0]
+    def test_get_help_msg_function(self, parser):
+        """Test get_help_msg for function."""
+        tree = ast.parse(self.REST_CODE)
+        class_node = tree.body[0]
+        process_method = class_node.body[1]  # Index 0 is docstring, 1 is first method
         
-        with pytest.raises(NotImplementedError):
-            parser.get_arg_help_msg(func_node)
+        help_msg = parser.get_help_msg(process_method)
+        assert help_msg == "Process the input data."
+
+    def test_get_help_msg_no_docstring(self, parser):
+        """Test get_help_msg returns default for no docstring."""
+        tree = ast.parse(self.REST_CODE)
+        class_node = tree.body[0]
+        no_doc_method = class_node.body[3]  # Index 3 is the method without docstring
+        
+        help_msg = parser.get_help_msg(no_doc_method)
+        assert help_msg == parser.default_help_msg
+
+    def test_get_arg_help_msg(self, parser):
+        """Test get_arg_help_msg parses :param tags."""
+        tree = ast.parse(self.REST_CODE)
+        class_node = tree.body[0]
+        process_method = class_node.body[1]  # Index 0 is docstring, 1 is first method
+        
+        arg_help = parser.get_arg_help_msg(process_method)
+        assert "data" in arg_help
+        assert "validate" in arg_help
+        assert arg_help["data"] == "Input data to process"
+        assert arg_help["validate"] == "Whether to validate data"
+        assert "self" not in arg_help
+
+    def test_get_arg_help_msg_no_docstring(self, parser):
+        """Test get_arg_help_msg returns defaults for no docstring."""
+        tree = ast.parse(self.REST_CODE)
+        class_node = tree.body[0]
+        no_doc_method = class_node.body[3]  # Index 3 is the method without docstring
+        
+        arg_help = parser.get_arg_help_msg(no_doc_method)
+        assert "arg" in arg_help
+        assert arg_help["arg"] == parser.default_help_msg
+
+    def test_get_return_msg(self, parser):
+        """Test get_return_msg parses :return tag."""
+        tree = ast.parse(self.REST_CODE)
+        class_node = tree.body[0]
+        process_method = class_node.body[1]  # Index 0 is docstring, 1 is first method
+        
+        return_msg = parser.get_return_msg(process_method)
+        assert return_msg == "Processed data result"
+
+    def test_get_return_msg_returns_variant(self, parser):
+        """Test get_return_msg parses :returns tag."""
+        tree = ast.parse(self.REST_CODE)
+        class_node = tree.body[0]
+        transform_method = class_node.body[2]  # Index 2 is second method
+        
+        return_msg = parser.get_return_msg(transform_method)
+        assert return_msg == "Transformed result"
 
 
 class TestNumpyDocParser:
     """Test cases for NumpyDocParser class."""
+
+    NUMPY_CODE = '''
+class ScientificCalculator:
+    """Scientific calculator with advanced operations."""
+    
+    def compute(self, x, y, operation):
+        """
+        Perform a computation on two numbers.
+        
+        Parameters
+        ----------
+        x : float
+            First operand
+        y : float
+            Second operand
+        operation : str
+            Operation type (add, subtract, multiply, divide)
+        
+        Returns
+        -------
+        float
+            Result of the computation
+        """
+        return x + y
+    
+    def analyze(self, data, method):
+        """
+        Analyze data using specified method.
+        
+        Parameters
+        ----------
+        data : array_like
+            Input data array for analysis
+        method : str
+            Analysis method to use
+        
+        Returns
+        -------
+        dict
+            Analysis results with statistics
+        """
+        return {}
+    
+    def no_doc(self, arg):
+        pass
+'''
 
     @pytest.fixture
     def parser(self):
@@ -361,31 +538,86 @@ class TestNumpyDocParser:
         assert isinstance(parser, NumpyDocParser)
         assert isinstance(parser, DocstringParser)
 
-    def test_get_help_msg_not_implemented(self, parser):
-        """Test that get_help_msg raises NotImplementedError."""
-        code = '''
-def test_func():
-    """Test function."""
-    pass
-'''
-        tree = ast.parse(code)
-        func_node = tree.body[0]
+    def test_get_help_msg(self, parser):
+        """Test that get_help_msg extracts first line."""
+        tree = ast.parse(self.NUMPY_CODE)
+        class_node = tree.body[0]
         
-        with pytest.raises(NotImplementedError):
-            parser.get_help_msg(func_node)
+        help_msg = parser.get_help_msg(class_node)
+        assert help_msg == "Scientific calculator with advanced operations."
 
-    def test_get_arg_help_msg_not_implemented(self, parser):
-        """Test that get_arg_help_msg raises NotImplementedError."""
-        code = '''
-def test_func(a, b):
-    """Test function."""
-    pass
-'''
-        tree = ast.parse(code)
-        func_node = tree.body[0]
+    def test_get_help_msg_function(self, parser):
+        """Test get_help_msg for function."""
+        tree = ast.parse(self.NUMPY_CODE)
+        class_node = tree.body[0]
+        compute_method = class_node.body[1]  # Index 0 is docstring, 1 is first method
         
-        with pytest.raises(NotImplementedError):
-            parser.get_arg_help_msg(func_node)
+        help_msg = parser.get_help_msg(compute_method)
+        assert help_msg == "Perform a computation on two numbers."
+
+    def test_get_help_msg_no_docstring(self, parser):
+        """Test get_help_msg returns default for no docstring."""
+        tree = ast.parse(self.NUMPY_CODE)
+        class_node = tree.body[0]
+        no_doc_method = class_node.body[3]  # Index 3 is the method without docstring
+        
+        help_msg = parser.get_help_msg(no_doc_method)
+        assert help_msg == parser.default_help_msg
+
+    def test_get_arg_help_msg(self, parser):
+        """Test get_arg_help_msg parses Parameters section."""
+        tree = ast.parse(self.NUMPY_CODE)
+        class_node = tree.body[0]
+        compute_method = class_node.body[1]  # Index 0 is docstring, 1 is first method
+        
+        arg_help = parser.get_arg_help_msg(compute_method)
+        assert "x" in arg_help
+        assert "y" in arg_help
+        assert "operation" in arg_help
+        assert "First operand" in arg_help["x"]
+        assert "Second operand" in arg_help["y"]
+        assert "Operation type" in arg_help["operation"]
+        assert "self" not in arg_help
+
+    def test_get_arg_help_msg_multiline(self, parser):
+        """Test get_arg_help_msg with multiline descriptions."""
+        tree = ast.parse(self.NUMPY_CODE)
+        class_node = tree.body[0]
+        analyze_method = class_node.body[2]  # Index 2 is second method
+        
+        arg_help = parser.get_arg_help_msg(analyze_method)
+        assert "data" in arg_help
+        assert "method" in arg_help
+        assert "Input data array" in arg_help["data"]
+        assert "Analysis method" in arg_help["method"]
+
+    def test_get_arg_help_msg_no_docstring(self, parser):
+        """Test get_arg_help_msg returns defaults for no docstring."""
+        tree = ast.parse(self.NUMPY_CODE)
+        class_node = tree.body[0]
+        no_doc_method = class_node.body[3]  # Index 3 is the method without docstring
+        
+        arg_help = parser.get_arg_help_msg(no_doc_method)
+        assert "arg" in arg_help
+        assert arg_help["arg"] == parser.default_help_msg
+
+    def test_get_return_msg(self, parser):
+        """Test get_return_msg parses Returns section."""
+        tree = ast.parse(self.NUMPY_CODE)
+        class_node = tree.body[0]
+        compute_method = class_node.body[1]  # Index 0 is docstring, 1 is first method
+        
+        return_msg = parser.get_return_msg(compute_method)
+        assert "Result of the computation" in return_msg
+
+    def test_get_return_msg_dict(self, parser):
+        """Test get_return_msg with dict return type."""
+        tree = ast.parse(self.NUMPY_CODE)
+        class_node = tree.body[0]
+        analyze_method = class_node.body[2]  # Index 2 is second method
+        
+        return_msg = parser.get_return_msg(analyze_method)
+        assert "Analysis results" in return_msg
 
 
 class TestDocstringParserIntegration:
