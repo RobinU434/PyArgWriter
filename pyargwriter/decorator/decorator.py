@@ -41,6 +41,34 @@ def add_hydra(
     config_path: str = _UNSPECIFIED_,
     config_name: str = None,
 ):
+    """Decorator to mark a method for Hydra configuration integration.
+
+    This decorator is used to indicate that a method should receive Hydra configuration
+    management. When PyArgWriter processes this decorated method, it will generate
+    appropriate ArgumentParser code that integrates with Hydra for configuration management.
+
+    Args:
+        config_var_name (str, optional): The name of the parameter that will receive the
+            Hydra configuration object. Defaults to "cfg".
+        version_base (str, optional): Hydra version base parameter. Defaults to _UNSPECIFIED_.
+        config_path (str, optional): Relative path to the configuration directory.
+            Defaults to _UNSPECIFIED_.
+        config_name (str, optional): Name of the configuration file to load.
+            Defaults to None.
+
+    Returns:
+        Callable: The decorator function that wraps the target method.
+
+    Example:
+        >>> @add_hydra(config_var_name="config", config_path="conf", config_name="app")
+        >>> def train_model(self, config):
+        >>>     print(f"Learning rate: {config.lr}")
+        >>>     # Training logic here
+
+    Note:
+        This decorator is primarily used as a marker for PyArgWriter's code generation.
+        The actual Hydra integration is handled by the generated ArgumentParser code.
+    """
     def decorator(func: Callable):
         @wraps(func)
         def wrapper(*args, **kwargs):

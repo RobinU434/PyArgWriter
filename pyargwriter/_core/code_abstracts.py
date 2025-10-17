@@ -448,21 +448,30 @@ class Function(Code):
 
 
 class Match(Code):
-    """Represents a Python 'match' expression.
+    """Represents a Python 'match' expression (pattern matching case).
 
-    This class represents a 'match' expression in Python and allows you to build and manipulate its structure.
+    This class represents a single 'case' clause within a Python 'match' statement and allows you to 
+    build and manipulate its structure. It generates code in the form:
+        case <match_value>:
+            <body>
 
     Args:
-        match_value (Any): The value to match against.
-        body (Code): The code block representing the body of the 'match' expression.
+        match_value (Any): The value to match against. Supports str, int, and float types.
+        body (Code): The code block representing the body to execute when the case matches.
 
     Attributes:
-        _match_value (Any): The value to match against.
-        body (Code): The code block representing the body of the 'match' expression.
+        _match_value (Any): The stored value to match against.
+        body (Code): The code block representing the body of this match case.
 
-    Methods:
-        (other class methods...)
+    Raises:
+        NotImplementedError: If match_value is of an unsupported type.
 
+    Example:
+        >>> body = Code.from_str("print('matched!')")
+        >>> match = Match(match_value="hello", body=body)
+        >>> print(match)
+        case 'hello':
+            print('matched!')
     """
 
     def __init__(self, match_value: Any, body: Code) -> None:
@@ -493,31 +502,66 @@ class Match(Code):
 
 
 class DefaultCase(Match):
+    """Represents a default 'case _:' clause in a Python 'match' statement.
+
+    This class extends Match to create a default/fallback case that matches any value.
+    It generates code in the form:
+        case _:
+            <body>
+
+    Args:
+        body (Code): The code block to execute in the default case.
+
+    Example:
+        >>> body = Code.from_str("print('default case')")
+        >>> default = DefaultCase(body=body)
+        >>> print(default)
+        case _:
+            print('default case')
+    """
     def __init__(self, body: Code) -> None:
         super().__init__(None, body=body)
 
     def _generate(self):
+        """Generate the default case code block."""
         self.append(content="case _:")
         self._tab_level += 1
         self.append(self.body)
 
 
 class MatchCase(Code):
-    """Represents a 'case' in a Python 'match' expression.
+    """Represents a complete Python 'match' statement with multiple cases.
 
-    This class represents a 'case' in a Python 'match' expression and allows you to build and manipulate its structure.
+    This class generates a complete 'match' statement structure containing multiple cases. 
+    It generates code in the form:
+        match <match_name>:
+            case <value1>:
+                <body1>
+            case <value2>:
+                <body2>
+            ...
 
     Args:
-        match_name (str): The name of the matched value.
-        matches (List[Match]): A list of Match objects representing different cases.
+        match_name (str): The expression or variable name to match against.
+        matches (List[Match]): A list of Match objects representing different case clauses.
 
     Attributes:
-        _name (str): The name of the matched value.
-        _matches (List[Match]): A list of Match objects representing different cases.
+        _name (str): The expression/variable being matched.
+        _matches (List[Match]): List of Match objects for all the case clauses.
 
-    Methods:
-        (other class methods...)
-
+    Example:
+        >>> case1 = Match("option1", Code.from_str("print('opt 1')"))
+        >>> case2 = Match("option2", Code.from_str("print('opt 2')"))
+        >>> default = DefaultCase(Code.from_str("print('default')"))
+        >>> match_case = MatchCase("user_choice", [case1, case2, default])
+        >>> print(match_case)
+        match user_choice:
+            case 'option1':
+                print('opt 1')
+            case 'option2':
+                print('opt 2')
+            case _:
+                print('default')
     """
 
     def __init__(self, match_name: str, matches: List[Match]) -> None:

@@ -468,10 +468,11 @@ class Execute(Function):
             body = Code.from_str(
                 f"module = {module.name}({create_call_args(module.args)})"
             )
-            body.append(self._generate_command_match_case(module.commands))
             body.append(
                 content=f"_, command_parser = setup_{module.name.lower()}_parser(ArgumentParser())"
             )
+            body.append(self._generate_command_match_case(module.commands))
+            
             matches.append(Match(match_value=match_name, body=body))
 
         # add default case
