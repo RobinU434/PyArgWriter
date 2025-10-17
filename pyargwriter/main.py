@@ -17,7 +17,7 @@ def create_parser() -> ArgumentParser:
 
 def execute(args: Dict[str, Any]) -> bool:
     arg_pars_writer = ArgParseWriter(**args)
-
+    
     match args["command"]:
         case "parse-code":
             arg_pars_writer.parse_code(**args)
@@ -42,6 +42,6 @@ def main():
     args = vars(parser.parse_args())
     log_level = args.pop("log_level", "WARNING")
     set_log_level(log_level)
-
+    
     if not execute(args):
-        parser.print_usage()
+        parser.print_help()
