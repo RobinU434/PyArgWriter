@@ -1,4 +1,4 @@
-from pyargwriter.main import main
+from clify.main import main
 
 
 if __name__ == "__main__":

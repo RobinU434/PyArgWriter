@@ -1,6 +1,6 @@
 from typing import Any, Dict, List
 
-from pyargwriter._core.structures import ArgumentStructure
+from clify._core.structures import ArgumentStructure
 
 
 def dict2args(d: Dict[str, Any]) -> str:

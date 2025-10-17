@@ -4,16 +4,16 @@ import logging
 from ast import ClassDef, FunctionDef, NodeVisitor
 from typing import Dict, List, Tuple
 
-from pyargwriter._core.docstring_parser import DocstringParser
-from pyargwriter._core.structures import (
+from clify._core.docstring_parser import DocstringParser
+from clify._core.structures import (
     ArgumentStructure,
     CommandStructure,
     DecoratorFlagStructure,
     ModuleStructure,
     ModuleStructures,
 )
-import pyargwriter.decorator
-from pyargwriter.utils.file_system import write_json, write_yaml
+import clify.decorator
+from clify.utils.file_system import write_json, write_yaml
 
 
 class DecoratorInspector(NodeVisitor):
@@ -24,7 +24,7 @@ class DecoratorInspector(NodeVisitor):
         self.decorator_args = {}
         """key: decorator_name, value: arguments of decorator, default values included"""
 
-        self.decorator_module = pyargwriter.decorator
+        self.decorator_module = clify.decorator
 
     def visit_FunctionDef(self, node):
         self.decorator_args = {}
@@ -212,8 +212,8 @@ class ClassInspector(NodeVisitor):
         res = []
         for decorator_struct in decorator_structs:
             name = decorator_struct.name
-            if name == pyargwriter.decorator.add_hydra.__name__:
-                sig = inspect.signature(pyargwriter.decorator.add_hydra)
+            if name == clify.decorator.add_hydra.__name__:
+                sig = inspect.signature(clify.decorator.add_hydra)
                 # Build a mapping of parameter names to their defaults
                 params = sig.parameters
                 default_values = {

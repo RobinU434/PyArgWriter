@@ -1,15 +1,15 @@
 import logging
 from typing import Any, Dict, List
-from pyargwriter._core.code_generator import CodeGenerator
-from pyargwriter._core.code_inspector import ModuleInspector
-from pyargwriter.decorator import overwrite_protection
-from pyargwriter.utils.file_system import (
+from clify._core.code_generator import CodeGenerator
+from clify._core.code_inspector import ModuleInspector
+from clify.decorator import overwrite_protection
+from clify.utils.file_system import (
     create_directory,
     create_file,
     get_project_root_name,
     load_file_tree,
 )
-from pyargwriter.utils.formatter import BlackFormatter
+from clify.utils.formatter import BlackFormatter
 
 
 class ArgParseWriter:

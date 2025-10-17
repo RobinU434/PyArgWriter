@@ -6,7 +6,7 @@ ArgumentStructure, CommandStructure, ModuleStructure, ModuleStructures, and Deco
 
 import pytest
 import json
-from pyargwriter._core.structures import (
+from clify._core.structures import (
     ArgumentStructure,
     CommandStructure,
     ModuleStructure,

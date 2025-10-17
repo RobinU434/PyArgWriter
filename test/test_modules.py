@@ -1,8 +1,8 @@
 import pytest
-from pyargwriter.entrypoint import ArgParseWriter
-from pyargwriter._core.code_generator import CodeGenerator
-from pyargwriter._core.code_inspector import ModuleInspector
-from pyargwriter.utils.file_system import load_file_tree
+from clify.entrypoint import ArgParseWriter
+from clify._core.code_generator import CodeGenerator
+from clify._core.code_inspector import ModuleInspector
+from clify.utils.file_system import load_file_tree
 
 
 def test_code_parser(cleanup_tmp_dir):

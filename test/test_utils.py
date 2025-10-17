@@ -1,4 +1,4 @@
-from pyargwriter.utils.type_testing import type_of_all
+from clify.utils.type_testing import type_of_all
 
 
 def test_type_off_all(cleanup_tmp_dir):

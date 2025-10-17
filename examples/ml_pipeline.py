@@ -1,7 +1,7 @@
 from typing import Any
 
 from omegaconf import DictConfig
-from pyargwriter.decorator import add_hydra
+from clify.decorator import add_hydra
 
 
 class Entrypoint:

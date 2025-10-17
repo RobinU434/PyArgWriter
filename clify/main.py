@@ -1,9 +1,9 @@
 from argparse import ArgumentParser
 from typing import Any, Dict
 
-from pyargwriter.entrypoint import ArgParseWriter
-from pyargwriter.utils.log_level import set_log_level
-from pyargwriter.utils.parser import setup_parser
+from clify.entrypoint import ArgParseWriter
+from clify.utils.log_level import set_log_level
+from clify.utils.parser import setup_parser
 
 
 def create_parser() -> ArgumentParser:

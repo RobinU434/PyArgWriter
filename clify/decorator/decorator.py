@@ -2,7 +2,7 @@ from typing import Callable
 from functools import wraps
 from hydra.main import _UNSPECIFIED_
 
-from pyargwriter.utils.file_system import check_file_exists
+from clify.utils.file_system import check_file_exists
 
 
 def overwrite_protection(func: Callable) -> Callable:
